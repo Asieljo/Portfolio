@@ -1,0 +1,428 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 104px;
+
+    font-family: "Roboto", serif;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+}
+
+.info h2{
+    letter-spacing: normal;
+
+    color: #190EB2;
+}
+
+h2{
+    margin: 0;
+    text-align: center;
+
+    font-family: "Poppins", serif;
+    letter-spacing: 2px;
+
+    color: #3D518C;
+}
+
+p{
+    margin: 0;
+}
+
+hr{
+    width: 100%;
+    margin-top: 56px;
+}
+
+
+.email_icon{
+    display: none;
+    cursor: pointer;
+}
+
+/* Style for header*/
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    padding: 16px 16px;
+    width: 100%;
+
+    background-color: #091540;
+    color: #FFFFFF;
+
+    font-family: "Roboto", serif;
+
+    z-index: 100;
+}
+
+header h1{
+    letter-spacing: 4px;
+}
+
+.contact{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.contact a:nth-child(2){
+    color: #FFFFFF;
+}
+
+a{
+    text-decoration: none;
+    width: fit-content;
+    height: fit-content;
+
+    cursor: pointer;
+}
+
+h1{
+    margin: 0;
+}
+
+p{
+    font-size: 18px;
+    text-align: justify;
+}
+
+b{
+    color: #190EB2;
+}
+
+strong{
+    color: #3D518C;
+}
+
+/*hovering_email*/
+.email:hover{
+    text-decoration: underline;
+}
+
+/*Style for my_info*/
+.profile{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.photo{
+    width: 134px;
+    height: 134px;
+}
+
+.my_info img{
+    width: 100%;
+    height: 100%;
+
+    border-radius: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.my_info{
+    display: flex;
+    gap: 16px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info span{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    color: #797979;
+}
+
+/*hovering_myinfo_button*/
+.button_cv {
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    width: fit-content;
+    border: 0;
+
+    color: #fff; 
+    background-color: #190EB2;
+
+    border-radius: 50px;
+    cursor: pointer;
+
+    overflow: hidden;
+    transition: color 0.3s ease; 
+    position: relative;
+}
+
+.button_cv span {
+    position: relative;
+    z-index: 10; 
+    color: #FFFFFF;
+}
+
+.button_cv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; 
+    width: 100%;
+    height: 100%;
+    background-color: #39d4ba; 
+    transition: left 0.3s ease;
+}
+
+.button_cv:hover::before {
+    left: 0;
+}
+
+.button_cv:hover {
+    span{
+        color: #190EB2;
+        transition: color .3s ease;
+    }
+    svg{
+        fill: #190EB2;
+        transition: color .3s ease;
+    }
+}
+  
+/* Style for about_me*/
+.about_me{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/*Style for projects*/
+.projects{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.multiple_projects{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 96px;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.project_container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    max-width: 300px;
+    max-height: 350px;
+    border-radius: 16px;
+
+    background-color: #c2dbf5;
+
+    box-shadow: 0 0 16px #8a8a8a
+}
+
+.img_container{
+    width: 300px;
+    height: 185px;
+}
+
+.img_container img{
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+}
+
+.description_button{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: space-between;
+    align-items: center;
+
+    height: auto;
+    padding: 24px;
+
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.github_project{
+    width: fit-content;
+}
+
+.project_links{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/*github and link hovering*/
+.github_project:hover, .link_project:hover{
+    path{
+        fill: #39d4ba;
+    }
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 0;
+    width: fit-content;
+    margin-left: auto;
+
+    font-weight: 500;
+
+    background-color: #190EB2;
+    color: #FFFFFF;
+}
+
+.button:hover{
+    opacity: .7;
+}
+
+/*Style for education*/
+.education{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/*Style for languages*/
+.languages{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.languages_container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: end;
+}
+
+.specific_language{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    text-align: center;
+}
+
+/*Style for tools_software*/
+.tools_software{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.tools_container{
+    display: flex;
+    justify-content: space-evenly;
+    height: fit-content;   
+    justify-items: center;
+}
+
+.specific_tool{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    width: fit-content;
+    height: fit-content;
+}
+
+/*Style for soft_skills*/
+.soft_skills{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.skills_container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.specific_skill{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+}
+
+/*responsive_design*/
+@media (max-width: 930px){
+    .multiple_projects{
+        grid-template-columns: 1fr;
+    }
+    body{
+        padding: 104px 32px;
+    }
+    .skills_container{
+        flex-direction: column;
+        gap: 8px;
+        
+        width: 150px;
+        margin: 0 auto;
+    }
+    .specific_skill{
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 860px){
+    .contact span{
+        display: none;
+    }
+}
+
+@media (max-width: 700px){
+    .email{
+        display: none;
+    }
+    .email_icon{
+        display: inline;
+    }
+}
+
+  

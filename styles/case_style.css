@@ -1,0 +1,147 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding-top: 20vw;
+    padding-right: 104px;
+    padding-left: 104px;
+    padding-bottom: 56px;
+}
+
+.bg_prototypes{
+    width: 99vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+p, span, ul{
+    font-family: "Roboto", serif;
+    line-height: 24px;
+}
+
+b{
+    color: #3D518C;
+}
+
+h1, h2{
+    margin: 0;
+    font-family: "Poppins", serif;
+
+    letter-spacing: 2px;
+
+    color: #190EB2;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/*Style for userflow_section*/
+.userflow_section{
+    position: relative;
+}
+
+.userflow_section p{    
+    margin-bottom: 56px;
+}
+
+.assets{
+    display: flex;
+    flex-direction: column;
+
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.sitemap{
+    scale: .6;
+}
+
+/*Style for wireframing_section*/
+.wireframing_section p{
+    line-height: 24px;
+}
+
+.mockups_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+
+    max-width: 80%;
+    min-width: 50%;
+    padding: 56px 0;
+    margin: 0 auto;
+}
+
+.mockups_container img{
+    width: 100%;
+}
+
+.mockups_container img:hover{
+    cursor: pointer;
+
+}
+
+.mockup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.mockup span{
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    color: #3D518C;
+}
+
+/*Style for stuck_section*/
+.stuck_section p{
+    line-height: 24px;
+}
+
+/*button styles*/
+.button{
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    width: fit-content;
+    margin: 0 auto;
+
+    color: #fff; /* Texto por defecto */
+    background-color: #190EB2;
+
+    border-radius: 50px;
+    border: 0;
+    cursor: pointer;
+    
+    text-decoration: none;
+    font-family: "Roboto", serif;
+}
+
+.button:hover{
+    opacity: .7;
+}
+
+/*responsive design*/
+@media (max-width: 930px){
+    body{
+        padding-top: 20vw;
+        padding-right: 32px;
+        padding-left: 32px;
+        padding-bottom: 56px;
+    }
+}
+
+@media (max-width: 1300px){
+    .mockups_container{
+        grid-template-columns: 1fr;
+    }
+}
