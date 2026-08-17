@@ -1,0 +1,107 @@
+// Global styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-dark;
+  background-color: $color-white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: $font-size-5xl;
+
+  @include mobile {
+    font-size: $font-size-4xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-3xl;
+
+  @include mobile {
+    font-size: $font-size-2xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-2xl;
+
+  @include mobile {
+    font-size: $font-size-xl;
+  }
+}
+
+p {
+  font-size: $font-size-lg;
+  color: $color-gray;
+  line-height: 1.8;
+
+  @include mobile {
+    font-size: $font-size-base;
+  }
+}
+
+button {
+  font-family: $font-body;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+// Utility classes
+.container {
+  @include container;
+}
+
+.section {
+  @include section-padding;
+}
+
+// Scrollbar styling
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-light;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-secondary;
+  border-radius: $radius-md;
+
+  &:hover {
+    background: $color-primary;
+  }
+}

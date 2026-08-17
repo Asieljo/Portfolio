@@ -1,0 +1,103 @@
+.about {
+  background-color: $color-dark;
+  @include section-padding;
+
+  &__container {
+    @include container;
+  }
+
+  &__content {
+    @include flex-between;
+    gap: $spacing-3xl;
+    margin-bottom: $spacing-3xl;
+
+    @include mobile {
+      @include flex-column;
+      gap: $spacing-2xl;
+    }
+  }
+
+  &__text {
+    flex: 1;
+    @include flex-column;
+    gap: $spacing-lg;
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-accent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  &__title {
+    @include heading-secondary;
+    font-size: $font-size-3xl;
+    line-height: 1.3;
+
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    color: $color-gray-light;
+    line-height: 1.8;
+
+    strong {
+      color: $color-white;
+      font-weight: 600;
+    }
+  }
+
+  &__photo-container {
+    flex: 0 0 300px;
+    @include flex-center;
+
+    @include mobile {
+      flex: 0 0 auto;
+    }
+  }
+
+  &__photo {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: $radius-xl;
+    object-fit: cover;
+    box-shadow: $shadow-xl;
+  }
+
+  &__skills {
+    @include flex-center;
+    gap: $spacing-xl;
+    flex-wrap: wrap;
+
+    @include mobile {
+      gap: $spacing-md;
+    }
+  }
+
+  &__skill {
+    @include flex-center;
+    gap: $spacing-sm;
+    background-color: $color-darker;
+    padding: $spacing-md $spacing-lg;
+    border-radius: $radius-lg;
+    color: $color-white;
+    font-size: $font-size-base;
+    font-weight: 500;
+    transition: all $transition-normal;
+
+    &:hover {
+      background-color: $color-primary;
+      transform: translateY(-2px);
+    }
+
+    svg {
+      color: $color-accent;
+    }
+  }
+}

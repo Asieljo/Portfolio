@@ -1,0 +1,143 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba($color-white, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: $shadow-sm;
+
+  &__container {
+    @include flex-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing-md $spacing-xl;
+
+    @include mobile {
+      padding: $spacing-md;
+    }
+  }
+
+  &__logo {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $color-dark;
+    letter-spacing: 1px;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__menu-toggle {
+    display: none;
+    @include flex-column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-sm;
+
+    span {
+      width: 24px;
+      height: 2px;
+      background-color: $color-dark;
+      transition: all $transition-normal;
+    }
+
+    &--active {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+
+    @include mobile {
+      display: flex;
+    }
+  }
+
+  &__nav {
+    @include mobile {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $color-white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all $transition-normal;
+
+      &--open {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  &__nav-list {
+    @include flex-center;
+    gap: $spacing-xl;
+
+    @include mobile {
+      @include flex-column;
+      gap: $spacing-2xl;
+    }
+  }
+
+  &__nav-link {
+    @include flex-center;
+    background: none;
+    border: none;
+    font-size: $font-size-base;
+    font-weight: 500;
+    color: $color-dark;
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: $color-primary;
+      transition: width $transition-normal;
+    }
+
+    &:hover {
+      color: $color-primary;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    @include mobile {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__nav-btn {
+    @include button-primary;
+    padding: $spacing-sm $spacing-lg;
+
+    @include mobile {
+      padding: $spacing-md $spacing-2xl;
+    }
+  }
+}

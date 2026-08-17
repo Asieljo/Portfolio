@@ -1,0 +1,138 @@
+@use "variables" as *;
+
+// Responsive breakpoints
+@mixin mobile {
+  @media (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Gradient backgrounds
+@mixin gradient-light {
+  background: linear-gradient(135deg, $color-white 0%, #E8F4FD 50%, #D1ECF9 100%);
+}
+
+@mixin gradient-dark {
+  background: linear-gradient(180deg, $color-dark 0%, $color-darker 100%);
+}
+
+// Photo fade effect
+@mixin photo-fade {
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+// Card styles
+@mixin card-light {
+  background-color: $color-white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+}
+
+@mixin card-dark {
+  background-color: $color-darker;
+  border-radius: $radius-lg;
+}
+
+// Button styles
+@mixin button-primary {
+  background-color: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $radius-md;
+  padding: $spacing-md $spacing-lg;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-normal;
+
+  &:hover {
+    background-color: $color-accent;
+    color: $color-primary;
+  }
+}
+
+@mixin button-outline {
+  background-color: transparent;
+  color: $color-white;
+  border: 2px solid $color-white;
+  border-radius: $radius-md;
+  padding: $spacing-md $spacing-lg;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-normal;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-dark;
+  }
+}
+
+// Text styles
+@mixin heading-primary {
+  font-family: $font-heading;
+  font-weight: 700;
+  color: $color-dark;
+}
+
+@mixin heading-secondary {
+  font-family: $font-heading;
+  font-weight: 700;
+  color: $color-white;
+}
+
+@mixin text-body {
+  font-family: $font-body;
+  font-weight: 400;
+  color: $color-gray;
+  line-height: 1.6;
+}
+
+// Section styles
+@mixin section-padding {
+  padding: $spacing-4xl $spacing-xl;
+
+  @include mobile {
+    padding: $spacing-3xl $spacing-md;
+  }
+}
+
+// Container
+@mixin container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include mobile {
+    padding: 0 $spacing-md;
+  }
+}

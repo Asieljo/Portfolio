@@ -1,0 +1,77 @@
+.tools {
+  background-color: $color-light;
+  @include section-padding;
+
+  &__container {
+    @include container;
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    text-align: center;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    @include heading-primary;
+    font-size: $font-size-3xl;
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__grid {
+    @include flex-center;
+    gap: $spacing-2xl;
+    flex-wrap: wrap;
+
+    @include mobile {
+      gap: $spacing-xl;
+    }
+  }
+
+  &__card {
+    @include flex-column;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-xl;
+    background-color: $color-white;
+    border-radius: $radius-lg;
+    min-width: 150px;
+    box-shadow: $shadow-sm;
+    transition: all $transition-normal;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &__icon {
+    @include flex-center;
+    width: 80px;
+    height: 80px;
+    background-color: $color-light;
+    border-radius: $radius-full;
+
+    svg {
+      color: $color-primary;
+    }
+  }
+
+  &__name {
+    font-family: $font-body;
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $color-dark;
+    margin: 0;
+  }
+}

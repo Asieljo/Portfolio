@@ -1,0 +1,16 @@
+@use "variables" as *;
+
+// Convert px to rem
+@function to-rem($px, $base: 16) {
+  @return ($px / $base) * 1rem;
+}
+
+// Calculate spacing based on unit
+@function spacing($multiplier) {
+  @return $multiplier * $spacing-unit;
+}
+
+// Generate random color (for testing)
+@function random-color() {
+  @return hsl(random(360), 70%, 50%);
+}

@@ -1,0 +1,130 @@
+.contact-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color-dark, 0.8);
+  @include flex-center;
+  z-index: 200;
+  padding: $spacing-lg;
+  animation: fadeIn 0.3s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  &__content {
+    background-color: $color-white;
+    border-radius: $radius-xl;
+    padding: $spacing-2xl;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    animation: slideUp 0.3s ease;
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @include mobile {
+      padding: $spacing-xl;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    background-color: $color-light;
+    border-radius: $radius-full;
+    border: none;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__title {
+    @include heading-primary;
+    font-size: $font-size-2xl;
+    text-align: center;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__subtitle {
+    text-align: center;
+    color: $color-gray;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__links {
+    @include flex-column;
+    gap: $spacing-md;
+  }
+
+  &__link {
+    @include flex-center;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+    background-color: $color-light;
+    border-radius: $radius-lg;
+    transition: all $transition-normal;
+    text-decoration: none;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+      transform: translateX(8px);
+
+      svg {
+        color: $color-white;
+      }
+
+      small {
+        color: rgba($color-white, 0.8);
+      }
+    }
+
+    svg {
+      flex-shrink: 0;
+      color: $color-primary;
+      transition: color $transition-normal;
+    }
+
+    span {
+      font-weight: 600;
+      color: $color-dark;
+    }
+
+    small {
+      display: block;
+      font-size: $font-size-sm;
+      color: $color-gray;
+      transition: color $transition-normal;
+    }
+  }
+}

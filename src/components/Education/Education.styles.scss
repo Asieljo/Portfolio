@@ -1,0 +1,84 @@
+.education {
+  background-color: $color-light;
+  @include section-padding;
+
+  &__container {
+    @include container;
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    text-align: center;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    @include heading-primary;
+    font-size: $font-size-3xl;
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-xl;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    @include card-light;
+    padding: $spacing-xl;
+    @include flex-column;
+    gap: $spacing-md;
+    transition: all $transition-normal;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  &__card-header {
+    @include flex-between;
+    align-items: flex-start;
+  }
+
+  &__year {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.1);
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $radius-sm;
+  }
+
+  &__card-title {
+    font-family: $font-body;
+    font-size: $font-size-base;
+    font-weight: 500;
+    color: $color-dark;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  svg {
+    color: $color-primary;
+  }
+}
