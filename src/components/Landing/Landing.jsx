@@ -1,3 +1,4 @@
+import fotoPerfil from '../../assets/images/foto_perfil.jpg'
 import './Landing.styles.scss'
 
 const Landing = ({ onContactClick }) => {
@@ -30,7 +31,7 @@ const Landing = ({ onContactClick }) => {
 
           <div className="landing__photo-container">
             <img 
-              src="/src/assets/images/foto_perfil.jpg" 
+              src={fotoPerfil}
               alt="Asiel Rosiles" 
               className="landing__photo"
             />

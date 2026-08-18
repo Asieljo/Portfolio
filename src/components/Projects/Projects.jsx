@@ -1,11 +1,15 @@
 import { useNavigate } from 'react-router-dom'
+import screenshot1 from '../../assets/images/screenshots/screenshot1.jpg'
+import screenshot2 from '../../assets/images/screenshots/screenshot2.jpg'
+import screenshot3 from '../../assets/images/screenshots/screenshot3.jpg'
+import screenshot4 from '../../assets/images/screenshots/screenshot4.jpg'
 import './Projects.styles.scss'
 
 const projects = [
   {
     id: 1,
     title: 'Web Design with HTML & CSS',
-    image: '/src/assets/images/screenshots/screenshot1.jpg',
+    image: screenshot1,
     github: 'https://github.com/Asieljo/website_prueba',
     live: 'https://asieljo.github.io/website_prueba/',
     type: 'external'
@@ -13,14 +17,14 @@ const projects = [
   {
     id: 2,
     title: 'Case Study',
-    image: '/src/assets/images/screenshots/screenshot2.jpg',
+    image: screenshot2,
     route: '/case-study',
     type: 'internal'
   },
   {
     id: 3,
     title: 'Responsive Design with CSS',
-    image: '/src/assets/images/screenshots/screenshot3.jpg',
+    image: screenshot3,
     github: 'https://github.com/Asieljo/Responsive_web_design',
     live: 'https://asieljo.github.io/Responsive_web_design/',
     type: 'external'
@@ -28,19 +32,19 @@ const projects = [
   {
     id: 4,
     title: 'Figma Prototyping',
-    image: '/src/assets/images/screenshots/screenshot4.jpg',
+    image: screenshot4,
     route: '/prototype',
     type: 'internal'
   }
 ]
 
 const Projects = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleProjectClick = (project) => {
     if (project.type === 'internal') {
-      navigate(project.route)
-    }
+      navigate(project.route);
+    } 
   }
 
   return (

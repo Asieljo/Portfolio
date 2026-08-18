@@ -5,9 +5,9 @@ import './styles/index.styles.scss'
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename='/Portfolio'>
-    <React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter basename='/Portfolio'>
       <App />
-    </React.StrictMode>,
-  </BrowserRouter>
+    </BrowserRouter>
+  </React.StrictMode>
 )

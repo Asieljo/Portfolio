@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import registerPrototype from '../assets/images/Register_prototype.jpg'
 import './Prototype.styles.scss'
 
 const Prototype = () => {
@@ -18,7 +19,7 @@ const Prototype = () => {
       <div className="prototype__content">
         <div className="prototype__image-container">
           <img 
-            src="/src/assets/images/Register_prototype.jpg" 
+            src={registerPrototype}
             alt="Figma Prototype" 
             className="prototype__image"
           />

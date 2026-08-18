@@ -1,4 +1,10 @@
 import { Link } from 'react-router-dom'
+import userflow from '../assets/images/userflow.png'
+import sitemap from '../assets/images/sitemap.png'
+import mockup1 from '../assets/images/mockups/Mockup_1.png'
+import mockup2 from '../assets/images/mockups/Mockup_2.png'
+import mockup3 from '../assets/images/mockups/Mockup_3.png'
+import mockup4 from '../assets/images/mockups/Mockup_4.png'
 import './CaseStudy.styles.scss'
 
 const CaseStudy = () => {
@@ -35,8 +41,8 @@ const CaseStudy = () => {
           <h2>4. User Flow & Sitemap</h2>
           <p>Creating the information architecture and user navigation flow.</p>
           <div className="case-study__images">
-            <img src="/src/assets/images/userflow.png" alt="User Flow" />
-            <img src="/src/assets/images/sitemap.png" alt="Sitemap" />
+            <img src={userflow} alt="User Flow" />
+            <img src={sitemap} alt="Sitemap" />
           </div>
         </section>
 
@@ -44,10 +50,10 @@ const CaseStudy = () => {
           <h2>5. Wireframing & Prototyping</h2>
           <p>Developing wireframes and interactive prototypes.</p>
           <div className="case-study__images">
-            <img src="/src/assets/images/mockups/Mockup_1.png" alt="Mockup 1" />
-            <img src="/src/assets/images/mockups/Mockup_2.png" alt="Mockup 2" />
-            <img src="/src/assets/images/mockups/Mockup_3.png" alt="Mockup 3" />
-            <img src="/src/assets/images/mockups/Mockup_4.png" alt="Mockup 4" />
+            <img src={mockup1} alt="Mockup 1" />
+            <img src={mockup2} alt="Mockup 2" />
+            <img src={mockup3} alt="Mockup 3" />
+            <img src={mockup4} alt="Mockup 4" />
           </div>
         </section>
 

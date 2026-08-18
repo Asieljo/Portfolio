@@ -1,3 +1,4 @@
+import fotoPerfil from '../../assets/images/foto_perfil.jpg'
 import './About.styles.scss'
 
 const About = () => {
@@ -22,7 +23,7 @@ const About = () => {
 
           <div className="about__photo-container">
             <img 
-              src="/src/assets/images/foto_perfil.jpg" 
+              src={fotoPerfil}
               alt="Asiel Rosiles" 
               className="about__photo"
             />

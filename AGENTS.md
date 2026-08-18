@@ -12,7 +12,7 @@ This is my portfolio, it was made with HTML and CSS. But i want to update it, so
 - Database: non-existent
 - Testing: jest
 - Styling: sass
-- Routing: react router dom
+- Routing: react router dom (<BrowserRouter> + <Routes> + <Route> pattern)
 - Conventions: BEM methodology
 - Base dependencies: react-router-dom, web-vitals, vite-plugin-svgr, react-hot-toast
 
@@ -78,6 +78,7 @@ If there is no yarn you will install it first, then run the respective command
 - Do not duplicate logic when it can reasonably be reused.
 - Do not introduce dependencies unless necessary.
 - Follow the existing patterns of the project.
+- Always use ; when it should be used
 
 ### Naming
 
@@ -138,6 +139,11 @@ Before adding a new dependency:
 5. For the base dependencies mentioned, use them correctly
 
 ---
+
+## Assets
+
+- Images or icons you will transform them into components
+- Svgs you will also transform them into components (you will need to install the vite-plugin-svgr before if you don´t)
 
 ## Testing
 
