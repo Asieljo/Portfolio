@@ -5,13 +5,11 @@ import Prototype from './pages/Prototype'
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/case-study" element={<CaseStudy />} />
-        <Route path="/prototype" element={<Prototype />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/case-study" element={<CaseStudy />} />
+      <Route path="/prototype" element={<Prototype />} />
+    </Routes>
   )
 }
 
