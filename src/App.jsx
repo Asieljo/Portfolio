@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import CaseStudy from './pages/CaseStudy'
 import Prototype from './pages/Prototype'
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Routes>
