@@ -67,11 +67,12 @@
 // Button styles
 @mixin button-primary {
   background-color: $color-primary;
+  font-family: $font-btn;
   color: $color-white;
   border: none;
   border-radius: $radius-md;
   padding: $spacing-md $spacing-lg;
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
   transition: all $transition-normal;
 

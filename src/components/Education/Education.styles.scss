@@ -47,12 +47,6 @@
     padding: $spacing-xl;
     @include flex-column;
     gap: $spacing-md;
-    transition: all $transition-normal;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: $shadow-lg;
-    }
   }
 
   &__card-header {
