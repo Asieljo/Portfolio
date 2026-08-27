@@ -51,24 +51,6 @@
     background-color: $color-light;
     border-radius: $radius-lg;
     transition: all $transition-normal;
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: $shadow-md;
-      background-color: $color-primary;
-
-      .soft-skills__icon {
-        background-color: $color-white;
-
-        svg {
-          color: $color-primary;
-        }
-      }
-
-      .soft-skills__name {
-        color: $color-white;
-      }
-    }
   }
 
   &__icon {

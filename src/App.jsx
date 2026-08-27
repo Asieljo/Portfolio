@@ -1,15 +1,19 @@
 import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import CaseStudy from './pages/CaseStudy'
-import Prototype from './pages/Prototype'
+import Home from './pages/Home/Home'
+import CaseStudy from './pages/CaseStudy/CaseStudy'
+import Prototype from './pages/Prototype/Prototype'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/case-study" element={<CaseStudy />} />
-      <Route path="/prototype" element={<Prototype />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/case-study" element={<CaseStudy />} />
+        <Route path="/prototype" element={<Prototype />} />
+      </Routes>
+    </>
   )
 }
 

@@ -26,11 +26,14 @@ Component-based architecture with styles co-located, BEM methodology and a centr
 src/
 ├── assets/         # Images, icons, svg
 ├── components/     # Reusable UI components
-|		├── component/
+|	├── component1/
 │   │   ├── Component1.jsx
 │   │   └── Component1.styles.scss 
 │   │
 ├── pages/          # Application pages
+|	├── page1/
+│   │   ├── Page1.jsx
+│   │   └── Page1.styles.scss 
 ├── features/       # Feature-specific logic
 ├── hooks/          # Custom hooks
 ├── services/       # API and external services

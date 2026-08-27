@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import registerPrototype from '../assets/images/Register_prototype.jpg'
+import registerPrototype from '../../assets/images/Register_prototype.jpg'
 import './Prototype.styles.scss'
 
 const Prototype = () => {

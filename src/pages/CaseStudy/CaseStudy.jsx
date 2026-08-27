@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import userflow from '../assets/images/userflow.png';
-import sitemap from '../assets/images/sitemap.png';
-import mockup1 from '../assets/images/mockups/Mockup_1.png';
-import mockup2 from '../assets/images/mockups/Mockup_2.png';
-import mockup3 from '../assets/images/mockups/Mockup_3.png';
-import mockup4 from '../assets/images/mockups/Mockup_4.png';
+import userflow from '../../assets/images/userflow.png';
+import sitemap from '../../assets/images/sitemap.png';
+import mockup1 from '../../assets/images/mockups/Mockup_1.png';
+import mockup2 from '../../assets/images/mockups/Mockup_2.png';
+import mockup3 from '../../assets/images/mockups/Mockup_3.png';
+import mockup4 from '../../assets/images/mockups/Mockup_4.png';
 import './CaseStudy.styles.scss';
 
 const CaseStudy = () => {

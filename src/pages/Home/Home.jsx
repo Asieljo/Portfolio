@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import Header from '../components/Header/Header'
-import Landing from '../components/Landing/Landing'
-import About from '../components/About/About'
-import Projects from '../components/Projects/Projects'
-import Education from '../components/Education/Education'
-import Languages from '../components/Languages/Languages'
-import Tools from '../components/Tools/Tools'
-import SoftSkills from '../components/SoftSkills/SoftSkills'
-import ContactModal from '../components/ContactModal/ContactModal'
+import Header from '../../components/Header/Header'
+import Landing from '../../components/Landing/Landing'
+import About from '../../components/About/About'
+import Projects from '../../components/Projects/Projects'
+import Education from '../../components/Education/Education'
+import Languages from '../../components/Languages/Languages'
+import Tools from '../../components/Tools/Tools'
+import SoftSkills from '../../components/SoftSkills/SoftSkills'
+import ContactModal from '../../components/ContactModal/ContactModal'
 
 const Home = () => {
   const [isContactOpen, setIsContactOpen] = useState(false)

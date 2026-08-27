@@ -97,11 +97,14 @@
 
     &:hover {
       background-color: $color-primary;
-      color: $color-white;
       transform: translateX(8px);
 
       svg {
         color: $color-white;
+      }
+
+      span {
+        color: $color-accent;
       }
 
       small {
