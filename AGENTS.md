@@ -81,7 +81,7 @@ If there is no yarn you will install it first, then run the respective command
 - Do not duplicate logic when it can reasonably be reused.
 - Do not introduce dependencies unless necessary.
 - Follow the existing patterns of the project.
-- Always use ; when it should be used
+- Always use ; at the end of imports, functions and more places where appropiate.
 
 ### Naming
 
@@ -90,6 +90,7 @@ If there is no yarn you will install it first, then run the respective command
 - Avoid unnecessary abbreviations.
 - Components in PascalCase, hooks prefixed with "use", utility functions in camelCase.
 - The classname´s will use conventions
+- For SCSS styles with BEM methodology, avoid encapsulating multiple elements. Its just necessary with one, example: "landing__section" and "landing__btn" not "landing__section" and "landing__section__btn" 
 
 ### Comments
 

@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: rgba($color-white, 0.95);
+  background-color: $color-white;
   backdrop-filter: blur(10px);
   box-shadow: $shadow-sm;
 
@@ -32,9 +32,16 @@
   }
 
   &__menu-toggle {
-    display: none;
+    @include desktop {
+      visibility: hidden;
+    }
+
+    @include tablet {
+      visibility: hidden;
+    }
+
     @include flex-column;
-    gap: 5px;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
@@ -62,14 +69,20 @@
     }
 
     @include mobile {
+      visibility: visible;
       display: flex;
     }
   }
 
   &__nav {
+    @include desktop {
+      display: flex;
+      align-items: center;
+    }
+
     @include mobile {
       position: fixed;
-      top: 64px;
+      top: 80px;
       left: 0;
       right: 0;
       background-color: $color-white;
@@ -84,8 +97,11 @@
       opacity: 0;
 
       &--open {
+        width: fit-content;
         transform: translateY(0);
         pointer-events: auto;
+        background: none;
+        margin: 0 auto;
 
         visibility: visible;
         opacity: 1;
@@ -96,19 +112,22 @@
 
   &__nav-list {
     @include flex-center;
-    gap: $spacing-xl;
+    gap: $spacing-lg;
 
     @include mobile {
       @include flex-column;
-      gap: $spacing-2xl;
-      contain: layout;
+      gap: 12px;
+      width: 500px;
     }
   }
 
   &__nav-link {
     @include flex-center;
-    background: none;
+    background: white;
     border: none;
+    border-radius: 16px;
+    padding: 12px;
+
     font-size: $font-size-base;
     font-weight: 500;
     color: $color-dark;
@@ -130,13 +149,14 @@
     &:hover {
       color: $color-primary;
 
-      &::after {
-        width: 100%;
-      }
     }
 
     @include mobile {
-      font-size: $font-size-xl;
+      width: 500px;
+
+      &:hover {
+        background-color: $color-gray-light;
+      }
     }
   }
 

@@ -59,15 +59,41 @@
     }
   }
 
+  &__mockups {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-xl;
+    margin-top: $spacing-xl;
+  }
+
+  &__mockup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
+    flex: 1 1 220px;
+    max-width: 300px;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: $radius-md;
+      box-shadow: $shadow-md;
+    }
+
+    span {
+      font-size: $font-size-sm;
+      color: $color-gray;
+    }
+  }
+
   &__images {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: $spacing-lg;
     margin-top: $spacing-xl;
-
-    @include mobile {
-      grid-template-columns: 1fr;
-    }
 
     img {
       width: 100%;
