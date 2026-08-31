@@ -16,6 +16,7 @@
 
   &__content {
     @include flex-center;
+    flex-direction: column;
     gap: $spacing-3xl;
     width: 100%;
 
@@ -26,10 +27,14 @@
   }
 
   &__text {
+    position: absolute;
+    top: 140px;
+    width: max-content;
+    align-items: center;
+
     flex: 1;
     @include flex-column;
-    gap: $spacing-lg;
-    max-width: 500px;
+    gap: -40px;
 
     @include mobile {
       align-items: center;
@@ -40,34 +45,74 @@
   &__title {
     @include heading-primary;
     font-size: $font-size-5xl;
-    margin-bottom: $spacing-sm;
 
     @include mobile {
       font-size: $font-size-4xl;
     }
   }
-
+  
   &__subtitle {
     @include heading-primary;
-    font-size: $font-size-3xl;
+    font-size: $font-size-10xl;
     color: $color-secondary;
     font-style: italic;
     margin-bottom: $spacing-md;
+    width: 100%;
+    
+    @include tablet {
+      font-size: $font-size-8xl;
+    }
 
     @include mobile {
-      font-size: $font-size-2xl;
+      font-size: $font-size-5xl;
     }
   }
 
   &__description {
+    position: absolute;
+    bottom: 300px;
+    width: 300px;
+
     font-size: $font-size-lg;
     color: $color-gray;
     line-height: 1.8;
-    margin-bottom: $spacing-lg;
+
+    @media (min-width: 1025px) {
+      right: 24px;
+    }
+    
+    @media (min-width: 1140px) {
+      right: 80px;
+    }
+
+    @media (min-width: 1300px) {
+      right: 150px;
+    }
+
+    @media (min-width: 1600px) {
+      right: 300px;
+    }
+
+    @include tablet {
+      position: absolute;
+      right: 0px;
+      bottom: 350px;
+
+      font-size: $font-size-sm;
+    }
+
+    @include mobile {
+      visibility: hidden;
+    }
   }
 
   &__availability {
     @include flex-center;
+    position: absolute;
+    left: 300px;
+    bottom: 300px;
+    z-index: 100;
+
     gap: $spacing-sm;
     background-color: $color-white;
     padding: $spacing-sm $spacing-md;
@@ -78,17 +123,36 @@
     font-weight: 500;
     color: $color-dark;
 
+    span {
+      text-align: center;
+    }
+
+    @include tablet {
+      position: absolute;
+      left: 48px;
+      bottom: 400px;
+    }
+
     @include mobile {
-      margin: 0 auto;
+      position: absolute;
+      left: 64px;
+      bottom: 400px;
+
+      width: 180px;
     }
   }
 
   &__availability-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background-color: $color-accent;
     border-radius: $radius-full;
     animation: pulse 2s infinite;
+  
+    @include mobile {
+      width: 20px;
+      height: 12px;
+    }
   }
 
   @keyframes pulse {
@@ -100,26 +164,22 @@
     }
   }
 
-  &__photo-container {
-    flex: 1;
-    @include flex-center;
-    max-width: 400px;
-
-    @include mobile {
-      max-width: 300px;
-    }
-  }
-
   &__photo {
-    width: 100%;
+    width: 60%;
+    max-width: 600px;
+    min-width: 500px;
     height: auto;
-    border-radius: $radius-xl;
+
     @include photo-fade;
-    object-fit: cover;
-    object-position: center top;
+
+    position: absolute;
+    top: 100px;
   }
 
   &__actions {
+    position: absolute;
+    bottom: 100px;
+
     @include flex-center;
     gap: $spacing-xl;
 
@@ -138,6 +198,7 @@
     border-radius: $radius-xl;
     background-color: $color-dark;
     color: $color-white;
+    z-index: 100;
 
     &:hover {
       background-color: $color-primary;

@@ -39,7 +39,7 @@
 
 // Gradient backgrounds
 @mixin gradient-light {
-  background: linear-gradient(135deg, $color-white 0%, #E8F4FD 50%, #D1ECF9 100%);
+  background: linear-gradient(180deg, $color-white 0%, #d4fff8 50%, #84eedc 100%);
 }
 
 @mixin gradient-dark {

@@ -1,5 +1,5 @@
-import fotoPerfil from '../../assets/images/foto_perfil.jpg'
-import './Landing.styles.scss'
+import profileFoto from '../../assets/images/landing-photo.png';
+import './Landing.styles.scss';
 
 const Landing = ({ onContactClick }) => {
   const scrollToAbout = () => {
@@ -13,29 +13,26 @@ const Landing = ({ onContactClick }) => {
     <section className="landing" id="landing">
       <div className="landing__container">
         <div className="landing__content">
+          <div className="landing__availability">
+            <span>Available for opportunities</span>
+            <span className="landing__availability-dot"></span>
+          </div>
+            <p className="landing__description">
+              I'm learning about modern web development while I'm expanding my knowledge and skills to become a better developer.
+            </p>
           <div className="landing__text">
             <h1 className="landing__title">
               Hi I'm Asiel
             </h1>
             <h2 className="landing__subtitle">
-              Modern Web Junior Developer
+              Junior Developer
             </h2>
-            <p className="landing__description">
-              I'm learning about modern web development while I'm expanding my knowledge and skills to become a better developer.
-            </p>
-            <div className="landing__availability">
-              <span className="landing__availability-dot"></span>
-              <span>Available for opportunities</span>
-            </div>
           </div>
-
-          <div className="landing__photo-container">
             <img 
-              src={fotoPerfil}
+              src={profileFoto}
               alt="Asiel Rosiles" 
               className="landing__photo"
             />
-          </div>
         </div>
 
         <div className="landing__actions">
