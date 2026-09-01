@@ -14,7 +14,7 @@ const Landing = ({ onContactClick }) => {
       <div className="landing__container">
         <div className="landing__content">
           <div className="landing__availability">
-            <span>Available for opportunities</span>
+            <span>Available for oportunities</span>
             <span className="landing__availability-dot"></span>
           </div>
             <p className="landing__description">

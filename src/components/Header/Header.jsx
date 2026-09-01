@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.styles.scss'
 
 const Header = ({ onContactClick }) => {
@@ -6,6 +7,10 @@ const Header = ({ onContactClick }) => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const scrollToSection = (sectionId) => {
@@ -19,9 +24,9 @@ const Header = ({ onContactClick }) => {
   return (
     <header className="header">
       <div className="header__container">
-        <a href="/" className="header__logo">
+        <Link to="/" className="header__logo" onClick={scrollToTop}>
           Asiel Rosiles
-        </a>
+        </Link>
 
         <button 
           className={`header__menu-toggle ${isMenuOpen ? 'header__menu-toggle--active' : ''}`}
