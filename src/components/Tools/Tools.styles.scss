@@ -4,6 +4,8 @@
 
   &__container {
     @include container;
+    max-width: none;
+    width: fit-content;
   }
 
   &__label {
@@ -34,7 +36,7 @@
     flex-wrap: wrap;
 
     @include mobile {
-      gap: $spacing-xl;
+      gap: $spacing-lg;
     }
   }
 

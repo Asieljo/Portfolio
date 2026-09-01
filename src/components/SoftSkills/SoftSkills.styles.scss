@@ -29,28 +29,31 @@
   }
 
   &__grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: $spacing-xl;
 
+    @include desktop {
+      justify-content: center;
+    }
+
     @include tablet {
-      grid-template-columns: repeat(3, 1fr);
+      justify-content: center;
     }
 
     @include mobile {
-      grid-template-columns: repeat(2, 1fr);
       gap: $spacing-md;
+      justify-content: center;
     }
   }
 
   &__card {
     @include flex-column;
     align-items: center;
-    gap: $spacing-md;
     padding: $spacing-lg;
     background-color: $color-light;
     border-radius: $radius-lg;
-    transition: all $transition-normal;
+    width: fit-content;
   }
 
   &__icon {

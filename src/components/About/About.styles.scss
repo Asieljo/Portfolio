@@ -68,6 +68,10 @@
     border-radius: $radius-xl;
     object-fit: cover;
     box-shadow: $shadow-xl;
+
+    @include mobile {
+      display: none;
+    }
   }
 
   &__skills {

@@ -92,6 +92,66 @@ If there is no yarn you will install it first, then run the respective command
 - The classname´s will use conventions
 - For SCSS styles with BEM methodology, avoid encapsulating multiple elements. Its just necessary with one, example: "landing__section" and "landing__btn" not "landing__section" and "landing__section__btn" 
 
+### Breakpoints
+
+- Mobile: `≤ 480px`
+- Tablet: `481px – 1024px`
+- Desktop: `≥ 1025px`
+
+### Typographic scale based in breakpoints
+
+- Use scss variables
+- Keep visual hierarchy
+- Sizes must adapt to breakpoints
+- Don´t create arbitrary sizes if there is already a variable that uses the required size
+- You will follow this scale consistently on all the project
+
+- H1 
+  - Mobile: `1.75rem` (~28px)
+  - Tablet: `2rem` (~32px)
+  - Desktop: `3rem` (~48px)
+
+- H2 
+  - Mobile: `1.5rem` (~24px)
+  - Tablet: `1.75rem` (~28px)
+  - Desktop: `2.25rem` (~36px)
+
+- H3
+  - Mobile: `1.25rem` (~20px)
+  - Tablet: `1.5rem` (~24px)
+  - Desktop: `1.75rem` (~28px)
+
+- Body (`p`)
+  - Mobile: `1rem` (~16px)
+  - Tablet: `1rem` (~16px)
+  - Desktop: `1rem` (~16px)
+
+- Secundary descriptions, like span
+  - Mobile: `0.75rem` (~12px)
+  - Tablet: `0.875rem` (~14px)
+  - Desktop: `0.875rem` (~14px)
+
+- Buttons
+  - Mobile: `0.875rem` (~14px)
+  - Tablet: `1rem` (~16px)
+  - Desktop: `1rem` (~16px)
+
+- Inputs / forms
+  - Mobile: `1rem` (~16px)
+  - Tablet: `1rem` (~16px)
+  - Desktop: `1rem` (~16px)
+
+- Menu / navigation
+  - Mobile: `0.875rem` (~14px)
+  - Tablet: `1rem` (~16px)
+  - Desktop: `1rem` (~16px)
+
+- Legal / disclaimers
+  - Mobile: `0.75rem` (~12px)
+  - Tablet: `0.75rem` (~12px)
+  - Desktop: `0.875rem` (~14px)
+
+
 ### Comments
 
 - Do not add comments that merely describe obvious code.
@@ -147,7 +207,7 @@ Before adding a new dependency:
 ## Assets
 
 - Images or icons you will transform them into components
-- Svgs you will also transform them into components (you will need to install the vite-plugin-svgr before if you don´t)
+- Svgs you will also transform them into components (you will need to install the vite-plugin-svgr before, if you didn´t do it)
 
 ## Testing
 

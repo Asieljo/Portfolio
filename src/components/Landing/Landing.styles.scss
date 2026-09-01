@@ -64,7 +64,7 @@
     }
 
     @include mobile {
-      font-size: $font-size-5xl;
+      font-size: $font-size-8xl;
     }
   }
 
@@ -76,6 +76,10 @@
     font-size: $font-size-lg;
     color: $color-gray;
     line-height: 1.8;
+
+    @media (max-width: 850px) {
+      visibility: hidden;
+    }
 
     @media (min-width: 1025px) {
       right: 24px;
@@ -127,18 +131,28 @@
       text-align: center;
     }
 
-    @include tablet {
-      position: absolute;
-      left: 48px;
+    @include desktop {
+      left: 300px;
       bottom: 400px;
     }
 
-    @include mobile {
+    @media (min-width: 1025px ) and (max-width: 1500px) {
+      left: 120px;
+      bottom: 400px;
+    }
+
+    @include tablet {
       position: absolute;
-      left: 64px;
+      left: 100px;
       bottom: 400px;
 
-      width: 180px;
+      width: 170px;
+    }
+
+    @include mobile {
+      width: 160px;
+      left: 48px;
+      bottom: 420px;
     }
   }
 
@@ -149,6 +163,11 @@
     border-radius: $radius-full;
     animation: pulse 2s infinite;
   
+    @include tablet {
+      width: 20px;
+      height: 12px;
+    }
+
     @include mobile {
       width: 20px;
       height: 12px;

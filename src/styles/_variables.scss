@@ -14,17 +14,20 @@ $font-body: 'Orbit', sans-serif;
 $font-heading: "Orbitron", sans-serif;
 $font-btn: "Orbit", sans-serif;
 
-// Font sizes
+// Font sizes (aligned with AGENTS.md typographic scale)
 $font-size-xs: 0.75rem;
 $font-size-sm: 0.875rem;
 $font-size-base: 1rem;
 $font-size-lg: 1.125rem;
 $font-size-xl: 1.25rem;
 $font-size-2xl: 1.5rem;
-$font-size-3xl: 2rem;
-$font-size-4xl: 2.5rem;
-$font-size-5xl: 3.5rem;
-$font-size-8xl: 5rem;
+$font-size-3xl: 1.75rem;
+$font-size-4xl: 2rem;
+$font-size-5xl: 2.25rem;
+$font-size-6xl: 2.5rem;
+$font-size-7xl: 3rem;
+$font-size-8xl: 3.5rem;
+$font-size-9xl: 5rem;
 $font-size-10xl: 7rem;
 
 // Spacing
@@ -57,7 +60,7 @@ $transition-normal: 0.3s ease;
 $transition-slow: 0.5s ease;
 
 // Breakpoints
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 1024px;
-$breakpoint-xl: 1200px;
+$breakpoint-mobile-s: 480px;
+$breakpoint-mobile-l: 767px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1025px;

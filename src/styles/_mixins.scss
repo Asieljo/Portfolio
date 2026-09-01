@@ -2,19 +2,19 @@
 
 // Responsive breakpoints
 @mixin mobile {
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: $breakpoint-mobile-l) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (max-width: $breakpoint-lg) {
+  @media (min-width: ($breakpoint-mobile-l + 1px)) and (max-width: $breakpoint-tablet) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $breakpoint-desktop) {
     @content;
   }
 }
@@ -131,7 +131,6 @@
 @mixin container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 $spacing-lg;
 
   @include mobile {
     padding: 0 $spacing-md;
