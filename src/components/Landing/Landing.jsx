@@ -18,7 +18,7 @@ const Landing = ({ onContactClick }) => {
             <span className="landing__availability-dot"></span>
           </div>
             <p className="landing__description">
-              I'm learning about modern web development while I'm expanding my knowledge and skills to become a better developer.
+              I'm involved in the world of modern web development and i constantly learn about new tools to <br/>enhance my workflow.
             </p>
           <div className="landing__text">
             <h1 className="landing__title">

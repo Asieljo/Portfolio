@@ -1,5 +1,7 @@
-import { useEffect } from 'react'
-import './ContactModal.styles.scss'
+import { useEffect } from 'react';
+import './ContactModal.styles.scss';
+import DownloadIcon from '../../assets/icons/download.svg?react';
+import cvUrl from '../../../Asiel_Rosiles_CV.pdf';
 
 const ContactModal = ({ isOpen, onClose }) => {
   useEffect(() => {
@@ -80,6 +82,17 @@ const ContactModal = ({ isOpen, onClose }) => {
             </svg>
             <span>GitHub</span>
             <small>@Asieljo</small>
+          </a>
+          <a 
+            href={cvUrl}
+            target="_blank" 
+            rel="noopener noreferrer"
+            download="Asiel_Rosiles_CV.pdf"
+            className='contact-modal__link'
+          >
+            <DownloadIcon className="contact-modal__download-icon"/>
+            <span>CV</span>
+            <small>Download CV</small>
           </a>
         </div>
       </div>

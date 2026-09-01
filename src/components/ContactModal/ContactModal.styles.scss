@@ -6,7 +6,7 @@
   bottom: 0;
   background-color: rgba($color-dark, 0.8);
   @include flex-center;
-  z-index: 200;
+  z-index: 600;
   padding: $spacing-lg;
   animation: fadeIn 0.3s ease;
 
@@ -61,11 +61,6 @@
       background-color: $color-primary;
       color: $color-white;
     }
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
   }
 
   &__title {
@@ -86,6 +81,13 @@
     gap: $spacing-md;
   }
 
+  &__download-icon {
+    width: 24px;
+    height: 24px;
+    fill: $color-primary;
+    transition: fill $transition-normal;
+  }
+
   &__link {
     @include flex-center;
     gap: $spacing-md;
@@ -94,6 +96,7 @@
     border-radius: $radius-lg;
     transition: all $transition-normal;
     text-decoration: none;
+
 
     &:hover {
       background-color: $color-primary;
