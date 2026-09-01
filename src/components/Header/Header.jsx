@@ -24,9 +24,9 @@ const Header = ({ onContactClick }) => {
   return (
     <header className="header">
       <div className="header__container">
-        <Link to="/" className="header__logo" onClick={scrollToTop}>
+        <h1 className="header__logo" onClick={scrollToTop} style={{cursor: "pointer"}}>
           Asiel Rosiles
-        </Link>
+        </h1>
 
         <button 
           className={`header__menu-toggle ${isMenuOpen ? 'header__menu-toggle--active' : ''}`}
