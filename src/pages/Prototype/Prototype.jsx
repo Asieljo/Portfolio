@@ -48,7 +48,6 @@ const Prototype = () => {
             <h3>Tools Used</h3>
             <div className="prototype__tool-tags">
               <span>Figma</span>
-              <span>UI/UX Design</span>
               <span>Prototyping</span>
             </div>
           </div>
