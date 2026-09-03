@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.styles.scss'
 
 const Header = ({ onContactClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const location = useLocation()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -13,13 +14,14 @@ const Header = ({ onContactClick }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1))
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
     }
-    setIsMenuOpen(false)
-  }
+  }, [location])
 
   return (
     <header className="header">
@@ -39,48 +41,42 @@ const Header = ({ onContactClick }) => {
         </button>
 
         <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
-          <ul className="header__nav-list">
-            <li>
-              <button 
-                className="header__nav-link"
-                onClick={() => scrollToSection('about')}
-              >
-                About
-              </button>
-            </li>
-            <li>
-              <button 
-                className="header__nav-link"
-                onClick={() => scrollToSection('projects')}
-              >
-                Projects
-              </button>
-            </li>
-            <li>
-              <button 
-                className="header__nav-link"
-                onClick={() => scrollToSection('education')}
-              >
-                Education
-              </button>
-            </li>
-            <li>
-              <button 
-                className="header__nav-link"
-                onClick={() => scrollToSection('skills')}
-              >
-                Soft Skills
-              </button>
-            </li>
-            <li>
-              <button 
-                className="header__nav-btn"
-                onClick={onContactClick}
-              >
-                Contact
-              </button>
-            </li>
-          </ul>
+          <div className="header__nav-list">
+            <Link 
+              to="/#about"
+              className="header__nav-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About
+            </Link>
+            <Link 
+              to="/#projects"
+              className="header__nav-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Projects
+            </Link>
+            <Link 
+              to="/#education"
+              className="header__nav-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Education
+            </Link>
+            <Link 
+              to="/#skills"
+              className="header__nav-link"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Skills
+            </Link>
+            <button 
+              className="header__nav-btn"
+              onClick={onContactClick}
+            >
+              Contact
+            </button>
+          </div>
         </nav>
       </div>
     </header>

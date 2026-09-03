@@ -8,7 +8,7 @@ This is my portfolio, it was made with HTML and CSS. But i want to update it, so
 - Framework: React
 - Build tool: Vite
 - Package manager: yarn
-- State management:
+- State management: useState and useContext
 - Database: non-existent
 - Testing: jest
 - Styling: sass
@@ -82,6 +82,8 @@ If there is no yarn you will install it first, then run the respective command
 - Do not introduce dependencies unless necessary.
 - Follow the existing patterns of the project.
 - Always use ; at the end of imports, functions and more places where appropiate.
+- Use component <Link> of React Router for links that are from app (internal links) and <a> for links that redirect to other app or website (external links) 
+- For <nav> neither use <ul> nor <buttons>, use multiple <Link>
 
 ### Naming
 
