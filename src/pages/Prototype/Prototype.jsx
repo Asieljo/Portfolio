@@ -47,7 +47,7 @@ const Prototype = () => {
           <div className="prototype__tools">
             <h3>Tools Used</h3>
             <div className="prototype__tool-tags">
-              <span>Figma</span>
+              <span>Figma2</span>
               <span>Prototyping</span>
             </div>
           </div>
