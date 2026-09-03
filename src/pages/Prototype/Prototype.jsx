@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import registerPrototype from '../../assets/images/Register_prototype.jpg'
 import './Prototype.styles.scss'
 
 const Prototype = () => {
@@ -17,11 +16,13 @@ const Prototype = () => {
       </div>
 
       <div className="prototype__content">
-        <div className="prototype__image-container">
-          <img 
-            src={registerPrototype}
-            alt="Figma Prototype" 
-            className="prototype__image"
+        <div className="prototype__frame-container">
+          <iframe
+            className="prototype__frame"
+            style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
+            src="https://embed.figma.com/proto/MpXXvyEhDct0PLrdgaq2LW/App-de-im%C3%A1genes?node-id=251-1933&viewport=-5981%2C349%2C0.16&scaling=scale-down&content-scaling=fixed&starting-point-node-id=251%3A2215&show-proto-sidebar=1&page-id=0%3A1&embed-host=share"
+            allowFullScreen
+            title="Interactive Figma prototype"
           />
         </div>
 

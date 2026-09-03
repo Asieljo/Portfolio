@@ -1,24 +1,58 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import './ContactModal.styles.scss';
 import DownloadIcon from '../../assets/icons/download.svg?react';
 import cvUrl from '../../../Asiel_Rosiles_CV.pdf';
 
 const ContactModal = ({ isOpen, onClose }) => {
+  const modalRef = useRef(null);
+
   useEffect(() => {
+    if (!isOpen) return
+
+    const previouslyFocused = document.activeElement
+
     const handleEscape = (e) => {
       if (e.key === 'Escape') {
         onClose()
       }
     }
 
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden'
+    const handleTab = (e) => {
+      if (e.key !== 'Tab') return
+
+      const focusable = modalRef.current.querySelectorAll(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      )
+      const focusableList = Array.from(focusable).filter(
+        (el) => !el.hasAttribute('disabled')
+      )
+      if (focusableList.length === 0) return
+
+      const first = focusableList[0]
+      const last = focusableList[focusableList.length - 1]
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
     }
+
+    const firstFocusable = modalRef.current.querySelector(
+      'a[href], button, [tabindex]:not([tabindex="-1"])'
+    )
+    firstFocusable?.focus()
+    document.addEventListener('keydown', handleEscape)
+    document.addEventListener('keydown', handleTab)
+    document.body.style.overflow = 'hidden'
 
     return () => {
       document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('keydown', handleTab)
       document.body.style.overflow = 'unset'
+      previouslyFocused?.focus()
     }
   }, [isOpen, onClose])
 
@@ -31,16 +65,23 @@ const ContactModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null
 
   return (
-    <div className="contact-modal" onClick={handleBackdropClick}>
+    <div
+      className="contact-modal"
+      onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contact-modal-title"
+      ref={modalRef}
+    >
       <div className="contact-modal__content">
-        <button className="contact-modal__close" onClick={onClose}>
+        <button className="contact-modal__close" onClick={onClose} aria-label="Close modal">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
 
-        <h2 className="contact-modal__title">Get in Touch</h2>
+        <h2 id="contact-modal-title" className="contact-modal__title">Get in Touch</h2>
         <p className="contact-modal__subtitle">Let's connect and discuss opportunities</p>
 
         <div className="contact-modal__links">

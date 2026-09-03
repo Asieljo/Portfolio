@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import screenshot1 from '../../assets/images/screenshots/screenshot1.jpg'
 import screenshot2 from '../../assets/images/screenshots/screenshot2.jpg'
 import screenshot3 from '../../assets/images/screenshots/screenshot3.jpg'
@@ -39,14 +39,6 @@ const projects = [
 ]
 
 const Projects = () => {
-  const navigate = useNavigate();
-
-  const handleProjectClick = (project) => {
-    if (project.type === 'internal') {
-      navigate(project.route);
-    } 
-  }
-
   return (
     <section className="projects" id="projects">
       <div className="projects__container">
@@ -55,20 +47,49 @@ const Projects = () => {
         
         <div className="projects__grid">
           {projects.map((project) => (
-            <div 
-              key={project.id} 
-              className="projects__card"
-              onClick={() => handleProjectClick(project)}
-            >
-              <div className="projects__image-container">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="projects__image"
-                />
-              </div>
+            <article key={project.id} className="projects__card">
+              {project.type === 'internal' ? (
+                <Link to={project.route} className="projects__card-link" aria-label={`View ${project.title}`}>
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="projects__image"
+                  />
+                </Link>
+              ) : (
+                <a 
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="projects__card-link"
+                  aria-label={`Open ${project.title}`}
+                >
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="projects__image"
+                  />
+                </a>
+              )}
               <div className="projects__card-content">
-                <h3 className="projects__card-title">{project.title}</h3>
+                {project.type === 'internal' ? (
+                  <h3>
+                    <Link to={project.route} className="projects__card-title">
+                      {project.title}
+                    </Link>
+                  </h3>
+                ) : (
+                  <h3>
+                    <a 
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="projects__card-title"
+                    >
+                      {project.title}
+                    </a>
+                  </h3>
+                )}
                 <div className="projects__card-actions">
                   {project.type === 'external' ? (
                     <>
@@ -77,7 +98,6 @@ const Projects = () => {
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="projects__link"
-                        onClick={(e) => e.stopPropagation()}
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
@@ -89,7 +109,6 @@ const Projects = () => {
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="projects__link"
-                        onClick={(e) => e.stopPropagation()}
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -100,17 +119,17 @@ const Projects = () => {
                       </a>
                     </>
                   ) : (
-                    <span className="projects__link projects__link--view">
+                    <Link to={project.route} className="projects__link projects__link--view">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                         <circle cx="12" cy="12" r="3"/>
                       </svg>
                       View Project
-                    </span>
+                    </Link>
                   )}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

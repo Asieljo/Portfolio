@@ -59,6 +59,14 @@
     }
   }
 
+  &__highlight {
+    color: $color-secondary;
+  }
+
+  &__accent {
+    color: $color-primary;
+  }
+
   &__mockups {
     display: flex;
     flex-direction: row;

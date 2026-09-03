@@ -12,7 +12,7 @@ const About = () => {
               Passionate about creating digital experiences
             </h2>
             <p className="about__description">
-              I'm a student with knowledge and skills in Web Design and UX/UI, but I really want to become a <strong>React Developer</strong>. 
+              I'm a self-taught developer with knowledge and skills in Web Design and UX/UI, but I really want to become a <strong>React Developer</strong>. 
               I'm learning about <strong>Modern Web Development</strong> while I'm expanding my knowledge and skills in <strong>HTML, CSS and JavaScript</strong>. 
               My main goal is to specialize in creating digital products for mobile platforms and various other devices.
             </p>

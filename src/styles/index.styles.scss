@@ -93,6 +93,18 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// Accessible focus indicators for interactive elements
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
 }
 
 // Utility classes

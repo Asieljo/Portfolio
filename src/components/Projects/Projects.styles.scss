@@ -41,12 +41,15 @@
   &__card {
     @include card-dark;
     overflow: hidden;
-    cursor: pointer;
     transition: all $transition-normal;
 
     &:hover {
       transform: translateY(-8px);
       box-shadow: $shadow-xl;
+    }
+
+    &:hover &__image {
+      transform: scale(1.05);
     }
 
     &:nth-child(2) {
@@ -60,7 +63,8 @@
     }
   }
 
-  &__image-container {
+  &__card-link {
+    display: block;
     width: 100%;
     height: 200px;
     overflow: hidden;
@@ -71,24 +75,29 @@
     height: 100%;
     object-fit: cover;
     transition: transform $transition-slow;
-
-    &:hover {
-      transform: scale(1.05);
-    }
   }
 
   &__card-content {
     padding: $spacing-lg;
     @include flex-column;
     gap: $spacing-md;
+
+    h3 {
+      margin: 0;
+      font-family: $font-body;
+      font-size: $font-size-lg;
+      font-weight: 600;
+      line-height: 1.2;
+    }
   }
 
   &__card-title {
-    font-family: $font-body;
-    font-size: $font-size-lg;
-    font-weight: 600;
     color: $color-white;
-    margin: 0;
+    transition: color $transition-normal;
+
+    &:hover {
+      color: $color-accent;
+    }
   }
 
   &__card-actions {

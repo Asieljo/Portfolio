@@ -24,9 +24,9 @@ const Header = ({ onContactClick }) => {
   return (
     <header className="header">
       <div className="header__container">
-        <h1 className="header__logo" onClick={scrollToTop} style={{cursor: "pointer"}}>
+        <span className="header__logo" onClick={scrollToTop}>
           Asiel Rosiles
-        </h1>
+        </span>
 
         <button 
           className={`header__menu-toggle ${isMenuOpen ? 'header__menu-toggle--active' : ''}`}
@@ -69,7 +69,7 @@ const Header = ({ onContactClick }) => {
                 className="header__nav-link"
                 onClick={() => scrollToSection('skills')}
               >
-                Skills
+                Soft Skills
               </button>
             </li>
             <li>

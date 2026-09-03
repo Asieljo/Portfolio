@@ -1,4 +1,4 @@
-import profileFoto from '../../assets/images/landing-photo.png';
+import profileFoto from '../../assets/images/landing-photo.webp';
 import './Landing.styles.scss';
 
 const Landing = ({ onContactClick }) => {
@@ -14,11 +14,11 @@ const Landing = ({ onContactClick }) => {
       <div className="landing__container">
         <div className="landing__content">
           <div className="landing__availability">
-            <span>Available for oportunities</span>
+            <span>Available for opportunities</span>
             <span className="landing__availability-dot"></span>
           </div>
             <p className="landing__description">
-              I'm involved in the world of modern web development and i constantly learn about new tools to <br/>enhance my workflow.
+              I'm involved in the world of modern web development and I constantly learn about new tools to <br/>enhance my workflow.
             </p>
           <div className="landing__text">
             <h1 className="landing__title">

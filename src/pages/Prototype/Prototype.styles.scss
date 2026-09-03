@@ -38,17 +38,23 @@
     padding-bottom: $spacing-3xl;
   }
 
-  &__image-container {
+  &__frame-container {
     margin-bottom: $spacing-2xl;
     border-radius: $radius-lg;
     overflow: hidden;
     box-shadow: $shadow-xl;
   }
 
-  &__image {
+  &__frame {
     width: 100%;
-    height: auto;
+    height: 70vh;
+    min-height: 450px;
     display: block;
+    border: none;
+
+    @include mobile {
+      height: 60vh;
+    }
   }
 
   &__description {
