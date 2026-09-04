@@ -1,107 +1,170 @@
 .about {
-  background-color: $color-dark;
   @include section-padding;
+  position: relative;
 
   &__container {
     @include container;
   }
 
-  &__content {
-    @include flex-between;
-    gap: $spacing-3xl;
-    margin-bottom: $spacing-3xl;
-
-    @include mobile {
-      @include flex-column;
-      gap: $spacing-2xl;
-    }
+  &__subcontainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
-  &__text {
-    flex: 1;
-    @include flex-column;
-    gap: $spacing-lg;
+  &__head {
+    max-width: 640px;
+    margin: 0 auto 60px;
+    text-align: center;
   }
 
-  &__label {
-    font-size: $font-size-sm;
-    font-weight: 600;
-    color: $color-accent;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  &__eyebrow {
+    @include eyebrow;
+    margin-bottom: 14px;
   }
 
   &__title {
-    @include heading-secondary;
-    font-size: $font-size-3xl;
-    line-height: 1.3;
-
-    @include mobile {
-      font-size: $font-size-2xl;
-    }
+    font-size: clamp(2rem, 4.2vw, 2.9rem);
+    letter-spacing: -0.02em;
   }
 
-  &__description {
-    font-size: $font-size-lg;
-    color: $color-gray-light;
-    line-height: 1.8;
-
-    strong {
-      color: $color-white;
-      font-weight: 600;
-    }
-  }
-
-  &__photo-container {
-    flex: 0 0 300px;
-    @include flex-center;
-
-    @include mobile {
-      flex: 0 0 auto;
-    }
+  &__subtitle {
+    margin-top: 16px;
+    color: $color-gray;
+    font-size: $font-size-base;
+    line-height: 1.7;
   }
 
   &__photo {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: $radius-xl;
-    object-fit: cover;
-    box-shadow: $shadow-xl;
+    width: 400px;
+    
+    -webkit-mask-image: linear-gradient(
+    to top,
+    transparent 0%,
+    black 40%,
+    black 100%
+    )
+  }
+
+  &__photo-description {
+    display: flex;
+    gap: 24px;
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 
     @include mobile {
-      display: none;
+      grid-template-columns: 1fr;
+    }
+
+    @include tablet {
+      grid-template-columns: 1fr;
     }
   }
 
-  &__skills {
-    @include flex-center;
-    gap: $spacing-xl;
-    flex-wrap: wrap;
-
-    @include mobile {
-      gap: $spacing-md;
-    }
-  }
-
-  &__skill {
-    @include flex-center;
-    gap: $spacing-sm;
-    background-color: $color-darker;
-    padding: $spacing-md $spacing-lg;
+  &__card {
+    background: $color-surface;
+    border: 1px solid $color-border;
     border-radius: $radius-lg;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: $radius-lg;
+      padding: 1px;
+      background: linear-gradient(135deg, $color-accent, transparent 40%, $color-secondary);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.5;
+    }
+  }
+
+  &__card-title {
+    font-size: 1.3rem;
+    margin-bottom: 14px;
     color: $color-white;
-    font-size: $font-size-base;
-    font-weight: 500;
-    transition: all $transition-normal;
+  }
+
+  &__card-text {
+    color: $color-gray;
+    line-height: 1.8;
+    font-size: 0.96rem;
+  }
+
+  &__tags {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+
+  &__tag {
+    @include mono;
+    font-size: 0.72rem;
+    padding: 7px 13px;
+    border: 1px solid $color-border-strong;
+    border-radius: 8px;
+    color: $color-gray-light;
+  }
+
+  &__stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    justify-content: center;
+  }
+
+  &__stack-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 18px;
+    width: 100%;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: 12px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
 
     &:hover {
-      background-color: $color-primary;
-      transform: translateY(-2px);
+      border-color: $color-accent;
+      transform: translateX(6px);
+    }
+  }
+
+  &__stack-ic {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    @include flex-center;
+    background: linear-gradient(135deg, rgba(57, 212, 186, 0.18), rgba(25, 14, 178, 0.25));
+    @include mono;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: $color-accent;
+    flex-shrink: 0;
+  }
+
+  &__stack-meta {
+    width: fit-content;
+
+    b {
+      font-size: 0.95rem;
+      display: block;
+      color: $color-white;
     }
 
-    svg {
-      color: $color-accent;
+    span {
+      font-size: 0.76rem;
+      color: $color-gray;
     }
   }
 }

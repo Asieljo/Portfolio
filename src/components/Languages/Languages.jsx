@@ -11,25 +11,25 @@ const languagesData = [
     id: 1,
     name: 'HTML5',
     level: 'Intermediate',
-    icon: Html5Icon 
+    icon: Html5Icon
   },
   {
     id: 2,
     name: 'CSS3',
     level: 'Intermediate',
-    icon: Css3Icon 
+    icon: Css3Icon
   },
   {
     id: 3,
     name: 'JavaScript',
     level: 'Intermediate',
-    icon: JavascriptIcon 
+    icon: JavascriptIcon
   },
   {
     id: 4,
     name: 'React',
     level: 'Intermediate',
-    icon: ReactIcon 
+    icon: ReactIcon
   },
   {
     id: 5,
@@ -49,9 +49,11 @@ const Languages = () => {
   return (
     <section className="languages" id="languages">
       <div className="languages__container">
-        <span className="languages__label">Languages</span>
-        <h2 className="languages__title">Languages & Libraries</h2>
-        
+        <div className="languages__head">
+          <span className="languages__eyebrow">{'// skills'}</span>
+          <h2 className="languages__title">Languages & Tools</h2>
+        </div>
+
         <div className="languages__grid">
           {languagesData.map((lang) => (
             <div key={lang.id} className="languages__card">

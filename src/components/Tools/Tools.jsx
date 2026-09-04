@@ -8,55 +8,24 @@ import VercelIcon from '../../assets/images/icons/vercel-logo.webp';
 import OpenCodeIcon from '../../assets/images/icons/opencode-logo.png';
 
 const toolsData = [
-  {
-    id: 1,
-    name: 'Figma',
-    icon: FigmaIcon
-  },
-  {
-    id: 2,
-    name: 'VS Code',
-    icon: VscodeIcon 
-  },
-  {
-    id: 3,
-    name: 'GitHub',
-    icon: GithubIcon 
-  },
-  {
-    id: 4,
-    name: 'Vite',
-    icon: ViteIcon 
-  },
-  {
-    id: 5,
-    name: 'Firebase',
-    icon: FirebaseIcon 
-  },
-  {
-    id: 6,
-    name: 'Vercel',
-    icon: VercelIcon 
-  },
-  {
-    id: 7,
-    name: 'Opencode',
-    icon: OpenCodeIcon 
-  }
+  { id: 1, name: 'Figma', icon: FigmaIcon },
+  { id: 2, name: 'VS Code', icon: VscodeIcon },
+  { id: 3, name: 'GitHub', icon: GithubIcon },
+  { id: 4, name: 'Vite', icon: ViteIcon },
+  { id: 5, name: 'Firebase', icon: FirebaseIcon },
+  { id: 6, name: 'Vercel', icon: VercelIcon },
+  { id: 7, name: 'Opencode', icon: OpenCodeIcon }
 ]
 
 const Tools = () => {
   return (
     <section className="tools" id="tools">
       <div className="tools__container">
-        <span className="tools__label">Tools & Software</span>
-        <h2 className="tools__title">Development Tools</h2>
-        
         <div className="tools__grid">
           {toolsData.map((tool) => (
             <div key={tool.id} className="tools__card">
               <div className="tools__icon">
-                <img src={tool.icon} alt={`${tool.name} logo`}/>
+                <img src={tool.icon} alt={`${tool.name} logo`} />
               </div>
               <h3 className="tools__name">{tool.name}</h3>
             </div>

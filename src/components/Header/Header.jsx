@@ -26,12 +26,13 @@ const Header = ({ onContactClick }) => {
   return (
     <header className="header">
       <div className="header__container">
-        <span className="header__logo" onClick={scrollToTop}>
+        <div className="header__mark" onClick={scrollToTop}>
+          <span className="header__dot"></span>
           Asiel Rosiles
-        </span>
+        </div>
 
-        <button 
-          className={`header__menu-toggle ${isMenuOpen ? 'header__menu-toggle--active' : ''}`}
+        <button
+          className={`header__burger ${isMenuOpen ? 'header__burger--active' : ''}`}
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
@@ -41,42 +42,33 @@ const Header = ({ onContactClick }) => {
         </button>
 
         <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
-          <div className="header__nav-list">
-            <Link 
-              to="/#about"
-              className="header__nav-link"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </Link>
-            <Link 
-              to="/#projects"
-              className="header__nav-link"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Projects
-            </Link>
-            <Link 
-              to="/#education"
-              className="header__nav-link"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Education
-            </Link>
-            <Link 
-              to="/#skills"
-              className="header__nav-link"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Skills
-            </Link>
-            <button 
-              className="header__nav-btn"
-              onClick={onContactClick}
-            >
-              Contact
-            </button>
-          </div>
+          <Link
+            to="/#about"
+            className="header__nav-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            to="/#projects"
+            className="header__nav-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Work
+          </Link>
+          <Link
+            to="/#languages"
+            className="header__nav-link"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Stack
+          </Link>
+          <button
+            className="header__nav-cta"
+            onClick={onContactClick}
+          >
+            Let's talk
+          </button>
         </nav>
       </div>
     </header>

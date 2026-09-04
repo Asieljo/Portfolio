@@ -4,23 +4,20 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba($color-dark, 0.8);
+  background-color: rgba(7, 9, 20, .8);
   @include flex-center;
   z-index: 600;
   padding: $spacing-lg;
   animation: fadeIn 0.3s ease;
 
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   &__content {
-    background-color: $color-white;
+    background: rgba(7, 9, 20);
+    border: 1px solid $color-border;
     border-radius: $radius-xl;
     padding: $spacing-2xl;
     max-width: 480px;
@@ -51,23 +48,25 @@
     @include flex-center;
     width: 40px;
     height: 40px;
-    background-color: $color-light;
+    background-color: $color-surface;
     border-radius: $radius-full;
-    border: none;
+    border: 1px solid $color-border;
+    color: $color-gray;
     cursor: pointer;
     transition: all $transition-normal;
 
     &:hover {
-      background-color: $color-primary;
+      background-color: $color-secondary;
+      border-color: $color-secondary;
       color: $color-white;
     }
   }
 
   &__title {
-    @include heading-primary;
     font-size: $font-size-2xl;
     text-align: center;
     margin-bottom: $spacing-sm;
+    color: $color-white;
   }
 
   &__subtitle {
@@ -84,7 +83,7 @@
   &__download-icon {
     width: 24px;
     height: 24px;
-    fill: $color-primary;
+    fill: $color-accent;
     transition: fill $transition-normal;
   }
 
@@ -92,14 +91,15 @@
     @include flex-center;
     gap: $spacing-md;
     padding: $spacing-lg;
-    background-color: $color-light;
+    background-color: $color-surface;
+    border: 1px solid $color-border;
     border-radius: $radius-lg;
     transition: all $transition-normal;
     text-decoration: none;
 
-
     &:hover {
-      background-color: $color-primary;
+      background-color: $color-secondary;
+      border-color: $color-secondary;
       transform: translateX(8px);
 
       svg {
@@ -117,13 +117,13 @@
 
     svg {
       flex-shrink: 0;
-      color: $color-primary;
+      color: $color-accent;
       transition: color $transition-normal;
     }
 
     span {
       font-weight: 600;
-      color: $color-dark;
+      color: $color-white;
     }
 
     small {

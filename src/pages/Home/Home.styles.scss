@@ -1,0 +1,21 @@
+.footer {
+  border-top: 1px solid $color-border;
+  padding: 28px 0;
+  margin-top: 20px;
+
+  &__container {
+    @include container;
+    @include flex-between;
+  }
+
+  &__copy, &__tech {
+    font-size: 0.76rem;
+    color: $color-gray;
+    @include mono;
+  }
+}
+
+.divider {
+  @include divider;
+  width: 100%;
+}

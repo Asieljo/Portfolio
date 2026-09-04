@@ -1,9 +1,9 @@
 .case-study {
   min-height: 100vh;
-  background-color: $color-light;
+  background-color: $color-dark;
 
   &__header {
-    background: linear-gradient(135deg, $color-dark 0%, $color-darker 100%);
+    background: linear-gradient(135deg, $color-darker 0%, $color-dark 100%);
     padding: $spacing-3xl $spacing-xl;
     text-align: center;
   }
@@ -11,11 +11,12 @@
   &__back {
     @include flex-center;
     gap: $spacing-sm;
-    color: $color-white;
+    color: $color-gray;
     font-size: $font-size-sm;
     font-weight: 500;
     margin-bottom: $spacing-xl;
     transition: all $transition-normal;
+    text-decoration: none;
 
     &:hover {
       color: $color-accent;
@@ -24,8 +25,8 @@
   }
 
   &__title {
-    @include heading-secondary;
     font-size: $font-size-4xl;
+    color: $color-white;
 
     @include mobile {
       font-size: $font-size-3xl;
@@ -39,17 +40,16 @@
   }
 
   &__section {
-    background-color: $color-white;
+    background: $color-surface;
+    border: 1px solid $color-border;
     border-radius: $radius-lg;
     padding: $spacing-2xl;
     margin-bottom: $spacing-xl;
-    box-shadow: $shadow-sm;
 
     h2 {
-      @include heading-primary;
       font-size: $font-size-2xl;
       margin-bottom: $spacing-md;
-      color: $color-primary;
+      color: $color-accent;
     }
 
     p {
@@ -60,11 +60,11 @@
   }
 
   &__highlight {
-    color: $color-secondary;
+    color: $color-accent;
   }
 
   &__accent {
-    color: $color-primary;
+    color: $color-secondary;
   }
 
   &__mockups {
@@ -88,7 +88,7 @@
       width: 100%;
       height: auto;
       border-radius: $radius-md;
-      box-shadow: $shadow-md;
+      box-shadow: $shadow-lg;
     }
 
     span {
@@ -107,7 +107,7 @@
       width: 100%;
       height: auto;
       border-radius: $radius-md;
-      box-shadow: $shadow-md;
+      box-shadow: $shadow-lg;
       transition: transform $transition-normal;
 
       &:hover {

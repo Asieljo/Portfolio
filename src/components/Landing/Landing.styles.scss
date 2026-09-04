@@ -1,266 +1,211 @@
-.landing {
-  min-height: 100vh;
-  @include gradient-light;
-  @include flex-center;
+.hero {
+  padding: 120px 0 90px;
   position: relative;
-  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 40%, transparent 100%);
+  }
 
   &__container {
     @include container;
-    width: 100%;
-    @include flex-column;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
     align-items: center;
-    gap: $spacing-3xl;
-    padding-top: 100px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__content {
-    @include flex-center;
-    flex-direction: column;
-    gap: $spacing-3xl;
-    width: 100%;
-
-    @include mobile {
-      @include flex-column;
-      gap: $spacing-2xl;
-    }
+    @include flex-column;
   }
 
-  &__text {
-    position: absolute;
-    top: 140px;
-    width: max-content;
+  &__badge {
+    display: inline-flex;
     align-items: center;
+    gap: 9px;
+    border: 1px solid $color-border-strong;
+    border-radius: 99px;
+    padding: 7px 16px;
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    color: $color-gray-light;
+    background: $color-surface;
+    width: fit-content;
+  }
 
-    flex: 1;
-    @include flex-column;
-    gap: -40px;
+  &__pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: $radius-full;
+    background: $color-accent;
+    box-shadow: 0 0 0 0 rgba(57, 212, 186, 0.6);
+    animation: ping 1.6s infinite;
+  }
 
-    @include mobile {
-      align-items: center;
-      text-align: center;
-    }
+  @keyframes ping {
+    0% { box-shadow: 0 0 0 0 rgba(57, 212, 186, 0.55); }
+    70% { box-shadow: 0 0 0 9px rgba(57, 212, 186, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(57, 212, 186, 0); }
   }
 
   &__title {
-    @include heading-primary;
-    font-size: $font-size-5xl;
-
-    @include mobile {
-      font-size: $font-size-4xl;
-    }
-  }
-  
-  &__subtitle {
-    @include heading-primary;
-    font-size: $font-size-10xl;
-    color: $color-secondary;
-    font-style: italic;
-    margin-bottom: $spacing-md;
-    width: 100%;
-    
-    @include tablet {
-      font-size: $font-size-8xl;
-    }
-
-    @include mobile {
-      font-size: $font-size-8xl;
-    }
+    margin-top: 22px;
+    font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+    line-height: 1.05;
   }
 
-  &__description {
-    position: absolute;
-    bottom: 300px;
-    width: 300px;
+  &__grad {
+    background: linear-gradient(100deg, $color-accent, $color-secondary 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-    font-size: $font-size-lg;
+  &__lead {
+    margin-top: 24px;
+    font-size: 1.08rem;
     color: $color-gray;
-    line-height: 1.8;
-
-    @media (max-width: 850px) {
-      visibility: hidden;
-    }
-
-    @media (min-width: 1025px) {
-      right: 24px;
-    }
-    
-    @media (min-width: 1140px) {
-      right: 80px;
-    }
-
-    @media (min-width: 1300px) {
-      right: 150px;
-    }
-
-    @media (min-width: 1600px) {
-      right: 300px;
-    }
-
-    @include tablet {
-      position: absolute;
-      right: 0px;
-      bottom: 350px;
-
-      font-size: $font-size-sm;
-    }
-
-    @include mobile {
-      visibility: hidden;
-    }
-  }
-
-  &__availability {
-    @include flex-center;
-    position: absolute;
-    left: 300px;
-    bottom: 300px;
-    z-index: 100;
-
-    gap: $spacing-sm;
-    background-color: $color-white;
-    padding: $spacing-sm $spacing-md;
-    border-radius: $radius-xl;
-    box-shadow: $shadow-md;
-    width: fit-content;
-    font-size: $font-size-sm;
-    font-weight: 500;
-    color: $color-dark;
-
-    span {
-      text-align: center;
-    }
-
-    @include desktop {
-      left: 300px;
-      bottom: 400px;
-    }
-
-    @media (min-width: 1025px ) and (max-width: 1500px) {
-      left: 120px;
-      bottom: 400px;
-    }
-
-    @include tablet {
-      position: absolute;
-      left: 100px;
-      bottom: 400px;
-
-      width: 170px;
-    }
-
-    @include mobile {
-      width: 160px;
-      left: 48px;
-      bottom: 420px;
-    }
-  }
-
-  &__availability-dot {
-    width: 12px;
-    height: 12px;
-    background-color: $color-accent;
-    border-radius: $radius-full;
-    animation: pulse 2s infinite;
-  
-    @include tablet {
-      width: 20px;
-      height: 12px;
-    }
-
-    @include mobile {
-      width: 20px;
-      height: 12px;
-    }
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-  }
-
-  &__photo {
-    width: 60%;
-    max-width: 600px;
-    min-width: 500px;
-    height: auto;
-
-    @include photo-fade;
-
-    position: absolute;
-    top: 100px;
+    max-width: 52ch;
+    line-height: 1.75;
   }
 
   &__actions {
-    position: absolute;
-    bottom: 100px;
+    margin-top: 38px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
 
+  &__btn {
     @include flex-center;
-    gap: $spacing-xl;
+    gap: 8px;
+
+    &--primary {
+      @include button-primary;
+    }
+
+    &--ghost {
+      @include button-ghost;
+    }
+  }
+
+  &__stats {
+    display: flex;
+    gap: 36px;
+    margin-top: 52px;
 
     @include mobile {
-      @include flex-column;
-      gap: $spacing-md;
+      flex-wrap: wrap;
+      row-gap: 18px;
     }
   }
 
-  &__cta {
-    @include button-primary;
-    @include flex-center;
-    gap: $spacing-sm;
-    padding: $spacing-md $spacing-2xl;
-    font-size: $font-size-lg;
-    border-radius: $radius-xl;
-    background-color: $color-dark;
-    color: $color-white;
-    z-index: 100;
-
-    &:hover {
-      background-color: $color-primary;
+  &__stat {
+    b {
+      font-size: 1.7rem;
+      font-weight: 700;
+      display: block;
       color: $color-white;
-      transform: translateY(-2px);
-      box-shadow: $shadow-lg;
     }
 
-    svg {
-      transition: transform $transition-normal;
-    }
-
-    &:hover svg {
-      transform: translateX(4px);
+    span {
+      font-size: 0.74rem;
+      color: $color-gray;
+      font-family: $font-mono;
     }
   }
 
-  &__scroll {
-    background: none;
-    border: none;
-    font-size: $font-size-base;
-    font-weight: 500;
-    color: $color-secondary;
-    cursor: pointer;
-    position: relative;
+  // Terminal card
+  &__terminal {
+    background: linear-gradient(180deg, $color-surface-strong, $color-surface);
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-card, 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    animation: float 6s ease-in-out infinite;
 
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background-color: $color-secondary;
-      transition: all $transition-normal;
+    @include mobile {
+      display: none;
     }
+  }
 
-    &:hover {
-      color: $color-primary;
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
 
-      &::after {
-        background-color: $color-primary;
-      }
-    }
+  &__terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 16px;
+    border-bottom: 1px solid $color-border;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  &__terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: $radius-full;
+
+    &--red { background: #FF5F57; }
+    &--yellow { background: #FEBC2E; }
+    &--green { background: #28C840; }
+  }
+
+  &__terminal-fname {
+    margin-left: 8px;
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    color: $color-gray;
+  }
+
+  &__terminal-body {
+    padding: 26px 24px;
+    font-family: $font-mono;
+    font-size: 0.84rem;
+    line-height: 1.95;
+  }
+
+  &__c1 { color: #C084FC; }
+  &__c2 { color: $color-accent; }
+  &__c3 { color: #F5A97F; }
+  &__c4 { color: $color-gray; }
+
+  &__indent {
+    padding-left: 22px;
+  }
+
+  &__caret {
+    display: inline-block;
+    width: 7px;
+    height: 16px;
+    background: $color-accent;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
   }
 }

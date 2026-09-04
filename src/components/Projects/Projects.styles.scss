@@ -1,133 +1,186 @@
 .projects {
-  background-color: $color-dark;
   @include section-padding;
+  position: relative;
 
   &__container {
     @include container;
   }
 
-  &__label {
-    font-size: $font-size-sm;
-    font-weight: 600;
-    color: $color-accent;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    display: block;
+  &__head {
+    max-width: 640px;
+    margin: 0 auto 60px;
     text-align: center;
-    margin-bottom: $spacing-md;
+  }
+
+  &__eyebrow {
+    @include eyebrow;
   }
 
   &__title {
-    @include heading-secondary;
-    font-size: $font-size-3xl;
-    text-align: center;
-    margin-bottom: $spacing-3xl;
+    font-size: clamp(2rem, 4.2vw, 2.9rem);
+    letter-spacing: -0.02em;
+  }
 
-    @include mobile {
-      font-size: $font-size-2xl;
-    }
+  &__subtitle {
+    margin-top: 16px;
+    color: $color-gray;
+    font-size: $font-size-base;
+    line-height: 1.7;
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-2xl;
+    gap: 24px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
 
     @include tablet {
       grid-template-columns: 1fr;
     }
   }
 
+  &__item {
+    position: relative;
+  }
+
   &__card {
-    @include card-dark;
+    display: block;
+    background: linear-gradient(180deg, $color-surface-strong, $color-surface);
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    padding: 28px;
+    position: relative;
     overflow: hidden;
-    transition: all $transition-normal;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+    text-decoration: none;
+    color: inherit;
 
     &:hover {
-      transform: translateY(-8px);
-      box-shadow: $shadow-xl;
+      transform: translateY(-6px);
+      border-color: rgba(57, 212, 186, 0.5);
+      box-shadow: 0 24px 60px -24px rgba(25, 14, 178, 0.55);
     }
 
-    &:hover &__image {
-      transform: scale(1.05);
-    }
-
-    &:nth-child(2) {
-      grid-column: 2;
-      grid-row: 1;
-
-      @include tablet {
-        grid-column: 1;
-        grid-row: auto;
-      }
+    &:hover &-top .projects__arrow {
+      background: $color-accent;
+      border-color: $color-accent;
+      color: #04120f;
+      transform: rotate(45deg);
     }
   }
 
-  &__card-link {
-    display: block;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
+  &__glow {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: $radius-full;
+    filter: blur(70px);
+    background: $color-accent;
+    opacity: 0;
+    top: -60px;
+    right: -60px;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
   }
 
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform $transition-slow;
+  &__card:hover &__glow {
+    opacity: 0.22;
   }
 
-  &__card-content {
-    padding: $spacing-lg;
-    @include flex-column;
-    gap: $spacing-md;
+  &__card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
 
-    h3 {
-      margin: 0;
-      font-family: $font-body;
-      font-size: $font-size-lg;
-      font-weight: 600;
-      line-height: 1.2;
-    }
+  &__type {
+    @include mono;
+    font-size: 0.68rem;
+    color: $color-accent;
+    border: 1px solid rgba(57, 212, 186, 0.35);
+    padding: 5px 10px;
+    border-radius: 7px;
+  }
+
+  &__arrow {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    border: 1px solid $color-border-strong;
+    @include flex-center;
+    transition: all 0.3s ease;
+    color: $color-gray;
   }
 
   &__card-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
     color: $color-white;
-    transition: color $transition-normal;
+  }
 
-    &:hover {
-      color: $color-accent;
-    }
+  &__card-desc {
+    color: $color-gray;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  &__tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__tag {
+    @include mono;
+    font-size: 0.66rem;
+    color: $color-gray-light;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 4px 9px;
+    border-radius: 6px;
   }
 
   &__card-actions {
-    @include flex-center;
-    gap: $spacing-md;
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
     flex-wrap: wrap;
   }
 
   &__link {
     @include flex-center;
-    gap: $spacing-xs;
-    padding: $spacing-sm $spacing-md;
-    background-color: rgba($color-white, 0.1);
-    border-radius: $radius-md;
-    color: $color-white;
-    font-size: $font-size-sm;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid $color-border;
+    color: $color-gray-light;
+    font-size: 0.78rem;
     font-weight: 500;
-    transition: all $transition-normal;
+    text-decoration: none;
+    transition: all 0.2s ease;
 
     &:hover {
-      background-color: $color-primary;
-      color: $color-white;
+      background: $color-accent;
+      border-color: $color-accent;
+      color: #04120f;
     }
 
-    &--view {
-      background-color: $color-primary;
+    &--primary {
+      background: $color-accent;
+      border-color: $color-accent;
+      color: #04120f;
 
       &:hover {
-        background-color: $color-accent;
-        color: $color-dark;
+        background: $color-secondary;
+        border-color: $color-secondary;
+        color: #fff;
       }
     }
   }

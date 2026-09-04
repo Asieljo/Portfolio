@@ -1,9 +1,9 @@
 .prototype {
   min-height: 100vh;
-  background-color: $color-light;
+  background-color: $color-dark;
 
   &__header {
-    background: linear-gradient(135deg, $color-dark 0%, $color-darker 100%);
+    background: linear-gradient(135deg, $color-darker 0%, $color-dark 100%);
     padding: $spacing-3xl $spacing-xl;
     text-align: center;
   }
@@ -11,11 +11,12 @@
   &__back {
     @include flex-center;
     gap: $spacing-sm;
-    color: $color-white;
+    color: $color-gray;
     font-size: $font-size-sm;
     font-weight: 500;
     margin-bottom: $spacing-xl;
     transition: all $transition-normal;
+    text-decoration: none;
 
     &:hover {
       color: $color-accent;
@@ -24,8 +25,8 @@
   }
 
   &__title {
-    @include heading-secondary;
     font-size: $font-size-4xl;
+    color: $color-white;
 
     @include mobile {
       font-size: $font-size-3xl;
@@ -58,16 +59,15 @@
   }
 
   &__description {
-    background-color: $color-white;
+    background: $color-surface;
+    border: 1px solid $color-border;
     border-radius: $radius-lg;
     padding: $spacing-2xl;
-    box-shadow: $shadow-sm;
 
     h2 {
-      @include heading-primary;
       font-size: $font-size-2xl;
       margin-bottom: $spacing-md;
-      color: $color-primary;
+      color: $color-accent;
     }
 
     p {
@@ -82,10 +82,9 @@
     margin-bottom: $spacing-xl;
 
     h3 {
-      font-family: $font-body;
       font-size: $font-size-lg;
       font-weight: 600;
-      color: $color-dark;
+      color: $color-white;
       margin-bottom: $spacing-md;
     }
 
@@ -101,7 +100,7 @@
       font-size: $font-size-base;
 
       &::before {
-        content: '✓';
+        content: '\2713';
         position: absolute;
         left: 0;
         color: $color-accent;
@@ -112,10 +111,9 @@
 
   &__tools {
     h3 {
-      font-family: $font-body;
       font-size: $font-size-lg;
       font-weight: 600;
-      color: $color-dark;
+      color: $color-white;
       margin-bottom: $spacing-md;
     }
   }
@@ -127,11 +125,12 @@
 
     span {
       padding: $spacing-sm $spacing-md;
-      background-color: $color-light;
+      background-color: $color-surface;
+      border: 1px solid $color-border;
       border-radius: $radius-md;
       font-size: $font-size-sm;
       font-weight: 500;
-      color: $color-primary;
+      color: $color-accent;
     }
   }
 }
