@@ -54,7 +54,7 @@ const Header = ({ onContactClick }) => {
             className="header__nav-link"
             onClick={() => setIsMenuOpen(false)}
           >
-            Work
+            Projects
           </Link>
           <Link
             to="/#languages"

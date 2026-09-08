@@ -49,6 +49,12 @@
   &__photo-description {
     display: flex;
     gap: 24px;
+
+    align-items: center;
+
+    @media (max-width: 974px) {
+      flex-direction: column-reverse;
+    } 
   }
 
   &__grid {

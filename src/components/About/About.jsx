@@ -34,7 +34,7 @@ const About = () => {
       <div className="about__container">
         <div className="about__head">
           <span className="about__eyebrow">{'// about'}</span>
-          <h2 className="about__title">From curiosity to code</h2>
+          <h2 className="about__title">From ideas to code</h2>
           <p className="about__subtitle">
             No bootcamp, no formal degree — just consistent, self-directed learning and real projects shipped along the way.
           </p>

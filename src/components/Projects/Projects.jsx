@@ -1,16 +1,22 @@
 import { Link } from 'react-router-dom'
 import './Projects.styles.scss'
+import Screenshot1 from '../../assets/images/screenshots/screenshot1.jpg';
+import Screenshot2 from '../../assets/images/screenshots/screenshot2.jpg';
+import Screenshot3 from '../../assets/images/screenshots/screenshot3.jpg';
+import Screenshot4 from '../../assets/images/screenshots/screenshot4.jpg';
+import Screenshot5 from '../../assets/images/screenshots/screenshot5.jpg';
 
 const projects = [
   {
     id: 1,
-    title: 'Web Design with HTML & CSS',
-    description: 'A hand-built responsive site focused on clean structure and modern CSS layout techniques.',
-    tags: ['HTML5', 'CSS3', 'Responsive'],
+    title: 'E-commerce with Google Services',
+    description: 'A minimalist and simple e-commerce with multiple Google Services, Redux state and more.',
+    tags: ['Firestore', 'Authentication', 'React & Redux'],
     type: 'LIVE',
-    github: 'https://github.com/Asieljo/website_prueba',
-    live: 'https://asieljo.github.io/website_prueba/',
-    linkType: 'external'
+    github: 'https://github.com/Asieljo/clothing-shop-vite',
+    live: 'https://clothing-shop-app.vercel.app/',
+    linkType: 'external',
+    image: Screenshot5,
   },
   {
     id: 2,
@@ -19,26 +25,40 @@ const projects = [
     tags: ['Figma', 'UX Research', 'Prototyping'],
     type: 'CASE STUDY',
     route: '/case-study',
-    linkType: 'internal'
+    linkType: 'internal',
+    image: Screenshot2,
   },
   {
     id: 3,
+    title: 'Web Design with HTML & CSS',
+    description: 'A hand-built responsive site focused on clean structure and modern CSS layout techniques.',
+    tags: ['HTML5', 'CSS3', 'Responsive'],
+    type: 'LIVE',
+    github: 'https://github.com/Asieljo/website_prueba',
+    live: 'https://asieljo.github.io/website_prueba/',
+    linkType: 'external',
+    image: Screenshot1,
+  },
+  {
+    id: 4,
     title: 'Responsive Design with CSS',
     description: 'A layout system built to adapt cleanly across breakpoints using modern CSS.',
     tags: ['CSS Grid', 'Flexbox', 'Mobile-First'],
     type: 'LIVE',
     github: 'https://github.com/Asieljo/Responsive_web_design',
     live: 'https://asieljo.github.io/Responsive_web_design/',
-    linkType: 'external'
+    linkType: 'external',
+    image: Screenshot3,
   },
   {
-    id: 4,
+    id: 5,
     title: 'Figma Prototyping',
     description: 'An interactive prototype exploring flow and interaction states before implementation.',
     tags: ['Figma', 'Interaction Design'],
     type: 'PROTOTYPE',
     route: '/prototype',
-    linkType: 'internal'
+    linkType: 'internal',
+    image: Screenshot4,
   }
 ]
 
@@ -46,14 +66,10 @@ const Projects = () => {
   const renderCard = (project) => {
     const cardContent = (
       <>
+      <div className='projects__description'>
         <div className="projects__glow"></div>
         <div className="projects__card-top">
           <span className="projects__type">{project.type}</span>
-          <span className="projects__arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
         </div>
         <h3 className="projects__card-title">{project.title}</h3>
         <p className="projects__card-desc">{project.description}</p>
@@ -100,6 +116,15 @@ const Projects = () => {
             </Link>
           )}
         </div>
+      </div>
+      <div className='projects__image-container'>
+        <div className="projects__arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <img src={project.image} className='projects__image' alt={project.title}/>
+      </div>
       </>
     )
 

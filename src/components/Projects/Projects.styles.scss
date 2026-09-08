@@ -44,14 +44,15 @@
 
   &__item {
     position: relative;
+
   }
 
   &__card {
-    display: block;
+    display: flex;
     background: linear-gradient(180deg, $color-surface-strong, $color-surface);
+    height: 100%;
     border: 1px solid $color-border;
     border-radius: $radius-lg;
-    padding: 28px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -65,12 +66,23 @@
       box-shadow: 0 24px 60px -24px rgba(25, 14, 178, 0.55);
     }
 
-    &:hover &-top .projects__arrow {
+    &:hover .projects__arrow {
       background: $color-accent;
       border-color: $color-accent;
       color: #04120f;
       transform: rotate(45deg);
     }
+  }
+
+  &__image {
+    height: 100%;
+    object-fit: cover;
+    object-position: left;
+  }
+
+  &__image-container {
+    width: 100%;
+    overflow: hidden;
   }
 
   &__glow {
@@ -108,6 +120,10 @@
   }
 
   &__arrow {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
     width: 34px;
     height: 34px;
     border-radius: 9px;
@@ -128,6 +144,11 @@
     color: $color-gray;
     font-size: 0.9rem;
     line-height: 1.7;
+  }
+
+  &__description {
+    width: 100%;
+    padding: 24px;
   }
 
   &__tags {

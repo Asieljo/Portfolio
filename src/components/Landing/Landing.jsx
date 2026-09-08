@@ -33,11 +33,11 @@ const Landing = ({ onContactClick }) => {
             </div>
             <div className="hero__stats">
               <div className="hero__stat">
-                <b>04</b>
+                <b>05</b>
                 <span>PROJECTS_SHIPPED</span>
               </div>
               <div className="hero__stat">
-                <b>02+</b>
+                <b>+02</b>
                 <span>YEARS_LEARNING</span>
               </div>
               <div className="hero__stat">
