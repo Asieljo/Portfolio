@@ -84,7 +84,7 @@ If there is no yarn you will install it first, then run the respective command
 - Always use ; at the end of imports, functions and more places where appropiate.
 - Use component <Link> of React Router for links that are from app (internal links) and <a> for links that redirect to other app or website (external links) 
 - For <nav> neither use <ul> nor <buttons>, use multiple <Link>
-
+ the
 ### Naming
 
 - Use descriptive names.
@@ -92,8 +92,7 @@ If there is no yarn you will install it first, then run the respective command
 - Avoid unnecessary abbreviations.
 - Components in PascalCase, hooks prefixed with "use", utility functions in camelCase.
 - The classname´s will use conventions
-- For SCSS styles with BEM methodology, avoid encapsulating multiple elements. Its just necessary with one, example: "landing__section" and "landing__btn" not "landing__section" and "landing__section__btn" 
-
+- For SCSS styles with BEM methodology, avoid encapsulating multiple elements. Its just necessary with one, example: "landing__section" and "landing__btn" not "landing__section"
 ### Breakpoints
 
 - Mobile: `≤ 480px`

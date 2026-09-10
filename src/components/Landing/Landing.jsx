@@ -1,15 +1,26 @@
-import './Landing.styles.scss';
+import CursorGrid from "../CursorGrid/CursorGrid";
+import "./Landing.styles.scss";
 
 const Landing = ({ onContactClick }) => {
   const scrollToProjects = () => {
-    const projectsSection = document.getElementById('projects')
+    const projectsSection = document.getElementById("projects");
     if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' })
+      projectsSection.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <section className="hero" id="landing">
+      <CursorGrid
+        cellSize={64}
+        color="#39d4ba"
+        gridOpacity={0.035}
+        lineWidth={1}
+        maxOpacity={1}
+        fillOpacity={0}
+        clickPulse={true}
+        className="hero__cursor-grid"
+      />
       <div className="hero__container">
         <div className="hero__grid">
           <div className="hero__content">
@@ -18,16 +29,25 @@ const Landing = ({ onContactClick }) => {
               Available for opportunities
             </span>
             <h1 className="hero__title">
-              Front-end developer building <span className="hero__grad">clean, functional</span> interfaces.
+              Front-end developer building{" "}
+              <span className="hero__grad">clean, functional</span> interfaces.
             </h1>
             <p className="hero__lead">
-              Self-taught React developer with a UX/UI foundation. I turn ideas into responsive, thoughtfully-built products — one component at a time.
+              Self-taught React developer with a UX/UI foundation. I turn ideas
+              into responsive, thoughtfully-built products — one component at a
+              time.
             </p>
             <div className="hero__actions">
-              <button className="hero__btn hero__btn--primary" onClick={scrollToProjects}>
+              <button
+                className="hero__btn hero__btn--primary"
+                onClick={scrollToProjects}
+              >
                 View Projects
               </button>
-              <button className="hero__btn hero__btn--ghost" onClick={onContactClick}>
+              <button
+                className="hero__btn hero__btn--ghost"
+                onClick={onContactClick}
+              >
                 Get in touch
               </button>
             </div>
@@ -55,19 +75,42 @@ const Landing = ({ onContactClick }) => {
               <span className="hero__terminal-fname">developer.js</span>
             </div>
             <div className="hero__terminal-body">
-              <div><span className="hero__c1">const</span> developer <span className="hero__c4">=</span> {'{'}</div>
-              <div className="hero__indent"><span className="hero__c2">name</span>: <span className="hero__c3">'Asiel Rosiles'</span>,</div>
-              <div className="hero__indent"><span className="hero__c2">role</span>: <span className="hero__c3">'React Developer'</span>,</div>
-              <div className="hero__indent"><span className="hero__c2">stack</span>: [<span className="hero__c3">'React'</span>, <span className="hero__c3">'Redux'</span>, <span className="hero__c3">'Sass'</span>],</div>
-              <div className="hero__indent"><span className="hero__c2">learning</span>: <span className="hero__c1">true</span>,</div>
-              <div className="hero__indent"><span className="hero__c2">available</span>: <span className="hero__c1">true</span></div>
-              <div>{'}'}<span className="hero__caret"></span></div>
+              <div>
+                <span className="hero__c1">const</span> developer{" "}
+                <span className="hero__c4">=</span> {"{"}
+              </div>
+              <div className="hero__indent">
+                <span className="hero__c2">name</span>:{" "}
+                <span className="hero__c3">'Asiel Rosiles'</span>,
+              </div>
+              <div className="hero__indent">
+                <span className="hero__c2">role</span>:{" "}
+                <span className="hero__c3">'React Developer'</span>,
+              </div>
+              <div className="hero__indent">
+                <span className="hero__c2">stack</span>: [
+                <span className="hero__c3">'React'</span>,{" "}
+                <span className="hero__c3">'Redux'</span>,{" "}
+                <span className="hero__c3">'Sass'</span>],
+              </div>
+              <div className="hero__indent">
+                <span className="hero__c2">learning</span>:{" "}
+                <span className="hero__c1">true</span>,
+              </div>
+              <div className="hero__indent">
+                <span className="hero__c2">available</span>:{" "}
+                <span className="hero__c1">true</span>
+              </div>
+              <div>
+                {"}"}
+                <span className="hero__caret"></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;

@@ -142,12 +142,11 @@
     padding: 9px 16px;
     border-radius: 9px;
     color: $color-gray;
-    transition: color $transition-fast, background $transition-fast;
     text-decoration: none;
 
     &:hover {
       color: $color-white;
-      background: $color-surface;
+      background-color: $color-surface;
     }
 
     @include tablet {

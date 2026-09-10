@@ -2,20 +2,15 @@
   padding: 120px 0 90px;
   position: relative;
 
-  &::before {
-    content: "";
+  &__cursor-grid {
     position: absolute;
     inset: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 40%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 40%, transparent 100%);
+    z-index: 0;
   }
 
   &__container {
+    position: relative;
+    z-index: 1;
     @include container;
   }
 
