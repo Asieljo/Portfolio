@@ -1,14 +1,20 @@
 @use "variables" as *;
 
 // Responsive breakpoints
+@mixin mobile-s {
+  @media (max-width: $breakpoint-mobile-s) {
+    @content;
+  }
+}
+
 @mixin mobile {
-  @media (max-width: $breakpoint-mobile) {
+  @media (max-width: $breakpoint-mobile-m) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (min-width: ($breakpoint-mobile + 1px)) and (max-width: $breakpoint-tablet) {
+  @media (min-width: ($breakpoint-mobile-m + 1px)) and (max-width: $breakpoint-tablet) {
     @content;
   }
 }

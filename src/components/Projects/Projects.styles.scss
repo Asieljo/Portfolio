@@ -72,6 +72,10 @@
       color: #04120f;
       transform: rotate(45deg);
     }
+
+    @include mobile-s {
+      flex-direction: column-reverse;
+    }
   }
 
   &__image {
@@ -144,6 +148,10 @@
     color: $color-gray;
     font-size: 0.9rem;
     line-height: 1.7;
+
+    @include mobile-s {
+      display: none;
+    }
   }
 
   &__description {
