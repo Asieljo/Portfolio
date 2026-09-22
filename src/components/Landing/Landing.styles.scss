@@ -20,7 +20,7 @@
     gap: 60px;
     align-items: center;
 
-    @include mobile {
+    @include mobile-m {
       grid-template-columns: 1fr;
     }
 
@@ -108,7 +108,7 @@
     gap: 36px;
     margin-top: 52px;
 
-    @include mobile {
+    @include mobile-m {
       flex-wrap: wrap;
       row-gap: 18px;
     }
@@ -139,7 +139,7 @@
     backdrop-filter: blur(10px);
     animation: float 6s ease-in-out infinite;
 
-    @include mobile {
+    @include mobile-m {
       display: none;
     }
   }

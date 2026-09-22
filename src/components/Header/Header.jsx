@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { scrollToTop } from '../../utils/scrollToTop';
 import './Header.styles.scss'
 
 const Header = ({ onContactClick }) => {
@@ -8,10 +9,6 @@ const Header = ({ onContactClick }) => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
-  }
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   useEffect(() => {

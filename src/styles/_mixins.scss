@@ -7,7 +7,7 @@
   }
 }
 
-@mixin mobile {
+@mixin mobile-m {
   @media (max-width: $breakpoint-mobile-m) {
     @content;
   }
@@ -122,7 +122,7 @@
 @mixin section-padding {
   padding: 110px 0;
 
-  @include mobile {
+  @include mobile-m {
     padding: 64px 0;
   }
 }

@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
 import './Prototype.styles.scss'
+import { scrollToTop } from '../../utils/scrollToTop'
 
 const Prototype = () => {
+
+  scrollToTop();
+
   return (
     <div className="prototype">
       <div className="prototype__header">

@@ -1,7 +1,7 @@
 .tools {
   padding: 0 0 110px;
 
-  @include mobile {
+  @include mobile-m {
     padding: 0 0 64px;
   }
 
@@ -14,7 +14,7 @@
     gap: $spacing-2xl;
     flex-wrap: wrap;
 
-    @include mobile {
+    @include mobile-m {
       gap: $spacing-lg;
     }
   }

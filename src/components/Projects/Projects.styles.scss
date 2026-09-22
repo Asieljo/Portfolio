@@ -33,7 +33,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
 
-    @include mobile {
+    @include mobile-m {
       grid-template-columns: 1fr;
     }
 

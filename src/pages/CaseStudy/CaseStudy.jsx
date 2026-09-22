@@ -6,8 +6,12 @@ import mockup2 from '../../assets/images/mockups/Mockup_2.webp';
 import mockup3 from '../../assets/images/mockups/Mockup_3.webp';
 import mockup4 from '../../assets/images/mockups/Mockup_4.webp';
 import './CaseStudy.styles.scss';
+import { scrollToTop } from '../../utils/scrollToTop';
 
 const CaseStudy = () => {
+
+  scrollToTop();
+
   return (
     <div className="case-study">
       <div className="case-study__header">

@@ -36,7 +36,7 @@
       }
     }
 
-    @include mobile {
+    @include mobile-m {
       padding: $spacing-xl;
     }
   }

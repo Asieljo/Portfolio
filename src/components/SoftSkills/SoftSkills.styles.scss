@@ -1,7 +1,7 @@
 .soft-skills {
   margin-bottom: 120px;
 
-  @include mobile {
+  @include mobile-m {
     margin-bottom: 64px;
   }
 
@@ -16,7 +16,7 @@
     gap: 32px;
     justify-content: center;
 
-    @include mobile {
+    @include mobile-m {
       grid-template-columns: repeat(2, 1fr);
     }
 

@@ -26,7 +26,7 @@
     gap: $spacing-2xl;
     flex-wrap: wrap;
 
-    @include mobile {
+    @include mobile-m {
       gap: $spacing-lg;
     }
   }
