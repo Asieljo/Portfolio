@@ -1,46 +1,32 @@
-import { useState } from 'react'
-import Header from '../../components/Header/Header'
-import Landing from '../../components/Landing/Landing'
-import About from '../../components/About/About'
-import Projects from '../../components/Projects/Projects'
-import Education from '../../components/Education/Education'
-import Languages from '../../components/Languages/Languages'
-import Tools from '../../components/Tools/Tools'
-import SoftSkills from '../../components/SoftSkills/SoftSkills'
-import ContactModal from '../../components/ContactModal/ContactModal'
-import './Home.styles.scss'
+import { useState } from 'react';
+import Header from '../../components/Header/Header';
+import Landing from '../../components/Landing/Landing';
+import Ticker from '../../components/Ticker/Ticker';
+import About from '../../components/About/About';
+import Projects from '../../components/Projects/Projects';
+import Footer from '../../components/Footer/Footer';
+import ContactModal from '../../components/ContactModal/ContactModal';
+import './Home.styles.scss';
 
 const Home = () => {
-  const [isContactOpen, setIsContactOpen] = useState(false)
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
-  const openContact = () => setIsContactOpen(true)
-  const closeContact = () => setIsContactOpen(false)
+  const openContact = () => setIsContactOpen(true);
+  const closeContact = () => setIsContactOpen(false);
 
   return (
-    <>
+    <div className="home">
       <Header onContactClick={openContact} />
       <main>
         <Landing onContactClick={openContact} />
-        <hr className="divider" />
+        <Ticker />
         <About />
-        <hr className="divider" />
         <Projects />
-        <hr className="divider" />
-        <Education />
-        <hr className="divider" />
-        <Languages />
-        <Tools />
-        <SoftSkills />
       </main>
-      <footer className="footer">
-        <div className="footer__container">
-          <span className="footer__copy">&copy; 2026 ASIEL_ROSILES</span>
-          <span className="footer__tech">REACT &middot; VITE &middot; SASS</span>
-        </div>
-      </footer>
+      <Footer />
       <ContactModal isOpen={isContactOpen} onClose={closeContact} />
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default Home
+export default Home;

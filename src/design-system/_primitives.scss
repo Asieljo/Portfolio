@@ -1,0 +1,159 @@
+// Generated from the supplied DTCG JSON tokens.
+// Edit the JSON source and regenerate this file to keep both formats in sync.
+
+// Color
+$color-brand-primary: #FF6B1A; // color
+$color-brand-secondary: #E9DDC7; // color
+$color-brand-complementary: #111111; // color
+$color-neutral-100: #F3F4F6; // color
+$color-neutral-200: #E5E7EB; // color
+$color-neutral-300: #D1D5DB; // color
+$color-neutral-400: #9CA3AF; // color
+$color-neutral-500: #6B7280; // color
+$color-neutral-600: #4B5563; // color
+$color-neutral-700: #374151; // color
+$color-neutral-800: #1F2937; // color
+$color-neutral-900: #111827; // color
+$color-neutral-white: #FFFFFF; // color
+$color-neutral-black: #000000; // color
+$color-feedback-success: #2EFF74; // color
+$color-feedback-warning: #FFEC1A; // color
+$color-feedback-error: #F42F2F; // color
+$color-feedback-info: #529CFF; // color
+
+// Typography
+$typography-font-family-primary: Anton; // fontFamilies
+$typography-font-family-secondary: Inter; // fontFamilies
+$typography-font-family-complementary: Cormorant; // fontFamilies
+$typography-font-size-xs: 12px; // dimension
+$typography-font-size-sm: 14px; // dimension
+$typography-font-size-md: 16px; // dimension
+$typography-font-size-lg: 18px; // dimension
+$typography-font-size-xl: 20px; // dimension
+$typography-font-size-2xl: 24px; // dimension
+$typography-font-size-3xl: 32px; // dimension
+$typography-font-size-4xl: 40px; // dimension
+$typography-font-size-5xl: 48px; // dimension
+$typography-font-size-6xl: 64px; // dimension
+$typography-font-size-7xl: 72px; // dimension
+$typography-font-size-8xl: 80px; // dimension
+$typography-font-size-9xl: 96px; // dimension
+$typography-font-size-10xl: 128px; // dimension
+$typography-font-weight-regular: 400; // fontWeights
+$typography-font-weight-medium: 500; // fontWeights
+$typography-font-weight-semi-bold: 600; // fontWeights
+$typography-font-weight-bold: 700; // fontWeights
+$typography-line-height-none: 1; // number
+$typography-line-height-tight: 1.05; // number
+$typography-line-height-snug: 1.15; // number
+$typography-line-height-normal: 1.4; // number
+$typography-line-height-relaxed: 1.6; // number
+$typography-line-height-loose: 1.8; // number
+$typography-letter-spacing-tighter: -0.04em; // dimension
+$typography-letter-spacing-tight: -0.02em; // dimension
+$typography-letter-spacing-normal: 0em; // dimension
+$typography-letter-spacing-wide: 0.04em; // dimension
+$typography-letter-spacing-wider: 0.08em; // dimension
+
+// Spacing
+$spacing-none: 0px; // dimension
+$spacing-xs: 4px; // dimension
+$spacing-sm: 8px; // dimension
+$spacing-md: 16px; // dimension
+$spacing-lg: 24px; // dimension
+$spacing-xl: 32px; // dimension
+$spacing-2xl: 40px; // dimension
+$spacing-3xl: 48px; // dimension
+$spacing-4xl: 64px; // dimension
+$spacing-5xl: 80px; // dimension
+$spacing-6xl: 96px; // dimension
+$spacing-7xl: 128px; // dimension
+
+// Sizing
+$sizing-xs: 8px; // dimension
+$sizing-sm: 12px; // dimension
+$sizing-md: 16px; // dimension
+$sizing-lg: 24px; // dimension
+$sizing-xl: 32px; // dimension
+$sizing-2xl: 48px; // dimension
+$sizing-3xl: 64px; // dimension
+$sizing-4xl: 96px; // dimension
+$sizing-5xl: 128px; // dimension
+$sizing-6xl: 192px; // dimension
+
+// Radius
+$radius-none: 0px; // dimension
+$radius-sm: 4px; // dimension
+$radius-md: 8px; // dimension
+$radius-lg: 12px; // dimension
+$radius-xl: 16px; // dimension
+$radius-2xl: 24px; // dimension
+$radius-full: 9999px; // dimension
+
+// Border
+$border-none: 0px; // dimension
+$border-thin: 1px; // dimension
+$border-medium: 2px; // dimension
+$border-thick: 4px; // dimension
+
+// Shadow
+$shadow-none: 0px 0px 0px 0px #00000000; // boxShadow
+$shadow-sm: 0px 1px 2px 0px #0000000D; // boxShadow
+$shadow-md: 0px 4px 6px 0px #0000001A; // boxShadow
+$shadow-lg: 0px 8px 16px 0px #0000001A; // boxShadow
+$shadow-xl: 0px 20px 25px 0px #0000001A; // boxShadow
+
+// Z Index
+$z-index-base: 0; // number
+$z-index-dropdown: 100; // number
+$z-index-sticky: 200; // number
+$z-index-overlay: 300; // number
+$z-index-modal: 400; // number
+$z-index-toast: 500; // number
+$z-index-tooltip: 600; // number
+
+// Opacity
+$opacity-40: 0.4; // number
+$opacity-50: 0.5; // number
+$opacity-70: 0.7; // number
+$opacity-80: 0.8; // number
+$opacity-90: 0.9; // number
+$opacity-100: 1; // number
+
+// Motion
+$motion-duration-instant: 0ms; // duration
+$motion-duration-fast: 150ms; // duration
+$motion-duration-normal: 300ms; // duration
+$motion-duration-slow: 500ms; // duration
+$motion-easing-linear: cubic-bezier(0, 0, 1, 1); // cubicBezier
+$motion-easing-ease: cubic-bezier(0.25, 0.1, 0.25, 1); // cubicBezier
+$motion-easing-ease-in: cubic-bezier(0.42, 0, 1, 1); // cubicBezier
+$motion-easing-ease-out: cubic-bezier(0, 0, 0.58, 1); // cubicBezier
+$motion-easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1); // cubicBezier
+
+// Breakpoints
+$breakpoints-mobile-sm: 320px; // dimension
+$breakpoints-mobile-md: 480px; // dimension
+$breakpoints-tablet: 768px; // dimension
+$breakpoints-desktop: 1280px; // dimension
+$breakpoints-wide: 1920px; // dimension
+
+// Grid
+$grid-columns-mobile: 4; // number
+$grid-columns-tablet: 8; // number
+$grid-columns-desktop: 12; // number
+$grid-gutter-mobile: 12px; // dimension
+$grid-gutter-tablet: 16px; // dimension
+$grid-gutter-desktop: 24px; // dimension
+$grid-padding-mobile: 16px; // dimension
+$grid-padding-tablet: 32px; // dimension
+$grid-padding-desktop: 64px; // dimension
+
+// Aspect Ratio
+$aspect-ratio-square: 1 / 1; // ratio
+$aspect-ratio-standard: 4 / 3; // ratio
+$aspect-ratio-photo: 3 / 2; // ratio
+$aspect-ratio-video: 16 / 9; // ratio
+$aspect-ratio-wide: 21 / 9; // ratio
+$aspect-ratio-portrait: 3 / 4; // ratio
+$aspect-ratio-story: 9 / 16; // ratio

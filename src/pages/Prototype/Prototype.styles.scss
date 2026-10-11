@@ -1,138 +1,171 @@
 .prototype {
-  background-color: $color-dark;
+  min-height: 100vh;
+  background-color: $color-background-brand-primary;
 
   &__header {
-    background: linear-gradient(135deg, $color-darker 0%, $color-dark 100%);
-    padding: $spacing-3xl $spacing-xl;
-    text-align: center;
+    @include container;
+    @include flex-column;
+    gap: $spacing-lg;
+    padding-block: $spacing-section-sm;
+    border-bottom: $border-medium solid $color-brand-complementary;
   }
 
   &__back {
-    @include flex-center;
+    display: flex;
+    align-items: center;
     gap: $spacing-sm;
-    color: $color-gray;
-    font-size: $font-size-sm;
-    font-weight: 500;
-    margin-bottom: $spacing-xl;
-    transition: all $transition-normal;
-    text-decoration: none;
+    align-self: flex-start;
+    font-family: $typography-body-base-font-family;
+    font-size: $typography-font-size-sm;
+    font-weight: $typography-body-base-font-weight;
+    line-height: $typography-body-base-line-height;
+    color: $color-text-brand-complementary;
+    transition: opacity $motion-duration-fast $interaction-transition-hover;
 
     &:hover {
-      color: $color-accent;
-      transform: translateX(-4px);
+      opacity: $opacity-70;
     }
   }
 
   &__title {
-    font-size: $font-size-4xl;
-    color: $color-white;
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-normal;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: uppercase;
+    font-size: $typography-font-size-2xl;
+    color: $color-text-brand-complementary;
 
-    @include desktop {
-      font-size: $font-size-xl;
+    @include tablet {
+      font-size: $typography-font-size-3xl;
     }
 
-    @include mobile-m {
-      font-size: $font-size-xl;
+    @include desktop {
+      font-size: $typography-font-size-5xl;
     }
   }
 
   &__content {
     @include container;
-    padding-top: $spacing-3xl;
-    padding-bottom: $spacing-3xl;
+    @include flex-column;
+    gap: $spacing-section-sm;
+    padding-block: $spacing-section-md;
+
+    @include desktop {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      align-items: start;
+      gap: $spacing-section-md;
+    }
   }
 
   &__frame-container {
-    margin-bottom: $spacing-2xl;
-    border-radius: $radius-lg;
-    overflow: hidden;
-    box-shadow: $shadow-xl;
+    width: 100%;
+    border: $border-medium solid $color-brand-complementary;
+    background-color: $color-surface-default;
   }
 
   &__frame {
-    width: 100%;
-    height: 70vh;
-    min-height: 450px;
     display: block;
-    border: none;
-
-    @include mobile-m {
-      height: 60vh;
-    }
+    width: 100%;
+    aspect-ratio: $aspect-ratio-video;
+    border: 0;
   }
 
   &__description {
-    background: $color-surface;
-    border: 1px solid $color-border;
-    border-radius: $radius-lg;
-    padding: $spacing-xl;
+    @include flex-column;
+    gap: $spacing-lg;
 
     h2 {
-      font-size: $font-size-xl;
-      margin-bottom: $spacing-md;
-      color: $color-accent;
-    }
+      font-family: $typography-heading-base-font-family;
+      font-weight: $typography-font-weight-regular;
+      line-height: $typography-line-height-snug;
+      letter-spacing: $typography-letter-spacing-normal;
+      text-transform: uppercase;
+      font-size: $typography-font-size-xl;
+      color: $color-text-brand-complementary;
 
-    p {
-      color: $color-gray;
-      line-height: 1.8;
-      margin-bottom: $spacing-xl;
-    }
-  }
+      @include tablet {
+        font-size: $typography-font-size-2xl;
+      }
 
-  &__features {
-    margin-bottom: $spacing-xl;
+      @include desktop {
+        font-size: $typography-font-size-3xl;
+      }
+    }
 
     h3 {
-      font-size: $font-size-xl;
-      font-weight: 600;
-      color: $color-white;
-      margin-bottom: $spacing-md;
+      font-family: $typography-heading-base-font-family;
+      font-weight: $typography-font-weight-regular;
+      line-height: $typography-line-height-snug;
+      letter-spacing: $typography-letter-spacing-normal;
+      text-transform: uppercase;
+      font-size: $typography-font-size-lg;
+      color: $color-text-brand-complementary;
+
+      @include desktop {
+        font-size: $typography-font-size-xl;
+      }
     }
 
-    ul {
-      @include flex-column;
-      gap: $spacing-sm;
-    }
-
+    p,
     li {
-      position: relative;
-      padding-left: $spacing-lg;
-      color: $color-gray;
-      font-size: $font-size-sm;
+      font-family: $typography-body-base-font-family;
+      font-size: $typography-body-font-size-mobile;
+      font-weight: $typography-body-base-font-weight;
+      line-height: $typography-body-base-line-height;
+      color: $color-text-brand-complementary;
 
-      &::before {
-        content: '\2713';
-        position: absolute;
-        left: 0;
-        color: $color-accent;
-        font-weight: 600;
+      @include tablet {
+        font-size: $typography-body-font-size-tablet;
+      }
+
+      @include desktop {
+        font-size: $typography-body-font-size-desktop;
       }
     }
   }
 
-  &__tools {
-    h3 {
-      font-size: $font-size-xl;
-      font-weight: 600;
-      color: $color-white;
-      margin-bottom: $spacing-md;
+  &__features {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    ul {
+      @include flex-column;
+      gap: $spacing-xs;
+      list-style: disc;
+      padding-inline-start: $spacing-lg;
     }
   }
 
-  &__tool-tags {
-    @include flex-center;
+  &__tools {
+    @include flex-column;
     gap: $spacing-sm;
+  }
+
+  &__tool-tags {
+    display: flex;
     flex-wrap: wrap;
+    gap: $spacing-sm;
 
     span {
-      padding: $spacing-sm $spacing-md;
-      background-color: $color-surface;
-      border: 1px solid $color-border;
-      border-radius: $radius-md;
-      font-size: $font-size-sm;
-      font-weight: 500;
-      color: $color-accent;
+      font-family: $typography-eyebrow-base-font-family;
+      font-size: $typography-eyebrow-font-size-mobile;
+      font-weight: $typography-eyebrow-base-font-weight;
+      line-height: $typography-eyebrow-base-line-height;
+      letter-spacing: $typography-eyebrow-base-letter-spacing;
+      text-transform: uppercase;
+      color: $color-text-brand-complementary;
+      border: $border-thin solid $color-brand-complementary;
+      padding: $spacing-xs $spacing-sm;
+
+      @include tablet {
+        font-size: $typography-eyebrow-font-size-tablet;
+      }
+
+      @include desktop {
+        font-size: $typography-eyebrow-font-size-desktop;
+      }
     }
   }
 }

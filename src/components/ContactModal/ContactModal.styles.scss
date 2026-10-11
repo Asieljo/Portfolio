@@ -1,136 +1,99 @@
 .contact-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(7, 9, 20, .8);
+  inset: 0;
+  z-index: $z-index-modal;
   @include flex-center;
-  z-index: 600;
-  padding: $spacing-lg;
-  animation: fadeIn 0.3s ease;
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+  padding: $spacing-md;
+  background-color: $color-surface-overlay;
 
   &__content {
-    background: rgba(7, 9, 20);
-    border: 1px solid $color-border;
-    border-radius: $radius-xl;
-    padding: $spacing-2xl;
-    max-width: 480px;
-    width: 100%;
     position: relative;
-    animation: slideUp 0.3s ease;
+    width: 100%;
+    max-width: to-rem(32rem);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: $spacing-xl;
+    background-color: $color-surface-raised;
+    border: $border-medium solid $color-brand-complementary;
+    box-shadow: $shadow-modal;
 
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @include mobile-m {
-      padding: $spacing-xl;
+    @include tablet {
+      padding: $spacing-2xl;
     }
   }
 
   &__close {
     position: absolute;
-    top: $spacing-md;
-    right: $spacing-md;
+    inset-block-start: $spacing-md;
+    inset-inline-end: $spacing-md;
     @include flex-center;
-    width: 40px;
-    height: 40px;
-    background-color: $color-surface;
-    border-radius: $radius-full;
-    border: 1px solid $color-border;
-    color: $color-gray;
-    cursor: pointer;
-    transition: all $transition-normal;
+    width: $sizing-lg;
+    height: $sizing-lg;
+    color: $color-text-brand-complementary;
+    transition: color $motion-duration-fast $interaction-transition-hover;
 
     &:hover {
-      background-color: $color-secondary;
-      border-color: $color-secondary;
-      color: $color-white;
+      color: $color-text-brand-primary;
     }
   }
 
   &__title {
-    font-size: $font-size-2xl;
-    text-align: center;
-    margin-bottom: $spacing-sm;
-    color: $color-white;
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-normal;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: uppercase;
+    font-size: $typography-font-size-2xl;
+    color: $color-text-brand-complementary;
+    padding-inline-end: $spacing-2xl;
+
+    @include desktop {
+      font-size: $typography-font-size-3xl;
+    }
   }
 
   &__subtitle {
-    text-align: center;
-    color: $color-gray;
-    margin-bottom: $spacing-2xl;
+    margin-top: $spacing-sm;
+    font-family: $typography-body-base-font-family;
+    font-size: $typography-body-font-size-mobile;
+    font-weight: $typography-body-base-font-weight;
+    line-height: $typography-body-base-line-height;
+    color: $color-text-brand-complementary;
+    opacity: $opacity-80;
+
+    @include desktop {
+      font-size: $typography-body-font-size-desktop;
+    }
   }
 
   &__links {
     @include flex-column;
-    gap: $spacing-md;
-  }
-
-  &__download-icon {
-    width: 24px;
-    height: 24px;
-    fill: $color-accent;
-    transition: fill $transition-normal;
+    margin-top: $spacing-xl;
   }
 
   &__link {
-    @include flex-center;
+    display: flex;
+    align-items: center;
     gap: $spacing-md;
-    padding: $spacing-lg;
-    background-color: $color-surface;
-    border: 1px solid $color-border;
-    border-radius: $radius-lg;
-    transition: all $transition-normal;
-    text-decoration: none;
+    padding-block: $spacing-md;
+    border-bottom: $border-thin solid $color-brand-complementary;
+    color: $color-text-brand-complementary;
+    transition:
+      background-color $motion-duration-fast $interaction-transition-hover,
+      color $motion-duration-fast $interaction-transition-hover;
 
     &:hover {
-      background-color: $color-secondary;
-      border-color: $color-secondary;
-      transform: translateX(8px);
-
-      svg {
-        color: $color-white;
-      }
-
-      span {
-        color: $color-accent;
-      }
-
-      small {
-        color: rgba($color-white, 0.8);
-      }
+      background-color: $color-button-complementary-bg;
+      color: $color-button-complementary-text;
     }
 
     svg {
       flex-shrink: 0;
-      color: $color-accent;
-      transition: color $transition-normal;
     }
+  }
 
-    span {
-      font-weight: 600;
-      color: $color-white;
-    }
-
-    small {
-      display: block;
-      font-size: $font-size-sm;
-      color: $color-gray;
-      transition: color $transition-normal;
-    }
+  &__download-icon {
+    width: $sizing-md;
+    height: $sizing-md;
   }
 }

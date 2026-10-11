@@ -2,7 +2,6 @@
 @use "mixins" as *;
 @use "functions" as *;
 
-// Global styles
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,11 +13,13 @@ html {
 }
 
 body {
-  font-family: $font-body;
-  font-size: $font-size-base;
-  line-height: 1.6;
-  color: $color-white;
-  background-color: $color-dark;
+  font-family: $typography-body-base-font-family;
+  font-size: $typography-body-font-size-desktop;
+  font-weight: $typography-body-base-font-weight;
+  line-height: $typography-body-base-line-height;
+  letter-spacing: $typography-body-base-letter-spacing;
+  color: $color-text-brand-complementary;
+  background-color: $color-background-brand-primary;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -28,129 +29,112 @@ a {
   color: inherit;
 }
 
-::selection {
-  background: $color-secondary;
-  color: #fff;
-}
-
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
 img {
   max-width: 100%;
-  height: 100%;
   display: block;
 }
 
-code, .mono {
-  font-family: $font-mono;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: $font-body;
-  font-weight: 700;
-  line-height: 1.1;
-  color: $color-white;
-  letter-spacing: -0.02em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $typography-heading-base-font-family;
+  font-weight: $typography-heading-base-font-weight;
+  line-height: $typography-heading-base-line-height;
+  letter-spacing: $typography-heading-base-letter-spacing;
+  color: $typography-heading-h1-color-brand-complementary;
+  text-transform: uppercase;
 }
 
 h1 {
-  font-size: clamp(2.6rem, 5.6vw, 4.6rem);
-
-  @include mobile-m {
-    font-size: $font-size-xl;
-  }
+  font-size: $typography-heading-h1-font-size-mobile;
 
   @include tablet {
-    font-size: $font-size-4xl;
+    font-size: $typography-heading-h1-font-size-tablet;
+  }
+
+  @include desktop {
+    font-size: $typography-heading-h1-font-size-desktop;
   }
 }
 
 h2 {
-  font-size: clamp(2rem, 4.2vw, 2.9rem);
-
-  @include mobile-m {
-    font-size: $font-size-xl;
-  }
+  font-size: $typography-heading-h2-font-size-mobile;
 
   @include tablet {
-    font-size: $font-size-3xl;
+    font-size: $typography-heading-h2-font-size-tablet;
+  }
+
+  @include desktop {
+    font-size: $typography-heading-h2-font-size-desktop;
   }
 }
 
 h3 {
-  font-size: $font-size-3xl;
-
-  @include mobile-m {
-    font-size: $font-size-xl;
-  }
+  font-size: $typography-heading-h3-font-size-mobile;
 
   @include tablet {
-    font-size: $font-size-2xl;
+    font-size: $typography-heading-h3-font-size-tablet;
+  }
+
+  @include desktop {
+    font-size: $typography-heading-h3-font-size-desktop;
   }
 }
 
 p {
-  font-size: $font-size-base;
-  color: $color-gray;
-  line-height: 1.8;
+  font-size: $typography-body-font-size-mobile;
+  font-weight: $typography-body-base-font-weight;
+  line-height: $typography-body-base-line-height;
+  color: $typography-body-color-default;
 
-  @include mobile-m {
-    font-size: $font-size-sm;
+  @include tablet {
+    font-size: $typography-body-font-size-tablet;
   }
-}
 
-span {
-  font-size: $font-size-sm;
-
-  @include mobile-m {
-    font-size: $font-size-xs;
+  @include desktop {
+    font-size: $typography-body-font-size-desktop;
   }
 }
 
 button {
-  font-family: $font-body;
+  font-family: $typography-button-base-font-family;
   cursor: pointer;
-  border: none;
-  outline: none;
+  border: $border-none;
+  background: none;
 
   &:focus-visible {
-    outline: 2px solid $color-accent;
-    outline-offset: 2px;
+    outline: $border-medium solid $color-state-focus-ring;
+    outline-offset: $spacing-xs;
   }
 }
 
-// Accessible focus indicators for interactive elements
 a:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid $color-accent;
-  outline-offset: 2px;
+  outline: $border-medium solid $color-state-focus-ring;
+  outline-offset: $spacing-xs;
 }
 
-// Utility classes
-.container {
-  @include container;
+::selection {
+  background: $color-background-brand-complementary;
+  color: $color-text-inverse;
 }
 
-.section {
-  @include section-padding;
-}
-
-// Scrollbar styling
 ::-webkit-scrollbar {
-  width: 8px;
+  width: $sizing-xs;
 }
 
 ::-webkit-scrollbar-track {
-  background: $color-dark;
+  background: $color-background-brand-primary;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $color-gray;
-  border-radius: $radius-md;
-
-  &:hover {
-    background: $color-accent;
-  }
+  background: $color-background-brand-complementary;
 }

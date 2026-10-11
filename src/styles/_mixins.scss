@@ -1,27 +1,110 @@
 @use "variables" as *;
 
-// Responsive breakpoints
-@mixin mobile-s {
-  @media (max-width: $breakpoint-mobile-s) {
+// Breakpoints mirror the design-system tokens. `mobile-sm`, `mobile-md` and
+// `tablet` are max-width tiers; `tablet-up`, `desktop` and `wide` are min-width
+// tiers for rules that only apply once the layout has room.
+@mixin mobile-sm {
+  @media (max-width: ($breakpoints-mobile-md - 1px)) {
     @content;
   }
 }
 
-@mixin mobile-m {
-  @media (max-width: $breakpoint-mobile-m) {
+@mixin mobile-md {
+  @media (min-width: $breakpoints-mobile-md) and (max-width: ($breakpoints-tablet - 1px)) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (min-width: ($breakpoint-mobile-m + 1px)) and (max-width: $breakpoint-tablet) {
+  @media (min-width: $breakpoints-tablet) and (max-width: ($breakpoints-desktop - 1px)) {
+    @content;
+  }
+}
+
+// Min-width tiers for rules that only appear once the layout has room (the
+// hero media column is the main case: hidden on small, shown from tablet up).
+@mixin tablet-up {
+  @media (min-width: $breakpoints-tablet) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: $breakpoint-desktop) {
+  @media (min-width: $breakpoints-desktop) {
     @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: $breakpoints-wide) {
+    @content;
+  }
+}
+
+// Horizontal page padding follows the grid padding tokens.
+@mixin container {
+  width: 100%;
+  padding-inline: $spacing-container-mobile;
+
+  @include tablet {
+    padding-inline: $spacing-container-tablet;
+  }
+
+  @include desktop {
+    padding-inline: $spacing-container-desktop;
+  }
+}
+
+// Buttons. `complementary` is the solid black variant used on the brand
+// background; `outline` is its transparent counterpart. State tokens drive
+// hover/active so the palette stays swappable via tokens.
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  min-height: $sizing-button-sm;
+  padding-inline: $spacing-md;
+  font-family: $typography-button-base-font-family;
+  font-size: $typography-button-base-font-size;
+  font-weight: $typography-button-base-font-weight;
+  line-height: $typography-button-base-line-height;
+  letter-spacing: $typography-button-base-letter-spacing;
+  text-transform: uppercase;
+  border: $border-medium solid transparent;
+  transition:
+    background-color $motion-duration-fast $interaction-transition-hover,
+    color $motion-duration-fast $interaction-transition-hover,
+    border-color $motion-duration-fast $interaction-transition-hover;
+}
+
+@mixin button-complementary {
+  @include button-base;
+
+  background-color: $color-button-complementary-bg;
+  color: $color-button-complementary-text;
+  border-color: $color-button-complementary-border;
+
+  &:hover,
+  &:active {
+    background-color: $color-state-hover-complementary-bg;
+    color: $color-state-hover-complementary-text;
+    border-color: $color-state-hover-complementary-border;
+  }
+}
+
+@mixin button-outline {
+  @include button-base;
+
+  background-color: $color-button-no-background-bg;
+  color: $color-text-brand-complementary;
+  border-color: $color-brand-complementary;
+
+  &:hover,
+  &:active {
+    background-color: $color-button-complementary-bg;
+    color: $color-button-complementary-text;
+    border-color: $color-brand-complementary;
   }
 }
 
@@ -41,121 +124,4 @@
 @mixin flex-column {
   display: flex;
   flex-direction: column;
-}
-
-// Card styles
-@mixin card-surface {
-  background: linear-gradient(180deg, $color-surface-strong, $color-surface);
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  backdrop-filter: blur(10px);
-}
-
-@mixin card-dark {
-  background-color: $color-darker;
-  border-radius: $radius-lg;
-}
-
-// Button styles
-@mixin button-primary {
-  background: linear-gradient(135deg, $color-secondary, $color-primary);
-  color: #fff;
-  border: none;
-  border-radius: 11px;
-  padding: 13px 26px;
-  font-family: $font-body;
-  font-size: $font-size-base;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px -10px rgba(25, 14, 178, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
-  }
-}
-
-@mixin button-ghost {
-  background: $color-surface;
-  color: $color-white;
-  border: 1px solid $color-border-strong;
-  border-radius: 11px;
-  padding: 13px 26px;
-  font-family: $font-body;
-  font-size: $font-size-base;
-  font-weight: 600;
-  cursor: pointer;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    border-color: $color-accent;
-    transform: translateY(-2px);
-  }
-}
-
-// Text styles
-@mixin heading-primary {
-  font-family: $font-body;
-  font-weight: 700;
-  color: $color-white;
-}
-
-@mixin heading-secondary {
-  font-family: $font-body;
-  font-weight: 700;
-  color: $color-white;
-}
-
-@mixin text-body {
-  font-family: $font-body;
-  font-weight: 400;
-  color: $color-gray;
-  line-height: 1.6;
-}
-
-// Mono text
-@mixin mono {
-  font-family: $font-mono;
-}
-
-// Section styles
-@mixin section-padding {
-  padding: 110px 0;
-
-  @include mobile-m {
-    padding: 64px 0;
-  }
-}
-
-// Container
-@mixin container {
-  width: $wrap;
-  margin-inline: auto;
-}
-
-// Divider
-@mixin divider {
-  border: none;
-  border-top: 1px solid $color-border;
-}
-
-// Eyebrow label
-@mixin eyebrow {
-  font-family: $font-mono;
-  font-size: $font-size-xs;
-  color: $color-accent;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  display: inline-block;
-  margin-bottom: 14px;
-}
-
-// Tag
-@mixin tag {
-  font-family: $font-mono;
-  font-size: 0.66rem;
-  padding: 4px 9px;
-  border-radius: 6px;
-  color: $color-gray-light;
-  background: rgba(255, 255, 255, 0.04);
 }

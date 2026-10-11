@@ -1,175 +1,235 @@
 .about {
-  @include section-padding;
-  position: relative;
+  background-color: $color-background-brand-primary;
 
   &__container {
     @include container;
-  }
-
-  &__subcontainer {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: $spacing-section-sm;
+    padding-block: $spacing-section-md;
+
+    @include desktop {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: $spacing-gap-grid-flex-lg;
+    }
   }
 
-  &__head {
-    max-width: 640px;
-    margin: 0 auto 60px;
-    text-align: center;
+  &__content {
+    @include flex-column;
+    gap: $spacing-lg;
+    flex: 1;
+    min-width: 0;
   }
 
-  &__eyebrow {
-    @include eyebrow;
-    margin-bottom: 14px;
+  &__hero-title {
+    @include flex-column;
+    gap: 0;
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-none;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: uppercase;
+    font-size: $typography-font-size-2xl;
+    color: $color-text-brand-complementary;
+
+    @include tablet {
+      font-size: $typography-font-size-4xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-6xl;
+    }
+  }
+
+  &__hero-line {
+    display: block;
   }
 
   &__title {
-    font-size: clamp(2rem, 4.2vw, 2.9rem);
-    letter-spacing: -0.02em;
-  }
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-normal;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: uppercase;
+    font-size: $typography-font-size-2xl;
+    color: $color-text-brand-complementary;
 
-  &__subtitle {
-    margin-top: 16px;
-    color: $color-gray;
-    font-size: $font-size-base;
-    line-height: 1.7;
-  }
+    @include tablet {
+      font-size: $typography-font-size-3xl;
+    }
 
-  &__photo {
-    width: 400px;
-    
-    -webkit-mask-image: linear-gradient(
-    to top,
-    transparent 0%,
-    black 40%,
-    black 100%
-    )
-  }
-
-  &__photo-description {
-    display: flex;
-    gap: 24px;
-
-    align-items: center;
-
-    @media (max-width: 974px) {
-      flex-direction: column-reverse;
-    } 
-  }
-
-  &__grid {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  &__card {
-    background: $color-surface;
-    width: 100%;
-    border: 1px solid $color-border;
-    border-radius: $radius-lg;
-    padding: 36px;
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: $radius-lg;
-      padding: 1px;
-      background: linear-gradient(135deg, $color-accent, transparent 40%, $color-secondary);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0.5;
+    @include desktop {
+      font-size: $typography-font-size-4xl;
     }
   }
 
-  &__card-title {
-    font-size: 1.3rem;
-    margin-bottom: 14px;
-    color: $color-white;
+  &__copy {
+    @include flex-column;
+    gap: $spacing-md;
+    max-width: to-rem(60rem);
   }
 
-  &__card-text {
-    color: $color-gray;
-    line-height: 1.8;
-    font-size: 0.96rem;
+  &__lead,
+  &__note {
+    font-family: $typography-body-base-font-family;
+    font-size: $typography-body-font-size-mobile;
+    font-weight: $typography-body-base-font-weight;
+    line-height: $typography-body-base-line-height;
+    color: $color-text-brand-complementary;
+
+    @include tablet {
+      font-size: $typography-body-font-size-tablet;
+    }
+
+    @include desktop {
+      font-size: $typography-body-font-size-desktop;
+    }
+  }
+
+  &__note {
+    font-weight: $typography-font-weight-bold;
   }
 
   &__tags {
-    margin-top: 24px;
     display: flex;
     flex-wrap: wrap;
-    gap: 9px;
+    gap: $spacing-sm;
   }
 
   &__tag {
-    @include mono;
-    font-size: 0.72rem;
-    padding: 7px 13px;
-    border: 1px solid $color-border-strong;
-    border-radius: 8px;
-    color: $color-gray-light;
-  }
+    font-family: $typography-eyebrow-base-font-family;
+    font-size: $typography-eyebrow-font-size-mobile;
+    font-weight: $typography-eyebrow-base-font-weight;
+    line-height: $typography-eyebrow-base-line-height;
+    letter-spacing: $typography-eyebrow-base-letter-spacing;
+    text-transform: uppercase;
+    color: $color-text-brand-complementary;
+    padding: $spacing-xs $spacing-sm;
+    border: $border-thin solid $color-brand-complementary;
 
-  &__stack {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    justify-content: center;
+    @include tablet {
+      font-size: $typography-eyebrow-font-size-tablet;
+    }
 
-    @include mobile-s {
-      display: flex;
-      flex-direction: column;
-
-      gap: 12px;
+    @include desktop {
+      font-size: $typography-eyebrow-font-size-desktop;
     }
   }
 
-  &__stack-item {
+  &__certifications {
+    @include flex-column;
+    gap: $spacing-lg;
+    padding-top: $spacing-md;
+    border-top: $border-medium solid $color-brand-complementary;
+  }
+
+  &__resume-btn {
+    @include button-complementary;
+    align-self: flex-start;
+    margin-top: $spacing-sm;
+  }
+
+  &__subtitle {
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-normal;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: uppercase;
+    font-size: $typography-font-size-2xl;
+    color: $color-text-brand-complementary;
+
+    @include desktop {
+      font-size: $typography-font-size-3xl;
+    }
+  }
+
+  &__list {
+    @include flex-column;
+    gap: 0;
+  }
+
+  &__item {
     display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px 18px;
-    width: 100%;
-    background: $color-surface;
-    border: 1px solid $color-border;
-    border-radius: 12px;
-    transition: border-color 0.25s ease, transform 0.25s ease;
-
-    &:hover {
-      border-color: $color-accent;
-      transform: translateX(6px);
-    }
+    gap: $spacing-md;
+    padding-block: $spacing-md;
+    border-bottom: $border-thin solid $color-brand-complementary;
   }
 
-  &__stack-ic {
-    width: 38px;
-    height: 38px;
-    border-radius: 9px;
-    @include flex-center;
-    background: linear-gradient(135deg, rgba(57, 212, 186, 0.18), rgba(25, 14, 178, 0.25));
-    @include mono;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: $color-accent;
+  &__item-index {
+    font-family: $typography-eyebrow-base-font-family;
+    font-size: $typography-eyebrow-font-size-mobile;
+    font-weight: $typography-eyebrow-base-font-weight;
+    line-height: $typography-eyebrow-base-line-height;
+    letter-spacing: $typography-eyebrow-base-letter-spacing;
+    color: $color-text-brand-complementary;
     flex-shrink: 0;
+    padding-top: $spacing-xs;
+
+    @include tablet {
+      font-size: $typography-eyebrow-font-size-tablet;
+    }
+
+    @include desktop {
+      font-size: $typography-eyebrow-font-size-desktop;
+    }
   }
 
-  &__stack-meta {
-    width: fit-content;
+  &__item-body {
+    @include flex-column;
+    gap: $spacing-xs;
+    min-width: 0;
+  }
 
-    b {
-      font-size: 0.95rem;
-      display: block;
-      color: $color-white;
+  &__item-title {
+    font-family: $typography-body-base-font-family;
+    font-size: $typography-body-font-size-mobile;
+    font-weight: $typography-font-weight-bold;
+    line-height: $typography-body-base-line-height;
+    color: $color-text-brand-complementary;
+
+    @include tablet {
+      font-size: $typography-body-font-size-tablet;
     }
 
-    span {
-      font-size: 0.76rem;
-      color: $color-gray;
+    @include desktop {
+      font-size: $typography-body-font-size-desktop;
     }
+  }
+
+  &__item-meta {
+    font-family: $typography-eyebrow-base-font-family;
+    font-size: $typography-eyebrow-font-size-mobile;
+    font-weight: $typography-eyebrow-base-font-weight;
+    line-height: $typography-eyebrow-base-line-height;
+    letter-spacing: $typography-eyebrow-base-letter-spacing;
+    text-transform: uppercase;
+    color: $color-text-brand-complementary;
+    opacity: $opacity-80;
+
+    @include tablet {
+      font-size: $typography-eyebrow-font-size-tablet;
+    }
+
+    @include desktop {
+      font-size: $typography-eyebrow-font-size-desktop;
+    }
+  }
+
+  &__media {
+    width: 100%;
+
+    @include desktop {
+      width: 32%;
+      flex-shrink: 0;
+    }
+  }
+
+  &__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: $aspect-ratio-portrait;
+    object-fit: cover;
+    border: $border-medium solid $color-brand-complementary;
   }
 }

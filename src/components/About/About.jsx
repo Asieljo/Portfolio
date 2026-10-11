@@ -1,78 +1,102 @@
 import './About.styles.scss';
-import AboutPhoto from '../../assets/images/landing-photo.webp';
+import AboutPhoto from '../../assets/images/about-photo.jpg';
+import cvUrl from '../../../Asiel_Rosiles_CV.pdf';
 
-const stackItems = [
+const aboutTags = ['Self-taught', 'UX/UI foundation', 'React focused'];
+
+const certifications = [
   {
     id: 1,
-    icon: 'JS',
-    title: 'JavaScript & React',
-    description: 'Building interactive, component-based UIs'
+    title: 'Certification of User Experience Designer',
+    issuer: 'Fundación Carlos Slim',
+    year: '2024',
   },
   {
     id: 2,
-    icon: '{ }',
-    title: 'Redux',
-    description: 'State management for growing applications'
+    title: 'Complete Web & Mobile Designer: UI/UX, Figma and more',
+    issuer: 'Udemy',
+    year: '2024',
   },
   {
     id: 3,
-    icon: 'CSS',
-    title: 'Sass / CSS3',
-    description: 'Responsive, scalable styling systems'
+    title: 'Constant education in HTML5, CSS3 & JavaScript',
+    issuer: 'Self-directed',
+    year: 'Ongoing',
   },
-  {
-    id: 4,
-    icon: 'UX',
-    title: 'UX / UI Design',
-    description: 'Figma prototyping and design thinking'
-  }
-]
+];
 
 const About = () => {
   return (
     <section className="about" id="about">
       <div className="about__container">
-        <div className="about__head">
-          <span className="about__eyebrow">{'// about'}</span>
-          <h2 className="about__title">From ideas to code</h2>
-          <p className="about__subtitle">
-            No bootcamp, no formal degree — just consistent, self-directed learning and real projects shipped along the way.
-          </p>
-        </div>
+        <div className="about__content">
+          <h1 className="about__hero-title">
+            <span className="about__hero-line">Builder.</span>
+            <span className="about__hero-line">Designer.</span>
+            <span className="about__hero-line">Curious mind.</span>
+          </h1>
 
-        <div className='about__photo-description'>
-        <img src={AboutPhoto} className='about__photo' alt='Asiel Rosiles'/>
-        <div className='about__subcontainer'>
-          <div className="about__grid">
-            <div className="about__card">
-              <h3 className="about__card-title">Who I am</h3>
-              <p className="about__card-text">
-                I'm a self-taught developer with a solid foundation in Web Design and UX/UI, currently focused on becoming a proficient React Developer. I care about interfaces that feel intentional — fast, accessible, and clean under the hood.
-              </p>
-              <div className="about__tags">
-                <span className="about__tag">Self-Taught</span>
-                <span className="about__tag">UX/UI Foundation</span>
-                <span className="about__tag">React Focused</span>
-              </div>
-            </div>
+          <h2 className="about__title">About me</h2>
+
+          <div className="about__copy">
+            <p className="about__lead">
+              UX/UI designer with strong development skills. I design with the code in mind and build consequently, from tokens and reusable components to responsive layouts, so teams get a smoother handoff and users get an interface that works exactly as intended.
+            </p>
+
+            <p className="about__note">
+              No bootcamp, no formal academic degrees — my background is built on consistent self-directed learning, courses, certifications and real projects shipped along the way.
+            </p>
           </div>
-          <div className="about__stack">
-            {stackItems.map((item) => (
-              <div key={item.id} className="about__stack-item">
-                <div className="about__stack-ic">{item.icon}</div>
-                <div className="about__stack-meta">
-                  <b>{item.title}</b>
-                  <span>{item.description}</span>
-                </div>
-              </div>
+
+          <ul className="about__tags">
+            {aboutTags.map((tag) => (
+              <li key={tag} className="about__tag">
+                {tag}
+              </li>
             ))}
+          </ul>
+
+          <div className="about__certifications">
+            <h3 className="about__subtitle">Certifications &amp; courses</h3>
+
+            <ul className="about__list">
+              {certifications.map((item) => (
+                <li key={item.id} className="about__item">
+                  <span className="about__item-index">
+                    {String(item.id).padStart(2, '0')}
+                  </span>
+                  <div className="about__item-body">
+                    <span className="about__item-title">{item.title}</span>
+                    <span className="about__item-meta">
+                      {item.issuer} &middot; {item.year}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Asiel_Rosiles_CV.pdf"
+              className="about__resume-btn"
+            >
+              Download resume
+            </a>
           </div>
         </div>
 
+        <div className="about__media">
+          <img
+            className="about__photo"
+            src={AboutPhoto}
+            alt="Asiel Rosiles"
+          />
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;

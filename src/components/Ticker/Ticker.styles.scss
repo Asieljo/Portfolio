@@ -1,0 +1,45 @@
+.ticker {
+  overflow: hidden;
+  background-color: $color-background-brand-complementary;
+  padding-block: $spacing-sm;
+
+  &__track {
+    display: flex;
+    width: max-content;
+    animation: ticker-scroll 30s linear infinite;
+  }
+
+  &__group {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    font-family: $typography-body-base-font-family;
+    font-size: $typography-font-size-lg;
+    font-weight: $typography-font-weight-medium;
+    line-height: $typography-line-height-none;
+    text-transform: uppercase;
+    color: $color-text-inverse;
+    white-space: nowrap;
+
+    &::after {
+      content: '-';
+      padding-inline: $spacing-md;
+    }
+  }
+}
+
+@keyframes ticker-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track {
+    animation: none;
+  }
+}

@@ -1,206 +1,239 @@
 .hero {
-  padding: 120px 0 90px;
   position: relative;
-
-  &__cursor-grid {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: $color-background-brand-primary;
 
   &__container {
-    position: relative;
-    z-index: 1;
     @include container;
-  }
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    padding-block: $spacing-section-md;
+    min-height: calc(100vh - $spacing-5xl);
 
-  &__grid {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 60px;
-    align-items: center;
-
-    @include mobile-m {
-      grid-template-columns: 1fr;
-    }
-
-    @include tablet {
-      grid-template-columns: 1fr;
+    @include tablet-up {
+      flex-direction: row;
+      gap: $spacing-2xl;
+      padding-block: $spacing-section-lg;
     }
   }
 
   &__content {
     @include flex-column;
+    gap: $spacing-lg;
+    flex: 1;
+    max-width: to-rem(62rem);
+
+    @include tablet-up {
+      max-width: none;
+    }
   }
 
   &__badge {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    border: 1px solid $color-border-strong;
-    border-radius: 99px;
-    padding: 7px 16px;
-    font-family: $font-mono;
-    font-size: 0.72rem;
-    color: $color-gray-light;
-    background: $color-surface;
-    width: fit-content;
+    gap: $spacing-sm;
+    align-self: flex-start;
+    font-family: $typography-eyebrow-base-font-family;
+    font-size: $typography-eyebrow-font-size-mobile;
+    font-weight: $typography-eyebrow-base-font-weight;
+    line-height: $typography-eyebrow-base-line-height;
+    letter-spacing: $typography-eyebrow-base-letter-spacing;
+    text-transform: uppercase;
+    color: $color-text-brand-complementary;
+    padding: $spacing-xs $spacing-sm;
+    border: $border-thin solid $color-brand-complementary;
+
+    @include tablet {
+      font-size: $typography-eyebrow-font-size-tablet;
+    }
+
+    @include desktop {
+      font-size: $typography-eyebrow-font-size-desktop;
+    }
   }
 
   &__pulse {
-    width: 7px;
-    height: 7px;
+    width: $sizing-xs;
+    height: $sizing-xs;
     border-radius: $radius-full;
-    background: $color-accent;
-    box-shadow: 0 0 0 0 rgba(57, 212, 186, 0.6);
-    animation: ping 1.6s infinite;
-  }
-
-  @keyframes ping {
-    0% { box-shadow: 0 0 0 0 rgba(57, 212, 186, 0.55); }
-    70% { box-shadow: 0 0 0 9px rgba(57, 212, 186, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(57, 212, 186, 0); }
+    background-color: $color-brand-complementary;
+    animation: hero-pulse $motion-duration-slow $motion-easing-ease infinite alternate;
   }
 
   &__title {
-    margin-top: 22px;
-    font-size: clamp(2.6rem, 5.6vw, 4.6rem);
-    line-height: 1.05;
-  }
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-normal;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: uppercase;
+    font-size: $typography-font-size-3xl;
+    color: $color-text-brand-complementary;
 
-  &__grad {
-    background: linear-gradient(100deg, $color-accent, $color-secondary 70%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    @include tablet {
+      font-size: $typography-font-size-5xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-7xl;
+    }
   }
 
   &__lead {
-    margin-top: 24px;
-    font-size: 1.08rem;
-    color: $color-gray;
-    max-width: 52ch;
-    line-height: 1.75;
+    max-width: to-rem(46rem);
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-normal;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: none;
+    font-size: $typography-font-size-xl;
+    color: $color-text-brand-complementary;
+
+    @include desktop {
+      font-size: $typography-font-size-3xl;
+    }
   }
 
   &__actions {
-    margin-top: 38px;
     display: flex;
-    gap: 14px;
     flex-wrap: wrap;
+    gap: $spacing-md;
   }
 
-  &__btn {
-    @include flex-center;
-    gap: 8px;
+  &__button {
+    min-width: to-rem(18.5rem);
+    min-height: $sizing-button-sm;
 
-    &--primary {
-      @include button-primary;
+    @include mobile-sm {
+      min-width: 0;
+      width: 100%;
     }
+  }
 
-    &--ghost {
-      @include button-ghost;
-    }
+  &__button--solid {
+    @include button-complementary;
+  }
+
+  &__button--outline {
+    @include button-outline;
   }
 
   &__stats {
     display: flex;
-    gap: 36px;
-    margin-top: 52px;
-
-    @include mobile-m {
-      flex-wrap: wrap;
-      row-gap: 18px;
-    }
+    flex-wrap: wrap;
+    gap: $spacing-xl $spacing-4xl;
+    margin: 0;
   }
 
   &__stat {
-    b {
-      font-size: 1.7rem;
-      font-weight: 700;
-      display: block;
-      color: $color-white;
+    @include flex-column;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+  &__stat-value {
+    margin: 0;
+    font-family: $typography-heading-base-font-family;
+    font-size: $typography-font-size-2xl;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-none;
+    text-transform: uppercase;
+    color: $color-text-brand-complementary;
+  }
+
+  &__stat-label {
+    font-family: $typography-eyebrow-base-font-family;
+    font-size: $typography-eyebrow-font-size-mobile;
+    font-weight: $typography-eyebrow-base-font-weight;
+    line-height: $typography-eyebrow-base-line-height;
+    letter-spacing: $typography-eyebrow-base-letter-spacing;
+    text-transform: uppercase;
+    color: $color-text-brand-complementary;
+
+    @include tablet {
+      font-size: $typography-eyebrow-font-size-tablet;
+    }
+
+    @include desktop {
+      font-size: $typography-eyebrow-font-size-desktop;
+    }
+  }
+
+  &__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 40vh;
+
+    @include tablet-up {
+      width: 45%;
+      min-height: auto;
+    }
+
+    @include desktop {
+      width: 40%;
+    }
+  }
+
+  &__visual-text {
+    @include flex-column;
+    gap: 0;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-none;
+    text-transform: uppercase;
+    color: $color-brand-complementary;
+    font-size: $typography-font-size-10xl;
+    z-index: 2;
+    pointer-events: none;
+
+    @include tablet {
+      font-size: 7rem;
+    }
+
+    @include desktop {
+      font-size: 9rem;
+    }
+
+    @include wide {
+      font-size: 11rem;
     }
 
     span {
-      font-size: 0.74rem;
-      color: $color-gray;
-      font-family: $font-mono;
+      display: block;
     }
   }
 
-  // Terminal card
-  &__terminal {
-    background: linear-gradient(180deg, $color-surface-strong, $color-surface);
-    border: 1px solid $color-border;
-    border-radius: $radius-lg;
-    box-shadow: $shadow-card, 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    animation: float 6s ease-in-out infinite;
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: $opacity-80;
+    mix-blend-mode: multiply;
+  }
+}
 
-    @include mobile-m {
-      display: none;
-    }
+@keyframes hero-pulse {
+  from {
+    opacity: $opacity-40;
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  to {
+    opacity: $opacity-100;
   }
+}
 
-  &__terminal-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 16px;
-    border-bottom: 1px solid $color-border;
-    background: rgba(255, 255, 255, 0.02);
-  }
-
-  &__terminal-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: $radius-full;
-
-    &--red { background: #FF5F57; }
-    &--yellow { background: #FEBC2E; }
-    &--green { background: #28C840; }
-  }
-
-  &__terminal-fname {
-    margin-left: 8px;
-    font-family: $font-mono;
-    font-size: 0.72rem;
-    color: $color-gray;
-  }
-
-  &__terminal-body {
-    padding: 26px 24px;
-    font-family: $font-mono;
-    font-size: 0.84rem;
-    line-height: 1.95;
-  }
-
-  &__c1 { color: #C084FC; }
-  &__c2 { color: $color-accent; }
-  &__c3 { color: #F5A97F; }
-  &__c4 { color: $color-gray; }
-
-  &__indent {
-    padding-left: 22px;
-  }
-
-  &__caret {
-    display: inline-block;
-    width: 7px;
-    height: 16px;
-    background: $color-accent;
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    50% { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .hero__pulse {
+    animation: none;
   }
 }

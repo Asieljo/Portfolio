@@ -1,116 +1,181 @@
 .case-study {
   min-height: 100vh;
-  background-color: $color-dark;
+  background-color: $color-background-brand-primary;
 
   &__header {
-    background: linear-gradient(135deg, $color-darker 0%, $color-dark 100%);
-    padding: $spacing-3xl $spacing-xl;
-    text-align: center;
+    @include container;
+    @include flex-column;
+    gap: $spacing-lg;
+    padding-block: $spacing-section-sm;
+    border-bottom: $border-medium solid $color-brand-complementary;
   }
 
   &__back {
-    @include flex-center;
+    display: flex;
+    align-items: center;
     gap: $spacing-sm;
-    color: $color-gray;
-    font-size: $font-size-sm;
-    font-weight: 500;
-    margin-bottom: $spacing-xl;
-    transition: all $transition-normal;
-    text-decoration: none;
+    align-self: flex-start;
+    font-family: $typography-body-base-font-family;
+    font-size: $typography-font-size-sm;
+    font-weight: $typography-body-base-font-weight;
+    line-height: $typography-body-base-line-height;
+    color: $color-text-brand-complementary;
+    transition: opacity $motion-duration-fast $interaction-transition-hover;
 
     &:hover {
-      color: $color-accent;
-      transform: translateX(-4px);
+      opacity: $opacity-70;
     }
   }
 
   &__title {
-    font-size: $font-size-4xl;
-    color: $color-white;
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-normal;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: uppercase;
+    font-size: $typography-font-size-2xl;
+    color: $color-text-brand-complementary;
 
-    @include mobile-m {
-      font-size: $font-size-xl;
+    @include tablet {
+      font-size: $typography-font-size-3xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-5xl;
     }
   }
 
   &__content {
     @include container;
-    padding-top: $spacing-3xl;
-    padding-bottom: $spacing-3xl;
+    @include flex-column;
+    gap: $spacing-section-sm;
+    padding-block: $spacing-section-md;
   }
 
   &__section {
-    background: $color-surface;
-    border: 1px solid $color-border;
-    border-radius: $radius-lg;
-    padding: $spacing-xl;
-    margin-bottom: $spacing-xl;
+    @include flex-column;
+    gap: $spacing-md;
 
     h2 {
-      font-size: $font-size-xl;
-      margin-bottom: $spacing-md;
-      color: $color-accent;
+      font-family: $typography-heading-base-font-family;
+      font-weight: $typography-font-weight-regular;
+      line-height: $typography-line-height-snug;
+      letter-spacing: $typography-letter-spacing-normal;
+      text-transform: uppercase;
+      font-size: $typography-font-size-xl;
+      color: $color-text-brand-complementary;
+
+      @include tablet {
+        font-size: $typography-font-size-2xl;
+      }
+
+      @include desktop {
+        font-size: $typography-font-size-3xl;
+      }
     }
 
-    p {
-      color: $color-gray;
-      line-height: 1.8;
+    p,
+    li {
+      font-family: $typography-body-base-font-family;
+      font-size: $typography-body-font-size-mobile;
+      font-weight: $typography-body-base-font-weight;
+      line-height: $typography-body-base-line-height;
+      color: $color-text-brand-complementary;
+
+      @include tablet {
+        font-size: $typography-body-font-size-tablet;
+      }
+
+      @include desktop {
+        font-size: $typography-body-font-size-desktop;
+      }
+    }
+
+    ul {
+      @include flex-column;
+      gap: $spacing-xs;
+      list-style: disc;
+      padding-inline-start: $spacing-lg;
     }
   }
 
   &__highlight {
-    color: $color-accent;
+    font-weight: $typography-font-weight-bold;
   }
 
   &__accent {
-    color: $color-secondary;
-  }
+    font-family: $typography-eyebrow-base-font-family;
+    font-size: $typography-eyebrow-font-size-mobile;
+    font-weight: $typography-eyebrow-base-font-weight;
+    line-height: $typography-eyebrow-base-line-height;
+    letter-spacing: $typography-eyebrow-base-letter-spacing;
+    text-transform: uppercase;
+    color: $color-text-brand-primary;
 
-  &__mockups {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: $spacing-xl;
-    margin-top: $spacing-xl;
-  }
-
-  &__mockup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $spacing-sm;
-    flex: 1 1 220px;
-    max-width: 300px;
-
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: $radius-md;
-      box-shadow: $shadow-lg;
+    @include tablet {
+      font-size: $typography-eyebrow-font-size-tablet;
     }
 
-    span {
-      font-size: $font-size-sm;
-      color: $color-gray;
+    @include desktop {
+      font-size: $typography-eyebrow-font-size-desktop;
     }
   }
 
   &__images {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-lg;
-    margin-top: $spacing-xl;
+    display: grid;
+    gap: $spacing-md;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     img {
       width: 100%;
       height: auto;
-      border-radius: $radius-md;
-      box-shadow: $shadow-lg;
-      transition: transform $transition-normal;
+      border: $border-medium solid $color-brand-complementary;
+      background-color: $color-surface-default;
+    }
+  }
 
-      &:hover {
-        transform: scale(1.02);
+  &__mockups {
+    display: grid;
+    gap: $spacing-md;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__mockup {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    img {
+      width: 100%;
+      height: auto;
+      border: $border-medium solid $color-brand-complementary;
+      background-color: $color-surface-default;
+    }
+
+    span {
+      font-family: $typography-eyebrow-base-font-family;
+      font-size: $typography-eyebrow-font-size-mobile;
+      font-weight: $typography-eyebrow-base-font-weight;
+      line-height: $typography-eyebrow-base-line-height;
+      letter-spacing: $typography-eyebrow-base-letter-spacing;
+      text-transform: uppercase;
+      color: $color-text-brand-complementary;
+
+      @include tablet {
+        font-size: $typography-eyebrow-font-size-tablet;
+      }
+
+      @include desktop {
+        font-size: $typography-eyebrow-font-size-desktop;
       }
     }
   }

@@ -1,216 +1,187 @@
 .projects {
-  @include section-padding;
-  position: relative;
+  background-color: $color-background-brand-primary;
 
   &__container {
     @include container;
+    @include flex-column;
+    gap: $spacing-section-sm;
+    padding-block: $spacing-section-md;
   }
 
   &__head {
-    max-width: 640px;
-    margin: 0 auto 60px;
-    text-align: center;
+    @include flex-column;
+    gap: $spacing-md;
+    max-width: to-rem(48rem);
   }
 
-  &__eyebrow {
-    @include eyebrow;
-  }
+  &__title-lead {
+    font-family: $typography-heading-base-font-family;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-normal;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: uppercase;
+    font-size: $typography-font-size-2xl;
+    color: $color-text-brand-complementary;
 
-  &__title {
-    font-size: clamp(2rem, 4.2vw, 2.9rem);
-    letter-spacing: -0.02em;
+    @include tablet {
+      font-size: $typography-font-size-3xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-5xl;
+    }
   }
 
   &__subtitle {
-    margin-top: 16px;
-    color: $color-gray;
-    font-size: $font-size-base;
-    line-height: 1.7;
-  }
-
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-
-    @include mobile-m {
-      grid-template-columns: 1fr;
-    }
+    font-family: $typography-heading-base-font-family;
+    font-size: $typography-font-size-lg;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-normal;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: none;
+    color: $color-text-brand-complementary;
 
     @include tablet {
-      grid-template-columns: 1fr;
+      font-size: $typography-font-size-xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
     }
   }
 
-  &__item {
-    position: relative;
-
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-lg;
   }
 
   &__card {
     display: flex;
-    background: linear-gradient(180deg, $color-surface-strong, $color-surface);
-    height: 100%;
-    border: 1px solid $color-border;
-    border-radius: $radius-lg;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
-    text-decoration: none;
-    color: inherit;
+    flex: 0 1 calc((100% - #{$grid-gutter-desktop}) / 2);
+    min-width: 0;
+    background-color: $color-background-brand-primary;
+    border: $border-medium solid $color-brand-complementary;
+    text-align: left;
+    transition: background-color $motion-duration-fast $interaction-transition-hover;
 
-    &:hover {
-      transform: translateY(-6px);
-      border-color: rgba(57, 212, 186, 0.5);
-      box-shadow: 0 24px 60px -24px rgba(25, 14, 178, 0.55);
-    }
-
-    &:hover .projects__arrow {
-      background: $color-accent;
-      border-color: $color-accent;
-      color: #04120f;
-      transform: rotate(45deg);
-    }
-
-    @include mobile-s {
-      flex-direction: column-reverse;
+    &:hover .projects__cta {
+      background-color: $color-text-brand-complementary;
+      color: $color-button-complementary-text;
     }
   }
 
-  &__image {
-    height: 100%;
-    object-fit: cover;
-    object-position: left;
-  }
-
-  &__image-container {
-    width: 100%;
-    overflow: hidden;
-  }
-
-  &__glow {
-    position: absolute;
-    width: 220px;
-    height: 220px;
-    border-radius: $radius-full;
-    filter: blur(70px);
-    background: $color-accent;
-    opacity: 0;
-    top: -60px;
-    right: -60px;
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-  }
-
-  &__card:hover &__glow {
-    opacity: 0.22;
-  }
-
-  &__card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
+  &__body {
+    @include flex-column;
+    gap: $spacing-md;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: $spacing-md;
   }
 
   &__type {
-    @include mono;
-    font-size: 0.68rem;
-    color: $color-accent;
-    border: 1px solid rgba(57, 212, 186, 0.35);
-    padding: 5px 10px;
-    border-radius: 7px;
-  }
+    align-self: flex-start;
+    font-family: $typography-eyebrow-base-font-family;
+    font-size: $typography-eyebrow-font-size-mobile;
+    font-weight: $typography-eyebrow-base-font-weight;
+    line-height: $typography-eyebrow-base-line-height;
+    letter-spacing: $typography-eyebrow-base-letter-spacing;
+    text-transform: uppercase;
+    color: $color-text-inverse;
+    background-color: $color-button-complementary-bg;
+    padding: $spacing-xs $spacing-sm;
 
-  &__arrow {
-    position: absolute;
-    top: 24px;
-    right: 24px;
+    @include tablet {
+      font-size: $typography-eyebrow-font-size-tablet;
+    }
 
-    width: 34px;
-    height: 34px;
-    border-radius: 9px;
-    border: 1px solid $color-border-strong;
-    @include flex-center;
-    transition: all 0.3s ease;
-    color: $color-gray;
-  }
-
-  &__card-title {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    letter-spacing: -0.01em;
-    color: $color-white;
-  }
-
-  &__card-desc {
-    color: $color-gray;
-    font-size: 0.9rem;
-    line-height: 1.7;
-
-    @include mobile-s {
-      display: none;
+    @include desktop {
+      font-size: $typography-eyebrow-font-size-desktop;
     }
   }
 
+  &__title {
+    font-family: $typography-heading-base-font-family;
+    font-size: $typography-font-size-2xl;
+    font-weight: $typography-font-weight-regular;
+    line-height: $typography-line-height-snug;
+    letter-spacing: $typography-letter-spacing-normal;
+    text-transform: uppercase;
+    color: $color-text-brand-complementary;
+  }
+
   &__description {
-    width: 100%;
-    padding: 24px;
+    font-family: $typography-body-base-font-family;
+    font-size: $typography-body-font-size-mobile;
+    font-weight: $typography-body-base-font-weight;
+    line-height: $typography-body-base-line-height;
+    color: $color-text-brand-complementary;
+
+    @include tablet {
+      font-size: $typography-body-font-size-tablet;
+    }
+
+    @include desktop {
+      font-size: $typography-body-font-size-desktop;
+    }
   }
 
   &__tags {
     display: flex;
-    gap: 8px;
-    margin-top: 20px;
     flex-wrap: wrap;
+    gap: $spacing-xs $spacing-sm;
   }
 
   &__tag {
-    @include mono;
-    font-size: 0.66rem;
-    color: $color-gray-light;
-    background: rgba(255, 255, 255, 0.04);
-    padding: 4px 9px;
-    border-radius: 6px;
-  }
+    font-family: $typography-eyebrow-base-font-family;
+    font-size: $typography-eyebrow-font-size-mobile;
+    font-weight: $typography-eyebrow-base-font-weight;
+    line-height: $typography-eyebrow-base-line-height;
+    letter-spacing: $typography-eyebrow-base-letter-spacing;
+    text-transform: uppercase;
+    color: $color-text-brand-complementary;
+    border: $border-thin solid $color-brand-complementary;
+    padding: $spacing-xs $spacing-sm;
 
-  &__card-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-  }
-
-  &__link {
-    @include flex-center;
-    gap: 6px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid $color-border;
-    color: $color-gray-light;
-    font-size: 0.78rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: $color-accent;
-      border-color: $color-accent;
-      color: #04120f;
+    @include tablet {
+      font-size: $typography-eyebrow-font-size-tablet;
     }
 
-    &--primary {
-      background: $color-accent;
-      border-color: $color-accent;
-      color: #04120f;
+    @include desktop {
+      font-size: $typography-eyebrow-font-size-desktop;
+    }
+  }
 
-      &:hover {
-        background: $color-secondary;
-        border-color: $color-secondary;
-        color: #fff;
-      }
+  &__cta {
+    @include button-complementary;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  &__media {
+    flex: 0 0 47%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: ($breakpoints-tablet - 1px)) {
+    &__card {
+      flex-basis: 100%;
+    }
+  }
+
+  // 1420px is the grid step defined by the design mockups (3-up), not a
+  // design-system breakpoint token.
+  @media (min-width: 1420px) {
+    &__card {
+      flex-basis: calc((100% - #{2 * $grid-gutter-desktop}) / 3);
     }
   }
 }
