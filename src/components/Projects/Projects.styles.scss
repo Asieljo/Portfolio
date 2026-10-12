@@ -1,27 +1,23 @@
+// Card sizes measured from the mockups (no matching sizing token). Cards keep
+// one minimum height so rows line up, and grow when narrow columns need it.
+$card-height: to-rem(352);
+$card-media-height-sm: to-rem(234);
+
 .projects {
-  background-color: $color-background-brand-primary;
+  background-color: var(--color-surface);
 
   &__container {
     @include container;
-    @include flex-column;
-    gap: $spacing-section-sm;
-    padding-block: $spacing-section-md;
+    padding-block: $spacing-section-sm + $spacing-md;
+
+    @include tablet-up {
+      padding-block: $spacing-section-sm;
+    }
   }
 
-  &__head {
-    @include flex-column;
-    gap: $spacing-md;
-    max-width: to-rem(48rem);
-  }
-
-  &__title-lead {
-    font-family: $typography-heading-base-font-family;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-normal;
-    letter-spacing: $typography-letter-spacing-normal;
-    text-transform: uppercase;
+  &__heading {
+    @include text-display;
     font-size: $typography-font-size-2xl;
-    color: $color-text-brand-complementary;
 
     @include tablet {
       font-size: $typography-font-size-3xl;
@@ -33,13 +29,9 @@
   }
 
   &__subtitle {
-    font-family: $typography-heading-base-font-family;
+    @include text-display;
+    margin-top: $spacing-lg;
     font-size: $typography-font-size-lg;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-normal;
-    letter-spacing: $typography-letter-spacing-normal;
-    text-transform: none;
-    color: $color-text-brand-complementary;
 
     @include tablet {
       font-size: $typography-font-size-xl;
@@ -54,134 +46,129 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: $spacing-lg;
+    gap: $grid-gutter-desktop;
+    margin-top: $spacing-lg;
+
+    @include mobile-md {
+      padding-inline: $spacing-sm;
+    }
   }
 
   &__card {
-    display: flex;
-    flex: 0 1 calc((100% - #{$grid-gutter-desktop}) / 2);
-    min-width: 0;
-    background-color: $color-background-brand-primary;
-    border: $border-medium solid $color-brand-complementary;
-    text-align: left;
-    transition: background-color $motion-duration-fast $interaction-transition-hover;
+    display: grid;
+    grid-template-columns: 21fr 19fr;
+    flex: 0 0 100%;
+    min-height: $card-height;
+    overflow: hidden;
+    background-color: var(--color-surface);
+    border: $border-medium solid var(--color-content);
 
-    &:hover .projects__cta {
-      background-color: $color-text-brand-complementary;
-      color: $color-button-complementary-text;
+    @include mobile-sm {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    @include tablet-up {
+      flex-basis: calc((100% - #{$grid-gutter-desktop}) / 2);
+    }
+
+    @include desktop-lg {
+      flex-basis: calc((100% - #{2 * $grid-gutter-desktop}) / 3);
+
+      // The mockup centers an orphan card and lets it grow wider.
+      &:last-child:nth-child(3n + 1) {
+        flex-basis: 40%;
+      }
     }
   }
 
   &__body {
     @include flex-column;
+    justify-content: center;
+    align-items: flex-start;
     gap: $spacing-md;
-    flex: 1 1 0;
     min-width: 0;
     padding: $spacing-md;
   }
 
   &__type {
-    align-self: flex-start;
-    font-family: $typography-eyebrow-base-font-family;
-    font-size: $typography-eyebrow-font-size-mobile;
-    font-weight: $typography-eyebrow-base-font-weight;
-    line-height: $typography-eyebrow-base-line-height;
-    letter-spacing: $typography-eyebrow-base-letter-spacing;
+    color: var(--color-inverse);
+    background-color: var(--color-content);
     text-transform: uppercase;
-    color: $color-text-inverse;
-    background-color: $color-button-complementary-bg;
-    padding: $spacing-xs $spacing-sm;
-
-    @include tablet {
-      font-size: $typography-eyebrow-font-size-tablet;
-    }
-
-    @include desktop {
-      font-size: $typography-eyebrow-font-size-desktop;
-    }
+    @include text-tag;
   }
 
   &__title {
-    font-family: $typography-heading-base-font-family;
-    font-size: $typography-font-size-2xl;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-snug;
-    letter-spacing: $typography-letter-spacing-normal;
-    text-transform: uppercase;
-    color: $color-text-brand-complementary;
+    @include text-display;
+    font-size: $typography-font-size-lg;
+
+    @include tablet-up {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  &__title-prefix {
+    @include desktop {
+      display: none;
+    }
   }
 
   &__description {
-    font-family: $typography-body-base-font-family;
+    @include text-body;
     font-size: $typography-body-font-size-mobile;
-    font-weight: $typography-body-base-font-weight;
-    line-height: $typography-body-base-line-height;
-    color: $color-text-brand-complementary;
 
-    @include tablet {
+    @include tablet-up {
       font-size: $typography-body-font-size-tablet;
-    }
-
-    @include desktop {
-      font-size: $typography-body-font-size-desktop;
     }
   }
 
   &__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-xs $spacing-sm;
+    gap: $spacing-sm;
   }
 
   &__tag {
-    font-family: $typography-eyebrow-base-font-family;
-    font-size: $typography-eyebrow-font-size-mobile;
-    font-weight: $typography-eyebrow-base-font-weight;
-    line-height: $typography-eyebrow-base-line-height;
-    letter-spacing: $typography-eyebrow-base-letter-spacing;
-    text-transform: uppercase;
-    color: $color-text-brand-complementary;
-    border: $border-thin solid $color-brand-complementary;
-    padding: $spacing-xs $spacing-sm;
-
-    @include tablet {
-      font-size: $typography-eyebrow-font-size-tablet;
-    }
-
-    @include desktop {
-      font-size: $typography-eyebrow-font-size-desktop;
-    }
+    color: var(--color-content);
+    @include text-tag;
   }
 
-  &__cta {
-    @include button-complementary;
-    width: 100%;
-    margin-top: auto;
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    align-self: stretch;
+  }
+
+  &__button {
+    flex: 1;
+
+    &--solid {
+      @include button-complementary(sm);
+    }
+
+    &--outline {
+      @include button-outline(sm);
+    }
   }
 
   &__media {
-    flex: 0 0 47%;
     min-width: 0;
     overflow: hidden;
+
+    @include mobile-sm {
+      height: $card-media-height-sm;
+    }
   }
 
   &__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
 
-  @media (max-width: ($breakpoints-tablet - 1px)) {
-    &__card {
-      flex-basis: 100%;
-    }
-  }
-
-  // 1420px is the grid step defined by the design mockups (3-up), not a
-  // design-system breakpoint token.
-  @media (min-width: 1420px) {
-    &__card {
-      flex-basis: calc((100% - #{2 * $grid-gutter-desktop}) / 3);
+    &--top-left {
+      object-position: left top;
     }
   }
 }

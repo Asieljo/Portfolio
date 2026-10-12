@@ -1,3 +1,4 @@
+import Wordmark from '../../assets/images/wordmark.svg?react';
 import './Footer.styles.scss';
 
 const contactLinks = [
@@ -9,45 +10,48 @@ const contactLinks = [
   },
   {
     id: 'linkedin',
-    label: 'LinkedIn',
+    label: 'Linkedin',
     value: 'Asiel Rosiles',
     href: 'https://www.linkedin.com/in/asiel-rosiles-7a255a32b/',
+    external: true,
   },
   {
     id: 'github',
-    label: 'GitHub',
+    label: 'Github',
     value: '@Asieljo',
     href: 'https://github.com/Asieljo',
+    external: true,
   },
 ];
 
 const Footer = () => (
   <footer className="footer">
     <div className="footer__container">
-      <div className="footer__content">
-        <h2 className="footer__name" aria-label="Asiel Rosiles">
-          <span className="footer__name-line">Asiel</span>
-          <span className="footer__name-line">Rosiles</span>
-        </h2>
+      <h2 className="footer__name">
+        {/* svgr's `icon` option forces a 1em square; dropping it keeps the
+            viewBox ratio so the width set in CSS drives the height. */}
+        <Wordmark
+          className="footer__wordmark"
+          width={undefined}
+          height={undefined}
+          role="img"
+          aria-label="Asiel Rosiles"
+        />
+      </h2>
 
-        <ul className="footer__contacts">
-          {contactLinks.map((link) => (
-            <li key={link.id} className="footer__contact">
-              <span className="footer__contact-label">{link.label}:</span>
-              <a
-                className="footer__contact-link"
-                href={link.href}
-                target={link.href.startsWith('mailto:') ? undefined : '_blank'}
-                rel="noopener noreferrer"
-              >
-                {link.value}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <p className="footer__copy">&copy; 2026 Asiel Rosiles</p>
-      </div>
+      <ul className="footer__contacts">
+        {contactLinks.map((link) => (
+          <li key={link.id} className="footer__contact">
+            <a
+              className="footer__link"
+              href={link.href}
+              {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
+            >
+              {link.label}: {link.value}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </footer>
 );

@@ -1,16 +1,36 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { scrollToTop } from '../../utils/scrollToTop';
-import DownloadIcon from '../../assets/icons/download.svg?react';
+import { useTheme } from '../../hooks/useTheme';
+import ThemeIcon from '../../assets/icons/theme.svg?react';
+import MenuIcon from '../../assets/icons/menu.svg?react';
+import CloseIcon from '../../assets/icons/close.svg?react';
 import cvUrl from '../../../Asiel_Rosiles_CV.pdf';
 import './Header.styles.scss';
+
+const navLinks = [
+  { id: 'home', label: 'Home', to: '/' },
+  { id: 'about', label: 'About', to: '/#about' },
+  { id: 'projects', label: 'Projects', to: '/#projects' },
+];
 
 const Header = ({ onContactClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const toggleMenu = () => setIsMenuOpen((open) => !open);
   const closeMenu = () => setIsMenuOpen(false);
+
+  const handleNavClick = (to) => {
+    closeMenu();
+    if (to === '/') scrollToTop();
+  };
+
+  const handleContactClick = () => {
+    closeMenu();
+    onContactClick();
+  };
 
   useEffect(() => {
     if (location.hash) {
@@ -24,58 +44,65 @@ const Header = ({ onContactClick }) => {
   return (
     <header className="header">
       <div className="header__container">
-        <button type="button" className="header__brand" onClick={scrollToTop}>
+        <Link to="/" className="header__brand" onClick={() => handleNavClick('/')}>
           Asiel Rosiles
+        </Link>
+
+        <div
+          id="header-menu"
+          className={`header__menu${isMenuOpen ? ' header__menu--open' : ''}`}
+        >
+          <nav className="header__nav" aria-label="Main">
+            {navLinks.map((link) => (
+              <Link
+                key={link.id}
+                to={link.to}
+                className="header__link"
+                onClick={() => handleNavClick(link.to)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <button type="button" className="header__contact" onClick={handleContactClick}>
+            Contact me
+          </button>
+        </div>
+
+        <a
+          href={cvUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          download="Asiel_Rosiles_CV.pdf"
+          className="header__resume"
+        >
+          Resume
+        </a>
+
+        <button
+          type="button"
+          className="header__icon-button header__theme"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+        >
+          <ThemeIcon className="header__icon" aria-hidden="true" />
         </button>
 
         <button
           type="button"
-          className={`header__burger${isMenuOpen ? ' header__burger--active' : ''}`}
+          className="header__icon-button header__burger"
           onClick={toggleMenu}
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMenuOpen}
+          aria-controls="header-menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          {isMenuOpen ? (
+            <CloseIcon className="header__icon" aria-hidden="true" />
+          ) : (
+            <MenuIcon className="header__icon" aria-hidden="true" />
+          )}
         </button>
-
-        <nav className={`header__nav${isMenuOpen ? ' header__nav--open' : ''}`}>
-          <Link to="/" className="header__nav-link" onClick={closeMenu}>
-            Home
-          </Link>
-          <Link to="/#about" className="header__nav-link" onClick={closeMenu}>
-            About
-          </Link>
-          <Link to="/#projects" className="header__nav-link" onClick={closeMenu}>
-            Projects
-          </Link>
-        </nav>
-
-        <div className={`header__actions${isMenuOpen ? ' header__actions--open' : ''}`}>
-          <a
-            href={cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            download="Asiel_Rosiles_CV.pdf"
-            className="header__button"
-            onClick={closeMenu}
-          >
-            <DownloadIcon className="header__button-icon" />
-            Resume
-          </a>
-
-          <button
-            type="button"
-            className="header__button header__button--plain"
-            onClick={() => {
-              closeMenu();
-              onContactClick();
-            }}
-          >
-            Contact me
-          </button>
-        </div>
       </div>
     </header>
   );

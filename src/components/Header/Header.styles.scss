@@ -2,28 +2,28 @@
   position: sticky;
   top: 0;
   z-index: $z-index-sticky;
-  background-color: $color-background-brand-primary;
-  border-bottom: $border-medium solid $color-brand-complementary;
+  background-color: var(--color-surface);
+  border-bottom: $border-medium solid var(--color-content);
+  transition: background-color $motion-duration-normal $interaction-transition-fade;
 
   &__container {
-    @include flex-between;
     @include container;
+    position: relative;
+    display: flex;
+    align-items: center;
     min-height: $spacing-5xl;
-    gap: $spacing-md;
 
-    @media (max-width: ($breakpoints-tablet - 1px)) {
-      flex-wrap: wrap;
+    @include tablet-up {
+      gap: $spacing-xl;
     }
   }
 
   &__brand {
-    font-family: $typography-heading-base-font-family;
-    font-size: $typography-font-size-md;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-none;
-    text-transform: uppercase;
-    color: $color-text-brand-complementary;
+    @include text-display;
+    font-size: $typography-font-size-xl;
+    color: var(--color-content);
     white-space: nowrap;
+    margin-inline-end: auto;
 
     @include tablet {
       font-size: $typography-font-size-2xl;
@@ -32,163 +32,133 @@
     @include desktop {
       font-size: $typography-font-size-3xl;
     }
+
+    @include tablet-up {
+      margin-inline-end: 0;
+    }
+  }
+
+  // On tablet and desktop the menu wrapper dissolves so the nav sits centered
+  // between brand and actions, and "Contact me" joins the action group.
+  &__menu {
+    display: contents;
+
+    @include mobile {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      display: none;
+      flex-direction: column;
+      gap: $spacing-lg;
+      padding: $spacing-lg $spacing-container-mobile;
+      background-color: var(--color-surface);
+      border-top: $border-medium solid var(--color-content);
+      border-bottom: $border-medium solid var(--color-content);
+    }
+  }
+
+  &__menu--open {
+    @include mobile {
+      display: flex;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    margin-inline: auto;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-md;
+      margin-inline: 0;
+    }
+  }
+
+  &__link {
+    @include text-display;
+    font-size: $typography-font-size-2xl;
+    text-transform: uppercase;
+    color: var(--color-content);
+    transition: color $motion-duration-fast $interaction-transition-hover;
+
+    &:hover {
+      color: var(--color-hover);
+    }
+  }
+
+  &__contact {
+    order: 2;
+    @include text-display;
+    font-size: $typography-font-size-xs;
+    text-transform: uppercase;
+    color: var(--color-content);
+    transition: color $motion-duration-fast $interaction-transition-hover;
+
+    &:hover {
+      color: var(--color-hover);
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-sm;
+    }
+
+    @include mobile {
+      align-self: flex-start;
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  &__resume {
+    order: 1;
+    @include button-complementary(sm);
+
+    & {
+      font-size: $typography-font-size-xs;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-sm;
+    }
+  }
+
+  &__icon-button {
+    display: flex;
+    flex-shrink: 0;
+    color: var(--color-content);
+    transition: color $motion-duration-fast $interaction-transition-hover;
+
+    &:hover {
+      color: var(--color-hover);
+    }
+  }
+
+  // On mobile the brand's auto margin is the only space before the actions,
+  // which keeps the row inside 320px.
+  &__theme,
+  &__burger {
+    @include mobile {
+      margin-inline-start: $spacing-lg;
+    }
+  }
+
+  &__theme {
+    order: 3;
   }
 
   &__burger {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-xs;
-    padding: $spacing-sm;
-    margin-inline-start: auto;
-
-    span {
-      display: block;
-      width: $sizing-lg;
-      height: $border-medium;
-      background-color: $color-brand-complementary;
-      transition: transform $motion-duration-normal $interaction-transition-slide,
-        opacity $motion-duration-fast $interaction-transition-fade;
-    }
+    order: 4;
 
     @include tablet-up {
       display: none;
     }
   }
 
-  &__burger--active {
-    span:nth-child(1) {
-      transform: translateY($spacing-sm) rotate(45deg);
-    }
-
-    span:nth-child(2) {
-      opacity: $opacity-40;
-    }
-
-    span:nth-child(3) {
-      transform: translateY(-$spacing-sm) rotate(-45deg);
-    }
-  }
-
-  &__nav {
-    display: none;
-
-    @include tablet-up {
-      display: flex;
-      align-items: center;
-      gap: $spacing-xl;
-    }
-  }
-
-  &__nav-link {
-    font-family: $typography-heading-base-font-family;
-    font-size: $typography-font-size-2xl;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-none;
-    text-transform: uppercase;
-    color: $color-text-brand-complementary;
-    transition: color $motion-duration-fast $interaction-transition-hover;
-
-    &:hover {
-      color: $color-text-inverse;
-    }
-  }
-
-  &__actions {
-    display: none;
-
-    @include tablet-up {
-      display: flex;
-      align-items: center;
-      gap: $spacing-md;
-    }
-  }
-
-  &__button {
-    @include button-complementary;
-  }
-
-  &__button-icon {
-    width: $sizing-md;
-    height: $sizing-md;
-  }
-
-  // Tablet keeps the full single-row header of the desktop layout but with a
-  // tighter scale so brand, nav and actions fit without wrapping at 768px.
-  @include tablet {
-    &__nav {
-      gap: $spacing-lg;
-    }
-
-    &__nav-link {
-      font-size: $typography-font-size-md;
-    }
-
-    &__button--plain {
-      background-color: $color-button-no-background-bg;
-      border-color: $color-button-no-background-bg;
-      color: $color-text-brand-complementary;
-
-      &:hover,
-      &:active {
-        background-color: $color-button-no-background-bg;
-        border-color: $color-button-no-background-bg;
-        color: $color-text-inverse;
-      }
-    }
-  }
-
-  // Desktop and wide breakpoints need proper spacing
-  @include desktop {
-    &__nav {
-      gap: $spacing-xl;
-    }
-
-    &__nav-link {
-      font-size: $typography-font-size-lg;
-    }
-
-    &__button--plain {
-      background-color: $color-button-no-background-bg;
-      border-color: $color-button-no-background-bg;
-      color: $color-text-brand-complementary;
-
-      &:hover,
-      &:active {
-        background-color: $color-button-no-background-bg;
-        border-color: $color-button-no-background-bg;
-        color: $color-text-inverse;
-      }
-    }
-  }
-
-  // Mobile menu behavior (only for mobile breakpoints)
-  @media (max-width: ($breakpoints-tablet - 1px)) {
-    &__nav,
-    &__actions {
-      width: 100%;
-    }
-
-    &__nav {
-      @include flex-column;
-      align-items: flex-start;
-      gap: $spacing-lg;
-      padding-block: $spacing-lg;
-      border-top: $border-thin solid $color-brand-complementary;
-    }
-
-    &__nav-link {
-      font-size: $typography-font-size-2xl;
-    }
-
-    &__actions {
-      justify-content: center;
-      flex-wrap: wrap;
-      padding-bottom: $spacing-lg;
-    }
-
-    &__nav--open,
-    &__actions--open {
-      display: flex;
-    }
+  &__icon {
+    width: $sizing-xl;
+    height: $sizing-xl;
   }
 }
