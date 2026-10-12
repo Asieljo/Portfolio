@@ -18,6 +18,7 @@ $card-media-height-sm: to-rem(234);
   &__heading {
     @include text-display;
     font-size: $typography-font-size-2xl;
+    color: var(--color-accent);
 
     @include tablet {
       font-size: $typography-font-size-3xl;
@@ -102,6 +103,7 @@ $card-media-height-sm: to-rem(234);
   &__title {
     @include text-display;
     font-size: $typography-font-size-lg;
+    color: var(--color-accent);
 
     @include tablet-up {
       font-size: $typography-font-size-2xl;

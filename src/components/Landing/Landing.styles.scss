@@ -6,8 +6,8 @@ $hero-media-width: to-rem(618);
 $hero-media-width-lg: to-rem(692);
 $hero-title-width-tablet: to-rem(544);
 $hero-actions-width-lg: to-rem(604);
-// Intrinsic ratio of the hero artwork (722 x 420, shared by the blue and dark
-// variants), used to size it rotated.
+// Intrinsic ratio of the hero artwork (722 x 420, shared by every theme
+// variant), used to size it rotated.
 $hero-image-ratio: calc(722 / 420);
 
 .hero {
@@ -55,6 +55,7 @@ $hero-image-ratio: calc(722 / 420);
 
   &__title {
     font-size: $typography-font-size-2xl;
+    color: var(--color-accent);
 
     @include tablet {
       max-width: $hero-title-width-tablet;
@@ -175,6 +176,7 @@ $hero-image-ratio: calc(722 / 420);
   &__stat-value {
     @include text-display;
     font-size: $typography-font-size-md;
+    color: var(--color-accent);
   }
 
   &__stat-label {

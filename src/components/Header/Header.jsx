@@ -18,7 +18,7 @@ const navLinks = [
 const Header = ({ onContactClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const { theme, toggleTheme } = useTheme();
+  const { nextTheme, toggleTheme } = useTheme();
 
   const toggleMenu = () => setIsMenuOpen((open) => !open);
   const closeMenu = () => setIsMenuOpen(false);
@@ -91,7 +91,7 @@ const Header = ({ onContactClick }) => {
           type="button"
           className="header__icon-button header__theme"
           onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'primary' ? 'secondary' : 'primary'} theme`}
+          aria-label={`Switch to ${nextTheme} theme`}
         >
           <ThemeIcon className="header__icon" aria-hidden="true" />
         </button>

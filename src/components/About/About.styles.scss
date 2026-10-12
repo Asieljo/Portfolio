@@ -56,6 +56,10 @@ $about-content-width-lg: to-rem(1024);
     }
   }
 
+  &__tagline {
+    color: var(--color-accent);
+  }
+
   &__title {
     margin-top: $spacing-lg;
   }

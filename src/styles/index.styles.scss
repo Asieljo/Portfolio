@@ -3,13 +3,16 @@
 @use "functions" as *;
 
 // Theme palette. `primary` is the orange theme in design/ and the default;
-// `secondary` is the beige theme in design/themes/secondary. Solid buttons
-// follow each theme's state tokens: the complementary family on primary and
-// secondary-main (which hovers into secondary-alt) on secondary. `--color-hover`
-// is the hover accent for text links and icon buttons.
+// `secondary` (beige) and `complementary` (black) live in design/themes/.
+// Solid buttons follow each theme's state tokens: the complementary family on
+// primary, secondary-main (which hovers into secondary-alt) on secondary and
+// white (which hovers into no-background) on complementary. `--color-hover` is
+// the hover accent for text links and icon buttons; `--color-accent` colours
+// the display headings that turn orange on complementary.
 :root {
   --color-surface: #{$color-background-brand-primary};
   --color-content: #{$color-text-brand-complementary};
+  --color-accent: #{$color-text-brand-complementary};
   --color-inverse: #{$color-button-complementary-text};
   --color-hover: #{$color-state-hover-complementary-text};
   --color-button-hover-bg: #{$color-state-hover-complementary-bg};
@@ -22,6 +25,7 @@
 :root[data-theme="secondary"] {
   --color-surface: #{$color-background-brand-secondary};
   --color-content: #{$color-text-brand-complementary};
+  --color-accent: #{$color-text-brand-complementary};
   --color-inverse: #{$color-button-secondary-main-text};
   --color-hover: #{$color-text-brand-primary};
   --color-button-hover-bg: #{$color-state-hover-secondary-main-bg};
@@ -29,6 +33,19 @@
   --color-button-hover-border: #{$color-state-hover-secondary-main-border};
   --color-strip: #{$color-background-brand-complementary};
   --color-strip-content: #{$color-text-inverse};
+}
+
+:root[data-theme="complementary"] {
+  --color-surface: #{$color-background-brand-complementary};
+  --color-content: #{$color-text-inverse};
+  --color-accent: #{$color-text-brand-primary};
+  --color-inverse: #{$color-button-white-text};
+  --color-hover: #{$color-text-brand-primary};
+  --color-button-hover-bg: #{$color-state-hover-white-bg};
+  --color-button-hover-text: #{$color-state-hover-white-text};
+  --color-button-hover-border: #{$color-state-hover-white-border};
+  --color-strip: #{$color-background-default};
+  --color-strip-content: #{$color-text-brand-complementary};
 }
 
 * {
@@ -104,9 +121,11 @@ a:focus-visible,
   outline-offset: $spacing-xs;
 }
 
+// Selection takes the theme's inverted strip so it stays visible on the black
+// complementary surface.
 ::selection {
-  background: $color-background-brand-complementary;
-  color: $color-text-inverse;
+  background: var(--color-strip);
+  color: var(--color-strip-content);
 }
 
 ::-webkit-scrollbar {

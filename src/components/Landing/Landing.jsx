@@ -1,5 +1,6 @@
 import HeroImageBlue from '../../assets/images/hero-image-blue.png';
 import HeroImageDark from '../../assets/images/hero-image-dark.png';
+import HeroImageOrange from '../../assets/images/hero-image-orange.png';
 import { useTheme } from '../../hooks/useTheme';
 import './Landing.styles.scss';
 
@@ -7,6 +8,7 @@ import './Landing.styles.scss';
 const heroImages = {
   primary: HeroImageBlue,
   secondary: HeroImageDark,
+  complementary: HeroImageOrange,
 };
 
 const heroStats = [
