@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { scrollToTop } from '../../utils/scrollToTop';
+import { scrollToSection } from '../../utils/scrollToSection';
 import { useTheme } from '../../hooks/useTheme';
 import ThemeIcon from '../../assets/icons/theme.svg?react';
 import MenuIcon from '../../assets/icons/menu.svg?react';
@@ -22,9 +23,15 @@ const Header = ({ onContactClick }) => {
   const toggleMenu = () => setIsMenuOpen((open) => !open);
   const closeMenu = () => setIsMenuOpen(false);
 
-  const handleNavClick = (to) => {
+  const handleNavClick = (event, to) => {
     closeMenu();
-    if (to === '/') scrollToTop();
+    if (to === '/') {
+      event.preventDefault();
+      scrollToTop();
+      return;
+    }
+    event.preventDefault();
+    scrollToSection(to.replace('/#', ''));
   };
 
   const handleContactClick = () => {
@@ -44,7 +51,7 @@ const Header = ({ onContactClick }) => {
   return (
     <header className="header">
       <div className="header__container">
-        <Link to="/" className="header__brand" onClick={() => handleNavClick('/')}>
+        <Link to="/" className="header__brand" onClick={(event) => handleNavClick(event, '/')}>
           Asiel Rosiles
         </Link>
 
@@ -58,7 +65,7 @@ const Header = ({ onContactClick }) => {
                 key={link.id}
                 to={link.to}
                 className="header__link"
-                onClick={() => handleNavClick(link.to)}
+                onClick={(event) => handleNavClick(event, link.to)}
               >
                 {link.label}
               </Link>

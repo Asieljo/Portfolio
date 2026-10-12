@@ -57,16 +57,6 @@ const About = () => {
             target="_blank"
             rel="noopener noreferrer"
             download="Asiel_Rosiles_CV.pdf"
-            className="about__resume-link"
-          >
-            Download resume
-          </a>
-
-          <a
-            href={cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            download="Asiel_Rosiles_CV.pdf"
             className="about__resume-button"
           >
             Download resume
