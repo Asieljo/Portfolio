@@ -11,13 +11,13 @@ import EcommerceImage from '../../assets/images/screenshots/screenshot-ecommerce
 const projects = [
   {
     id: 1,
-    title: 'Work experience at SATECH',
+    title: 'Design & Marketing Internship',
     description:
-      'All my work UX/UI related at SATECH, including landing pages, multiple interfaces and electronic firms.',
+      'All my UX/UI work from my internship, including landing pages, multiple interfaces and electronic firms.',
     tags: ['UX/UI', 'Figma', 'Variety of Projects'],
     type: 'Live',
     image: SatechImage,
-    actions: [{ label: 'View projects', to: '/satech' }],
+    actions: [{ label: 'View projects', to: '/work-experience' }],
   },
   {
     id: 2,

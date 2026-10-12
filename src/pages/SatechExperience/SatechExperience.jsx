@@ -11,33 +11,33 @@ import './SatechExperience.styles.scss';
 
 const facts = [
   { id: 'role', label: 'Role', value: 'Design & Marketing Intern' },
-  { id: 'company', label: 'Company', value: 'SATECH Rastreo Satelital' },
+  { id: 'industry', label: 'Industry', value: 'Satellite tracking' },
   { id: 'location', label: 'Location', value: 'León, Guanajuato' },
   { id: 'period', label: 'Period', value: 'Mar – Sep 2025' },
 ];
 
 const designFiles = [
   {
-    id: 'satech',
-    title: 'SATECH Design',
+    id: 'landing',
+    title: 'Landing Page Redesign',
     description:
-      'Redesign of the SATECH landing page: style guide with typography, color palette and logos, reusable components and high-fidelity designs with prototypes for desktop, tablet and mobile.',
+      'Redesign of a corporate landing page: style guide with typography, color palette and logos, reusable components and high-fidelity designs with prototypes for desktop, tablet and mobile.',
     tags: ['Landing Page', 'Components', 'Prototyping'],
     href: 'https://www.figma.com/design/heGIniVHjxOldwxdVNGZBF/SATECH-Design?node-id=229-1746&t=Fn4bdpNlB9GIjlHy-1',
   },
   {
-    id: 'nova',
-    title: 'NOVA GPS Design',
+    id: 'website',
+    title: 'GPS Tracking Website',
     description:
-      'Website design for NOVA GPS: visual research, style guide, components such as navigation, menus and FAQs, and responsive designs with prototypes for desktop, tablet and mobile.',
+      'Website design for a GPS tracking brand: visual research, style guide, components such as navigation, menus and FAQs, and responsive designs with prototypes for desktop, tablet and mobile.',
     tags: ['Web Design', 'Style Guide', 'Prototyping'],
     href: 'https://www.figma.com/design/h0MkjUS4UhlbKAO77n5jgC/NOVA-GPS-design?node-id=0-1&t=2Ert70UIhDUZ9N1u-1',
   },
   {
     id: 'blogs',
-    title: 'NOVA & SATECH Blogs',
+    title: 'Corporate Blogs',
     description:
-      'Blog experience for NOVA and SATECH: a blog home with category navigation and an individual post layout with reactions, designed and prototyped for desktop, tablet and mobile.',
+      'Blog experience for both websites: a blog home with category navigation and an individual post layout with reactions, designed and prototyped for desktop, tablet and mobile.',
     tags: ['Blog Design', 'UI Components', 'Prototyping'],
     href: 'https://www.figma.com/design/VIGladFp4KBllHB2FpdoKq/Blogs-NOVA-y-SATECH?node-id=0-1&t=KC4pJm8H7hHOMlfr-1',
   },
@@ -55,9 +55,9 @@ const SatechExperience = () => {
       <main>
         <PageIntro
           label="Work experience"
-          title="Design & Marketing Intern at SATECH"
+          title="Design & Marketing Intern"
           lead="Designing responsive websites, blogs and HTML email signatures for a satellite tracking company."
-          text="Between March and September 2025 I took the web interfaces of SATECH and NOVA GPS from user research and benchmarking to wireframes, reusable components and responsive high-fidelity prototypes in Figma. I also designed and coded HTML email signatures, tested them across email clients and coordinated every deliverable with the design and marketing teams."
+          text="Between March and September 2025 I took corporate websites and blogs from user research and benchmarking to wireframes, reusable components and responsive high-fidelity prototypes in Figma. I also designed and coded HTML email signatures, tested them across email clients and coordinated every deliverable with the design and marketing teams."
         />
 
         <FactsStrip facts={facts} />
