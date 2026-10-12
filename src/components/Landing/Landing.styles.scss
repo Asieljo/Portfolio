@@ -6,7 +6,8 @@ $hero-media-width: to-rem(618);
 $hero-media-width-lg: to-rem(692);
 $hero-title-width-tablet: to-rem(544);
 $hero-actions-width-lg: to-rem(604);
-// Intrinsic ratio of hero-image-blue.png (722 x 420), used to size it rotated.
+// Intrinsic ratio of the hero artwork (722 x 420, shared by the blue and dark
+// variants), used to size it rotated.
 $hero-image-ratio: calc(722 / 420);
 
 .hero {

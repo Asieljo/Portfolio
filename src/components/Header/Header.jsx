@@ -91,7 +91,7 @@ const Header = ({ onContactClick }) => {
           type="button"
           className="header__icon-button header__theme"
           onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+          aria-label={`Switch to ${theme === 'primary' ? 'secondary' : 'primary'} theme`}
         >
           <ThemeIcon className="header__icon" aria-hidden="true" />
         </button>

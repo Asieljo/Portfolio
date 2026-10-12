@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import { ThemeContext } from './ThemeContext';
 
 const STORAGE_KEY = 'portfolio-theme';
-const THEMES = ['light', 'dark'];
+const THEMES = ['primary', 'secondary'];
 
 // Storage can be unavailable (private mode, blocked cookies); the theme then
-// falls back to the light design without persisting the choice.
+// falls back to the primary design without persisting the choice.
 const readStoredTheme = () => {
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    return THEMES.includes(stored) ? stored : 'light';
+    return THEMES.includes(stored) ? stored : 'primary';
   } catch {
-    return 'light';
+    return 'primary';
   }
 };
 
@@ -29,7 +29,7 @@ const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((current) => (current === 'light' ? 'dark' : 'light'));
+    setTheme((current) => (current === 'primary' ? 'secondary' : 'primary'));
   };
 
   return (

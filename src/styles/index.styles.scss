@@ -2,25 +2,33 @@
 @use "mixins" as *;
 @use "functions" as *;
 
-// Theme palette. The light theme is the one in the mockups; the dark theme
-// swaps the brand background for the complementary one and uses the
-// secondary-alt button tokens so contrast stays the same.
+// Theme palette. `primary` is the orange theme in design/ and the default;
+// `secondary` is the beige theme in design/themes/secondary. Solid buttons
+// follow each theme's state tokens: the complementary family on primary and
+// secondary-main (which hovers into secondary-alt) on secondary. `--color-hover`
+// is the hover accent for text links and icon buttons.
 :root {
   --color-surface: #{$color-background-brand-primary};
   --color-content: #{$color-text-brand-complementary};
   --color-inverse: #{$color-button-complementary-text};
   --color-hover: #{$color-state-hover-complementary-text};
+  --color-button-hover-bg: #{$color-state-hover-complementary-bg};
+  --color-button-hover-text: #{$color-state-hover-complementary-text};
+  --color-button-hover-border: #{$color-state-hover-complementary-border};
   --color-strip: #{$color-background-brand-complementary};
   --color-strip-content: #{$color-text-inverse};
 }
 
-:root[data-theme="dark"] {
-  --color-surface: #{$color-background-brand-complementary};
-  --color-content: #{$color-text-brand-secondary};
-  --color-inverse: #{$color-button-secondary-alt-text};
+:root[data-theme="secondary"] {
+  --color-surface: #{$color-background-brand-secondary};
+  --color-content: #{$color-text-brand-complementary};
+  --color-inverse: #{$color-button-secondary-main-text};
   --color-hover: #{$color-text-brand-primary};
-  --color-strip: #{$color-background-brand-primary};
-  --color-strip-content: #{$color-text-brand-complementary};
+  --color-button-hover-bg: #{$color-state-hover-secondary-main-bg};
+  --color-button-hover-text: #{$color-state-hover-secondary-main-text};
+  --color-button-hover-border: #{$color-state-hover-secondary-main-border};
+  --color-strip: #{$color-background-brand-complementary};
+  --color-strip-content: #{$color-text-inverse};
 }
 
 * {

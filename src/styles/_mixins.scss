@@ -138,9 +138,9 @@ $breakpoint-desktop-lg: 1420px;
 
   &:hover,
   &:active {
-    background-color: $color-state-hover-complementary-bg;
-    color: var(--color-hover);
-    border-color: var(--color-hover);
+    background-color: var(--color-button-hover-bg);
+    color: var(--color-button-hover-text);
+    border-color: var(--color-button-hover-border);
   }
 }
 

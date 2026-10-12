@@ -1,5 +1,13 @@
-import HeroImage from '../../assets/images/hero-image-blue.png';
+import HeroImageBlue from '../../assets/images/hero-image-blue.png';
+import HeroImageDark from '../../assets/images/hero-image-dark.png';
+import { useTheme } from '../../hooks/useTheme';
 import './Landing.styles.scss';
+
+// Each theme has its own tint of the hero artwork.
+const heroImages = {
+  primary: HeroImageBlue,
+  secondary: HeroImageDark,
+};
 
 const heroStats = [
   { id: 'projects', value: '04', label: 'Projects Shipped' },
@@ -8,6 +16,8 @@ const heroStats = [
 ];
 
 const Landing = ({ onContactClick }) => {
+  const { theme } = useTheme();
+
   const scrollToProjects = () => {
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
@@ -28,7 +38,7 @@ const Landing = ({ onContactClick }) => {
           </p>
 
           <div className="hero__media">
-            <img className="hero__image" src={HeroImage} alt="Build more" />
+            <img className="hero__image" src={heroImages[theme]} alt="Build more" />
           </div>
 
           <div className="hero__actions">
