@@ -17,9 +17,7 @@ const projects = [
     tags: ['UX/UI', 'Figma', 'Variety of Projects'],
     type: 'Live',
     image: SatechImage,
-    actions: [
-      { label: 'View projects', href: 'https://www.behance.net/asielrosiles' },
-    ],
+    actions: [{ label: 'View projects', to: '/satech' }],
   },
   {
     id: 2,

@@ -23,8 +23,11 @@ const Header = ({ onContactClick }) => {
   const toggleMenu = () => setIsMenuOpen((open) => !open);
   const closeMenu = () => setIsMenuOpen(false);
 
+  // Off the home page the links navigate back to it; the hash effect below
+  // then scrolls to the section once Home has rendered.
   const handleNavClick = (event, to) => {
     closeMenu();
+    if (location.pathname !== '/') return;
     if (to === '/') {
       event.preventDefault();
       scrollToTop();
