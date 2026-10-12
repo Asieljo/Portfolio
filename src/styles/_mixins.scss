@@ -15,14 +15,19 @@
   }
 }
 
+// Both mobile mockups share the stacked hero and the burger header.
+@mixin mobile {
+  @media (max-width: ($breakpoints-tablet - 1px)) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @media (min-width: $breakpoints-tablet) and (max-width: ($breakpoints-desktop - 1px)) {
     @content;
   }
 }
 
-// Min-width tiers for rules that only appear once the layout has room (the
-// hero media column is the main case: hidden on small, shown from tablet up).
 @mixin tablet-up {
   @media (min-width: $breakpoints-tablet) {
     @content;
@@ -31,6 +36,16 @@
 
 @mixin desktop {
   @media (min-width: $breakpoints-desktop) {
+    @content;
+  }
+}
+
+// 1420px is the step between the two desktop mockups
+// ("1280px - 1419px" and "1420px - 1919px"); there is no token for it.
+$breakpoint-desktop-lg: 1420px;
+
+@mixin desktop-lg {
+  @media (min-width: $breakpoint-desktop-lg) {
     @content;
   }
 }
@@ -55,56 +70,90 @@
   }
 }
 
-// Buttons. `complementary` is the solid black variant used on the brand
-// background; `outline` is its transparent counterpart. State tokens drive
-// hover/active so the palette stays swappable via tokens.
-@mixin button-base {
+// The mockups use Figma's "auto" line height, which is the font's own
+// metrics, so text uses `line-height: normal` instead of a fixed ratio.
+@mixin text-display {
+  font-family: $typography-font-family-primary;
+  font-weight: $typography-font-weight-regular;
+  line-height: normal;
+  letter-spacing: $typography-letter-spacing-normal;
+}
+
+@mixin text-body {
+  font-family: $typography-body-base-font-family;
+  font-weight: $typography-body-base-font-weight;
+  line-height: normal;
+  letter-spacing: $typography-body-base-letter-spacing;
+}
+
+// Tags follow the eyebrow size scale. Callers declare their own properties
+// before including it, since it ends with a media query.
+@mixin text-tag {
+  font-family: $typography-font-family-complementary;
+  font-size: $typography-eyebrow-font-size-mobile;
+  font-weight: $typography-font-weight-medium;
+  line-height: normal;
+  padding: $spacing-xs;
+  border: $border-thin solid var(--color-content);
+
+  @include tablet {
+    font-size: $typography-eyebrow-font-size-tablet;
+  }
+
+  @include desktop {
+    font-size: $typography-eyebrow-font-size-desktop;
+  }
+}
+
+// Buttons use the display face like the mockups. Colors come from the theme
+// custom properties (see index.styles.scss), which map to the button state
+// tokens for each theme. `sm` is the compact size used in the header and
+// inside project cards.
+@mixin button-base($size: md) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: $spacing-sm;
-  min-height: $sizing-button-sm;
-  padding-inline: $spacing-md;
-  font-family: $typography-button-base-font-family;
+  min-height: if($size == sm, $sizing-xl, $sizing-button-sm);
+  padding-inline: if($size == sm, $spacing-sm, $spacing-md);
+  @include text-display;
   font-size: $typography-button-base-font-size;
-  font-weight: $typography-button-base-font-weight;
-  line-height: $typography-button-base-line-height;
-  letter-spacing: $typography-button-base-letter-spacing;
   text-transform: uppercase;
+  white-space: nowrap;
   border: $border-medium solid transparent;
+  cursor: pointer;
   transition:
     background-color $motion-duration-fast $interaction-transition-hover,
     color $motion-duration-fast $interaction-transition-hover,
     border-color $motion-duration-fast $interaction-transition-hover;
 }
 
-@mixin button-complementary {
-  @include button-base;
+@mixin button-complementary($size: md) {
+  @include button-base($size);
 
-  background-color: $color-button-complementary-bg;
-  color: $color-button-complementary-text;
-  border-color: $color-button-complementary-border;
+  background-color: var(--color-content);
+  color: var(--color-inverse);
+  border-color: var(--color-content);
 
   &:hover,
   &:active {
     background-color: $color-state-hover-complementary-bg;
-    color: $color-state-hover-complementary-text;
-    border-color: $color-state-hover-complementary-border;
+    color: var(--color-hover);
+    border-color: var(--color-hover);
   }
 }
 
-@mixin button-outline {
-  @include button-base;
+@mixin button-outline($size: md) {
+  @include button-base($size);
 
   background-color: $color-button-no-background-bg;
-  color: $color-text-brand-complementary;
-  border-color: $color-brand-complementary;
+  color: var(--color-content);
+  border-color: var(--color-content);
 
   &:hover,
   &:active {
-    background-color: $color-button-complementary-bg;
-    color: $color-button-complementary-text;
-    border-color: $color-brand-complementary;
+    background-color: var(--color-content);
+    color: var(--color-inverse);
   }
 }
 

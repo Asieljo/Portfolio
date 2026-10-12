@@ -2,6 +2,27 @@
 @use "mixins" as *;
 @use "functions" as *;
 
+// Theme palette. The light theme is the one in the mockups; the dark theme
+// swaps the brand background for the complementary one and uses the
+// secondary-alt button tokens so contrast stays the same.
+:root {
+  --color-surface: #{$color-background-brand-primary};
+  --color-content: #{$color-text-brand-complementary};
+  --color-inverse: #{$color-button-complementary-text};
+  --color-hover: #{$color-state-hover-complementary-text};
+  --color-strip: #{$color-background-brand-complementary};
+  --color-strip-content: #{$color-text-inverse};
+}
+
+:root[data-theme="dark"] {
+  --color-surface: #{$color-background-brand-complementary};
+  --color-content: #{$color-text-brand-secondary};
+  --color-inverse: #{$color-button-secondary-alt-text};
+  --color-hover: #{$color-text-brand-primary};
+  --color-strip: #{$color-background-brand-primary};
+  --color-strip-content: #{$color-text-brand-complementary};
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,16 +33,21 @@ html {
   scroll-behavior: smooth;
 }
 
+// Keeps anchored sections clear of the sticky header (80px + 2px border).
+section[id] {
+  scroll-margin-top: $spacing-5xl + $border-medium;
+}
+
 body {
-  font-family: $typography-body-base-font-family;
+  @include text-body;
   font-size: $typography-body-font-size-desktop;
-  font-weight: $typography-body-base-font-weight;
-  line-height: $typography-body-base-line-height;
-  letter-spacing: $typography-body-base-letter-spacing;
-  color: $color-text-brand-complementary;
-  background-color: $color-background-brand-primary;
+  color: var(--color-content);
+  background-color: var(--color-surface);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition:
+    background-color $motion-duration-normal $interaction-transition-fade,
+    color $motion-duration-normal $interaction-transition-fade;
 }
 
 a {
@@ -45,80 +71,28 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $typography-heading-base-font-family;
-  font-weight: $typography-heading-base-font-weight;
-  line-height: $typography-heading-base-line-height;
-  letter-spacing: $typography-heading-base-letter-spacing;
-  color: $typography-heading-h1-color-brand-complementary;
+  @include text-display;
+  color: var(--color-content);
   text-transform: uppercase;
 }
 
-h1 {
-  font-size: $typography-heading-h1-font-size-mobile;
-
-  @include tablet {
-    font-size: $typography-heading-h1-font-size-tablet;
-  }
-
-  @include desktop {
-    font-size: $typography-heading-h1-font-size-desktop;
-  }
-}
-
-h2 {
-  font-size: $typography-heading-h2-font-size-mobile;
-
-  @include tablet {
-    font-size: $typography-heading-h2-font-size-tablet;
-  }
-
-  @include desktop {
-    font-size: $typography-heading-h2-font-size-desktop;
-  }
-}
-
-h3 {
-  font-size: $typography-heading-h3-font-size-mobile;
-
-  @include tablet {
-    font-size: $typography-heading-h3-font-size-tablet;
-  }
-
-  @include desktop {
-    font-size: $typography-heading-h3-font-size-desktop;
-  }
-}
-
 p {
-  font-size: $typography-body-font-size-mobile;
-  font-weight: $typography-body-base-font-weight;
-  line-height: $typography-body-base-line-height;
-  color: $typography-body-color-default;
-
-  @include tablet {
-    font-size: $typography-body-font-size-tablet;
-  }
-
-  @include desktop {
-    font-size: $typography-body-font-size-desktop;
-  }
+  @include text-body;
+  color: var(--color-content);
 }
 
 button {
-  font-family: $typography-button-base-font-family;
+  font-family: inherit;
+  color: inherit;
   cursor: pointer;
   border: $border-none;
   background: none;
-
-  &:focus-visible {
-    outline: $border-medium solid $color-state-focus-ring;
-    outline-offset: $spacing-xs;
-  }
 }
 
+button:focus-visible,
 a:focus-visible,
 [tabindex]:focus-visible {
-  outline: $border-medium solid $color-state-focus-ring;
+  outline: $border-medium solid var(--color-content);
   outline-offset: $spacing-xs;
 }
 
@@ -132,9 +106,15 @@ a:focus-visible,
 }
 
 ::-webkit-scrollbar-track {
-  background: $color-background-brand-primary;
+  background: var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $color-background-brand-complementary;
+  background: var(--color-content);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

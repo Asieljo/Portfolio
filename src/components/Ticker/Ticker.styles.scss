@@ -1,12 +1,13 @@
 .ticker {
   overflow: hidden;
-  background-color: $color-background-brand-complementary;
   padding-block: $spacing-sm;
+  padding-inline-start: $spacing-lg;
+  background-color: var(--color-strip);
 
   &__track {
     display: flex;
     width: max-content;
-    animation: ticker-scroll 30s linear infinite;
+    animation: ticker-scroll 40s linear infinite;
   }
 
   &__group {
@@ -17,17 +18,15 @@
   &__item {
     display: inline-flex;
     align-items: center;
-    font-family: $typography-body-base-font-family;
-    font-size: $typography-font-size-lg;
-    font-weight: $typography-font-weight-medium;
-    line-height: $typography-line-height-none;
+    @include text-body;
+    font-size: $typography-font-size-md;
     text-transform: uppercase;
-    color: $color-text-inverse;
+    color: var(--color-strip-content);
     white-space: nowrap;
 
     &::after {
       content: '-';
-      padding-inline: $spacing-md;
+      padding-inline: $spacing-sm;
     }
   }
 }

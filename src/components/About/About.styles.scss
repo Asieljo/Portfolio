@@ -1,235 +1,126 @@
+// Sizes measured from the mockups (no matching sizing token).
+$about-photo-width: to-rem(379);
+$about-photo-width-lg: to-rem(563);
+$about-content-width-lg: to-rem(1024);
+
 .about {
-  background-color: $color-background-brand-primary;
+  background-color: var(--color-surface);
 
   &__container {
     @include container;
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-section-sm;
-    padding-block: $spacing-section-md;
+    @include flex-column;
+    gap: $spacing-xl;
+    padding-block: $spacing-section-sm + $spacing-md $spacing-md;
 
-    @include desktop {
+    @include tablet-up {
       flex-direction: row;
-      align-items: flex-start;
-      gap: $spacing-gap-grid-flex-lg;
+      align-items: flex-end;
+      padding-block: $spacing-section-sm;
+    }
+
+    @include desktop-lg {
+      align-items: center;
+      justify-content: space-between;
     }
   }
 
   &__content {
     @include flex-column;
-    gap: $spacing-lg;
+    align-items: flex-start;
     flex: 1;
     min-width: 0;
+
+    @include desktop-lg {
+      max-width: $about-content-width-lg;
+    }
   }
 
-  &__hero-title {
+  &__taglines {
     @include flex-column;
-    gap: 0;
-    font-family: $typography-heading-base-font-family;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-none;
-    letter-spacing: $typography-letter-spacing-normal;
-    text-transform: uppercase;
-    font-size: $typography-font-size-2xl;
-    color: $color-text-brand-complementary;
-
-    @include tablet {
-      font-size: $typography-font-size-4xl;
-    }
-
-    @include desktop {
-      font-size: $typography-font-size-6xl;
-    }
-  }
-
-  &__hero-line {
-    display: block;
-  }
-
-  &__title {
-    font-family: $typography-heading-base-font-family;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-normal;
-    letter-spacing: $typography-letter-spacing-normal;
-    text-transform: uppercase;
-    font-size: $typography-font-size-2xl;
-    color: $color-text-brand-complementary;
-
-    @include tablet {
-      font-size: $typography-font-size-3xl;
-    }
-
-    @include desktop {
-      font-size: $typography-font-size-4xl;
-    }
-  }
-
-  &__copy {
-    @include flex-column;
-    gap: $spacing-md;
-    max-width: to-rem(60rem);
-  }
-
-  &__lead,
-  &__note {
-    font-family: $typography-body-base-font-family;
-    font-size: $typography-body-font-size-mobile;
-    font-weight: $typography-body-base-font-weight;
-    line-height: $typography-body-base-line-height;
-    color: $color-text-brand-complementary;
-
-    @include tablet {
-      font-size: $typography-body-font-size-tablet;
-    }
-
-    @include desktop {
-      font-size: $typography-body-font-size-desktop;
-    }
-  }
-
-  &__note {
-    font-weight: $typography-font-weight-bold;
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
     gap: $spacing-sm;
   }
 
-  &__tag {
-    font-family: $typography-eyebrow-base-font-family;
-    font-size: $typography-eyebrow-font-size-mobile;
-    font-weight: $typography-eyebrow-base-font-weight;
-    line-height: $typography-eyebrow-base-line-height;
-    letter-spacing: $typography-eyebrow-base-letter-spacing;
-    text-transform: uppercase;
-    color: $color-text-brand-complementary;
-    padding: $spacing-xs $spacing-sm;
-    border: $border-thin solid $color-brand-complementary;
-
-    @include tablet {
-      font-size: $typography-eyebrow-font-size-tablet;
-    }
-
-    @include desktop {
-      font-size: $typography-eyebrow-font-size-desktop;
-    }
-  }
-
-  &__certifications {
-    @include flex-column;
-    gap: $spacing-lg;
-    padding-top: $spacing-md;
-    border-top: $border-medium solid $color-brand-complementary;
-  }
-
-  &__resume-btn {
-    @include button-complementary;
-    align-self: flex-start;
-    margin-top: $spacing-sm;
-  }
-
-  &__subtitle {
-    font-family: $typography-heading-base-font-family;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-normal;
-    letter-spacing: $typography-letter-spacing-normal;
-    text-transform: uppercase;
+  &__tagline,
+  &__title {
+    @include text-display;
     font-size: $typography-font-size-2xl;
-    color: $color-text-brand-complementary;
+    text-transform: uppercase;
+    color: var(--color-content);
 
-    @include desktop {
+    @include tablet-up {
       font-size: $typography-font-size-3xl;
     }
+
+    @include desktop-lg {
+      font-size: $typography-font-size-5xl;
+    }
+  }
+
+  &__title {
+    margin-top: $spacing-lg;
+  }
+
+  &__text,
+  &__item {
+    @include text-body;
+    font-size: $typography-body-font-size-mobile;
+    color: var(--color-content);
+
+    @include tablet-up {
+      font-size: $typography-body-font-size-tablet;
+    }
+  }
+
+  &__text {
+    margin-top: $spacing-md;
+  }
+
+  &__text--strong {
+    font-weight: $typography-font-weight-bold;
   }
 
   &__list {
     @include flex-column;
-    gap: 0;
-  }
-
-  &__item {
-    display: flex;
     gap: $spacing-md;
-    padding-block: $spacing-md;
-    border-bottom: $border-thin solid $color-brand-complementary;
+    margin-top: $spacing-md;
   }
 
-  &__item-index {
-    font-family: $typography-eyebrow-base-font-family;
-    font-size: $typography-eyebrow-font-size-mobile;
-    font-weight: $typography-eyebrow-base-font-weight;
-    line-height: $typography-eyebrow-base-line-height;
-    letter-spacing: $typography-eyebrow-base-letter-spacing;
-    color: $color-text-brand-complementary;
-    flex-shrink: 0;
-    padding-top: $spacing-xs;
+  &__resume-link {
+    display: none;
+    margin-top: $spacing-lg;
+    font-family: $typography-font-family-complementary;
+    font-size: $typography-font-size-sm;
+    font-weight: $typography-font-weight-medium;
+    line-height: normal;
+    text-decoration: underline;
+    color: var(--color-content);
+    transition: color $motion-duration-fast $interaction-transition-hover;
 
-    @include tablet {
-      font-size: $typography-eyebrow-font-size-tablet;
+    &:hover {
+      color: var(--color-hover);
     }
 
-    @include desktop {
-      font-size: $typography-eyebrow-font-size-desktop;
-    }
-  }
-
-  &__item-body {
-    @include flex-column;
-    gap: $spacing-xs;
-    min-width: 0;
-  }
-
-  &__item-title {
-    font-family: $typography-body-base-font-family;
-    font-size: $typography-body-font-size-mobile;
-    font-weight: $typography-font-weight-bold;
-    line-height: $typography-body-base-line-height;
-    color: $color-text-brand-complementary;
-
-    @include tablet {
-      font-size: $typography-body-font-size-tablet;
-    }
-
-    @include desktop {
-      font-size: $typography-body-font-size-desktop;
+    @include tablet-up {
+      display: inline;
     }
   }
 
-  &__item-meta {
-    font-family: $typography-eyebrow-base-font-family;
-    font-size: $typography-eyebrow-font-size-mobile;
-    font-weight: $typography-eyebrow-base-font-weight;
-    line-height: $typography-eyebrow-base-line-height;
-    letter-spacing: $typography-eyebrow-base-letter-spacing;
-    text-transform: uppercase;
-    color: $color-text-brand-complementary;
-    opacity: $opacity-80;
-
-    @include tablet {
-      font-size: $typography-eyebrow-font-size-tablet;
-    }
-
-    @include desktop {
-      font-size: $typography-eyebrow-font-size-desktop;
-    }
-  }
-
-  &__media {
-    width: 100%;
-
-    @include desktop {
-      width: 32%;
-      flex-shrink: 0;
-    }
+  &__resume-button {
+    margin-top: $spacing-lg;
+    @include button-complementary;
   }
 
   &__photo {
     width: 100%;
     height: auto;
-    aspect-ratio: $aspect-ratio-portrait;
-    object-fit: cover;
-    border: $border-medium solid $color-brand-complementary;
+
+    @include tablet-up {
+      flex-shrink: 0;
+      width: $about-photo-width;
+    }
+
+    @include desktop-lg {
+      width: $about-photo-width-lg;
+    }
   }
 }

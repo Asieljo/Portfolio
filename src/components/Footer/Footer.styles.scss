@@ -1,113 +1,83 @@
+// Sizes measured from the mockups (no matching tokens).
+$footer-height: to-rem(825);
+$footer-height-desktop: to-rem(1048);
+$wordmark-width: to-rem(257);
+$wordmark-width-tablet: to-rem(342);
+$wordmark-width-desktop: to-rem(514);
+
 .footer {
-  position: relative;
+  background-color: $color-background-brand-complementary;
   background-image: url('../../assets/images/footer.jpg');
   background-size: cover;
   background-position: center;
-  color: $color-text-inverse;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-  }
 
   &__container {
     @include container;
-    position: relative;
-    z-index: 1;
-    padding-block: $spacing-section-lg;
-    min-height: 80vh;
+    @include flex-column;
+    align-items: flex-start;
+    min-height: $footer-height;
+    padding-block: $spacing-container-mobile;
+
+    @include tablet {
+      padding-block: $spacing-container-tablet;
+    }
 
     @include desktop {
-      min-height: 100vh;
+      min-height: $footer-height-desktop;
+      padding-block: $spacing-section-sm + $spacing-md;
     }
-  }
-
-  &__content {
-    @include flex-column;
-    gap: $spacing-section-md;
-    height: 100%;
   }
 
   &__name {
-    @include flex-column;
-    gap: 0;
-    font-family: $typography-heading-base-font-family;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-none;
-    letter-spacing: $typography-letter-spacing-tight;
-    text-transform: uppercase;
-    font-size: $typography-font-size-6xl;
-    color: $color-brand-primary;
+    display: flex;
+    color: $color-text-brand-primary;
+  }
+
+  &__wordmark {
+    width: $wordmark-width;
+    height: auto;
 
     @include tablet {
-      font-size: $typography-font-size-8xl;
+      width: $wordmark-width-tablet;
     }
 
     @include desktop {
-      font-size: 10rem;
+      width: $wordmark-width-desktop;
     }
-
-    @include wide {
-      font-size: 12rem;
-    }
-  }
-
-  &__name-line {
-    display: block;
   }
 
   &__contacts {
     @include flex-column;
-    gap: $spacing-sm;
     margin-top: auto;
   }
 
   &__contact {
-    display: flex;
-    align-items: baseline;
-    gap: $spacing-sm;
-    font-family: $typography-body-base-font-family;
-    font-size: $typography-body-font-size-mobile;
-    font-weight: $typography-body-base-font-weight;
-    line-height: $typography-body-base-line-height;
-    color: $color-text-inverse;
+    padding-block: $spacing-sm;
+    border-bottom: $border-thin solid $color-border-white;
 
-    @include tablet {
-      font-size: $typography-body-font-size-tablet;
-    }
-
-    @include desktop {
-      font-size: $typography-body-font-size-desktop;
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
     }
   }
 
-  &__contact-label {
-    font-weight: $typography-font-weight-bold;
-    text-transform: capitalize;
-  }
-
-  &__contact-link {
+  &__link {
+    @include text-display;
+    font-size: $typography-font-size-md;
+    line-height: $typography-line-height-relaxed;
     color: $color-text-inverse;
-    text-decoration: none;
     transition: color $motion-duration-fast $interaction-transition-hover;
 
     &:hover {
-      color: $color-brand-primary;
+      color: $color-text-brand-primary;
     }
-  }
 
-  &__copy {
-    font-family: $typography-body-base-font-family;
-    font-size: $typography-font-size-xs;
-    font-weight: $typography-body-base-font-weight;
-    line-height: $typography-body-base-line-height;
-    letter-spacing: $typography-eyebrow-base-letter-spacing;
-    text-transform: uppercase;
-    color: $typography-body-color-inverse;
-    opacity: $opacity-80;
-    margin-top: $spacing-lg;
+    @include tablet {
+      font-size: $typography-font-size-xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
+    }
   }
 }
