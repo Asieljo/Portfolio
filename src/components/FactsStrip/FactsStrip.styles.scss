@@ -1,0 +1,48 @@
+.facts-strip {
+  background-color: var(--color-strip);
+
+  // Two per row on mobile; from tablet up every fact shares a single row,
+  // whatever the number of facts.
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $spacing-md;
+    padding-block: $spacing-md;
+    @include container;
+
+    @include tablet-up {
+      grid-template-columns: none;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+      gap: $spacing-lg;
+      padding-block: $spacing-lg;
+    }
+  }
+
+  &__item {
+    @include flex-column;
+    gap: $spacing-xs;
+    padding-inline-start: $spacing-sm;
+    border-inline-start: $border-thin solid var(--color-strip-content);
+  }
+
+  &__label {
+    color: var(--color-strip-content);
+    @include text-eyebrow;
+  }
+
+  &__value {
+    @include text-display;
+    font-size: $typography-font-size-md;
+    text-transform: uppercase;
+    color: var(--color-strip-content);
+
+    @include tablet {
+      font-size: $typography-font-size-lg;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-xl;
+    }
+  }
+}

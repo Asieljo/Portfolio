@@ -1,40 +1,219 @@
+// Intro, facts band, section headers and closing call to action come from the
+// shared components; this sheet covers the case study's own storytelling
+// blocks. Cards set `color` once and their text inherits it, so the inverse
+// card only has to flip two properties.
 .case-study {
-  min-height: 100vh;
-  background-color: $color-background-brand-primary;
+  background-color: var(--color-surface);
 
-  &__header {
-    @include container;
-    @include flex-column;
-    gap: $spacing-lg;
-    padding-block: $spacing-section-sm;
-    border-bottom: $border-medium solid $color-brand-complementary;
+  &__container {
+    @include section-container;
   }
 
-  &__back {
-    display: flex;
-    align-items: center;
-    gap: $spacing-sm;
-    align-self: flex-start;
-    font-family: $typography-body-base-font-family;
-    font-size: $typography-font-size-sm;
-    font-weight: $typography-body-base-font-weight;
-    line-height: $typography-body-base-line-height;
-    color: $color-text-brand-complementary;
-    transition: opacity $motion-duration-fast $interaction-transition-hover;
+  // Phases need more air between their blocks than a regular section.
+  &__container--phase {
+    gap: $spacing-article-md;
 
-    &:hover {
-      opacity: $opacity-70;
+    @include desktop {
+      gap: $spacing-article-lg;
     }
   }
 
-  &__title {
-    font-family: $typography-heading-base-font-family;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-normal;
-    letter-spacing: $typography-letter-spacing-normal;
-    text-transform: uppercase;
+  &__text {
+    @include text-body;
+    font-size: $typography-body-font-size-mobile;
+    color: inherit;
+
+    @include tablet-up {
+      font-size: $typography-body-font-size-tablet;
+    }
+  }
+
+  &__label {
+    color: inherit;
+    @include text-eyebrow;
+  }
+
+  // Captions under images are centered.
+  &__caption {
+    @include flex-column;
+    align-items: center;
+    gap: $spacing-xs;
+    text-align: center;
+    @include text-body;
+    font-size: $typography-font-size-sm;
+
+    @include desktop {
+      font-size: $typography-font-size-md;
+    }
+  }
+
+  // Hero: the catalog home mockup, centered on eight desktop columns.
+  &__hero {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    @include desktop {
+      @include grid-desktop;
+      row-gap: $spacing-sm;
+    }
+  }
+
+  &__hero-image,
+  &__hero-caption {
+    @include desktop {
+      grid-column: 3 / span 8;
+    }
+  }
+
+  &__hero-image {
+    width: 100%;
+    height: auto;
+  }
+
+  &__overview {
+    display: grid;
+    gap: $spacing-lg;
+
+    @include tablet-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: $grid-gutter-desktop;
+    }
+  }
+
+  &__overview-item {
+    @include flex-column;
+    gap: $spacing-sm;
+    padding-top: $spacing-md;
+    border-top: $border-medium solid var(--color-content);
+  }
+
+  &__overview-title {
+    @include text-display;
+    font-size: $typography-font-size-xl;
+    color: var(--color-accent);
+
+    @include tablet-up {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  // Phase index: each step links to its phase and inverts on hover like the
+  // outline buttons.
+  &__process {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $grid-gutter-desktop;
+
+    @include tablet {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+
+  &__step {
+    @include flex-column;
+    gap: $spacing-xs;
+    padding: $spacing-md;
+    color: var(--color-content);
+    border: $border-medium solid var(--color-content);
+    transition:
+      background-color $motion-duration-fast $interaction-transition-hover,
+      color $motion-duration-fast $interaction-transition-hover;
+
+    &:hover {
+      background-color: var(--color-content);
+      color: var(--color-inverse);
+    }
+  }
+
+  &__step-number {
+    @include text-display;
     font-size: $typography-font-size-2xl;
-    color: $color-text-brand-complementary;
+    line-height: $typography-line-height-none;
+
+    @include desktop {
+      font-size: $typography-font-size-3xl;
+    }
+  }
+
+  &__step-name {
+    @include text-display;
+    font-size: $typography-font-size-lg;
+    text-transform: uppercase;
+
+    @include desktop {
+      font-size: $typography-font-size-xl;
+    }
+  }
+
+  &__step-topic {
+    @include text-body;
+    font-size: $typography-font-size-xs;
+
+    @include desktop {
+      font-size: $typography-font-size-sm;
+    }
+  }
+
+  // Each phase opens with a full-width rule, like the header border.
+  &__phase {
+    border-top: $border-medium solid var(--color-content);
+  }
+
+  // Stacked on mobile; from tablet up the heading and the intro sit side by
+  // side, aligned on their last line.
+  &__phase-header {
+    @include flex-column;
+    gap: $spacing-lg;
+
+    @include tablet {
+      @include grid-tablet;
+    }
+
+    @include desktop {
+      @include grid-desktop;
+    }
+
+    @include tablet-up {
+      align-items: end;
+    }
+  }
+
+  &__phase-heading {
+    @include flex-column;
+    gap: $spacing-xs;
+
+    @include tablet {
+      grid-column: 1 / span 3;
+    }
+
+    @include desktop {
+      grid-column: 1 / span 5;
+    }
+  }
+
+  &__phase-number {
+    @include text-display;
+    font-size: $typography-font-size-5xl;
+    line-height: $typography-line-height-none;
+    color: var(--color-accent);
+
+    @include tablet {
+      font-size: $typography-font-size-6xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-7xl;
+    }
+  }
+
+  &__phase-title {
+    @include text-display;
+    font-size: $typography-font-size-2xl;
+    color: var(--color-accent);
 
     @include tablet {
       font-size: $typography-font-size-3xl;
@@ -45,138 +224,210 @@
     }
   }
 
-  &__content {
-    @include container;
-    @include flex-column;
-    gap: $spacing-section-sm;
-    padding-block: $spacing-section-md;
-  }
+  &__phase-topic {
+    @include text-display;
+    font-size: $typography-font-size-lg;
 
-  &__section {
-    @include flex-column;
-    gap: $spacing-md;
-
-    h2 {
-      font-family: $typography-heading-base-font-family;
-      font-weight: $typography-font-weight-regular;
-      line-height: $typography-line-height-snug;
-      letter-spacing: $typography-letter-spacing-normal;
-      text-transform: uppercase;
+    @include tablet {
       font-size: $typography-font-size-xl;
-      color: $color-text-brand-complementary;
-
-      @include tablet {
-        font-size: $typography-font-size-2xl;
-      }
-
-      @include desktop {
-        font-size: $typography-font-size-3xl;
-      }
-    }
-
-    p,
-    li {
-      font-family: $typography-body-base-font-family;
-      font-size: $typography-body-font-size-mobile;
-      font-weight: $typography-body-base-font-weight;
-      line-height: $typography-body-base-line-height;
-      color: $color-text-brand-complementary;
-
-      @include tablet {
-        font-size: $typography-body-font-size-tablet;
-      }
-
-      @include desktop {
-        font-size: $typography-body-font-size-desktop;
-      }
-    }
-
-    ul {
-      @include flex-column;
-      gap: $spacing-xs;
-      list-style: disc;
-      padding-inline-start: $spacing-lg;
-    }
-  }
-
-  &__highlight {
-    font-weight: $typography-font-weight-bold;
-  }
-
-  &__accent {
-    font-family: $typography-eyebrow-base-font-family;
-    font-size: $typography-eyebrow-font-size-mobile;
-    font-weight: $typography-eyebrow-base-font-weight;
-    line-height: $typography-eyebrow-base-line-height;
-    letter-spacing: $typography-eyebrow-base-letter-spacing;
-    text-transform: uppercase;
-    color: $color-text-brand-primary;
-
-    @include tablet {
-      font-size: $typography-eyebrow-font-size-tablet;
     }
 
     @include desktop {
-      font-size: $typography-eyebrow-font-size-desktop;
+      font-size: $typography-font-size-2xl;
     }
   }
 
-  &__images {
-    display: grid;
-    gap: $spacing-md;
-
+  &__phase-intro {
     @include tablet {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    img {
-      width: 100%;
-      height: auto;
-      border: $border-medium solid $color-brand-complementary;
-      background-color: $color-surface-default;
-    }
-  }
-
-  &__mockups {
-    display: grid;
-    gap: $spacing-md;
-
-    @include tablet {
-      grid-template-columns: repeat(2, 1fr);
+      grid-column: 4 / -1;
     }
 
     @include desktop {
-      grid-template-columns: repeat(4, 1fr);
+      grid-column: 7 / -1;
     }
   }
 
-  &__mockup {
+  &__block {
+    @include flex-column;
+    gap: $spacing-md;
+  }
+
+  &__block-title {
+    @include text-display;
+    font-size: $typography-font-size-xl;
+
+    @include tablet-up {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  // Two columns by default; `--3` and `--4` widen the grid where the
+  // content column has room.
+  &__cards {
+    display: grid;
+    gap: $grid-gutter-desktop;
+
+    @include tablet-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__cards--3 {
+    @include tablet-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__cards--4 {
+    @include desktop {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  &__card {
+    @include flex-column;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    color: var(--color-content);
+    border: $border-medium solid var(--color-content);
+
+    @include desktop {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__card--inverse {
+    color: var(--color-inverse);
+    background-color: var(--color-content);
+  }
+
+  &__card-title {
+    @include text-display;
+    font-size: $typography-font-size-lg;
+    color: inherit;
+
+    @include tablet {
+      font-size: $typography-font-size-xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  // The design question, set apart with a thick accent rule.
+  &__question {
+    @include flex-column;
+    gap: $spacing-sm;
+    padding-inline-start: $spacing-lg;
+    border-inline-start: $border-thick solid var(--color-accent);
+  }
+
+  &__question-text {
+    @include text-display;
+    font-size: $typography-font-size-2xl;
+    color: var(--color-accent);
+
+    @include tablet {
+      font-size: $typography-font-size-3xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-4xl;
+    }
+  }
+
+  &__figures {
+    display: grid;
+    gap: $spacing-article-md;
+
+    @include desktop {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: $grid-gutter-desktop;
+    }
+  }
+
+  &__figure {
+    @include flex-column;
+    gap: $spacing-sm;
+  }
+
+  // The diagrams are transparent PNGs drawn in black, so they sit on a white
+  // panel to stay legible on every theme.
+  &__figure-link {
+    display: block;
+    padding: $spacing-md;
+    background-color: $color-surface-default;
+    border: $border-medium solid var(--color-content);
+    cursor: zoom-in;
+  }
+
+  &__figure-image {
+    width: 100%;
+    height: auto;
+  }
+
+  &__screens {
+    @include flex-column;
+    gap: $spacing-article-lg;
+  }
+
+  // Image beside its description on desktop, alternating sides.
+  &__screen {
+    @include flex-column;
+    gap: $spacing-md;
+
+    @include desktop {
+      @include grid-desktop;
+      align-items: center;
+    }
+  }
+
+  &__screen-image {
+    width: 100%;
+    height: auto;
+
+    @include desktop {
+      grid-row: 1;
+      grid-column: 1 / span 7;
+    }
+  }
+
+  &__screen-body {
     @include flex-column;
     gap: $spacing-sm;
 
-    img {
-      width: 100%;
-      height: auto;
-      border: $border-medium solid $color-brand-complementary;
-      background-color: $color-surface-default;
+    @include desktop {
+      grid-row: 1;
+      grid-column: 9 / -1;
     }
+  }
 
-    span {
-      font-family: $typography-eyebrow-base-font-family;
-      font-size: $typography-eyebrow-font-size-mobile;
-      font-weight: $typography-eyebrow-base-font-weight;
-      line-height: $typography-eyebrow-base-line-height;
-      letter-spacing: $typography-eyebrow-base-letter-spacing;
-      text-transform: uppercase;
-      color: $color-text-brand-complementary;
-
-      @include tablet {
-        font-size: $typography-eyebrow-font-size-tablet;
+  &__screen--reverse {
+    @include desktop {
+      .case-study__screen-image {
+        grid-column: 6 / -1;
       }
 
-      @include desktop {
-        font-size: $typography-eyebrow-font-size-desktop;
+      .case-study__screen-body {
+        grid-column: 1 / span 4;
       }
     }
+  }
+
+  &__button {
+    align-self: flex-start;
+    @include button-complementary;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__tag {
+    color: var(--color-content);
+    @include text-tag;
   }
 }

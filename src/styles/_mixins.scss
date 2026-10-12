@@ -70,6 +70,34 @@ $breakpoint-desktop-lg: 1420px;
   }
 }
 
+// Sections of the project pages share the home Projects rhythm: page padding,
+// section spacing and stacked content.
+@mixin section-container {
+  @include container;
+  @include flex-column;
+  gap: $spacing-lg;
+  padding-block: $spacing-section-sm + $spacing-md;
+
+  @include tablet-up {
+    padding-block: $spacing-section-sm;
+  }
+}
+
+// Tablet and desktop layouts on the design-system grids (8 and 12 columns with
+// their gutters), so columns line up across pages without measured widths.
+// Callers place their children with `grid-column`.
+@mixin grid-tablet {
+  display: grid;
+  grid-template-columns: repeat($grid-columns-tablet, minmax(0, 1fr));
+  column-gap: $grid-gutter-tablet;
+}
+
+@mixin grid-desktop {
+  display: grid;
+  grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
+  column-gap: $grid-gutter-desktop;
+}
+
 // The mockups use Figma's "auto" line height, which is the font's own
 // metrics, so text uses `line-height: normal` instead of a fixed ratio.
 @mixin text-display {
@@ -84,6 +112,19 @@ $breakpoint-desktop-lg: 1420px;
   font-weight: $typography-body-base-font-weight;
   line-height: normal;
   letter-spacing: $typography-body-base-letter-spacing;
+}
+
+// Small uppercase labels on the eyebrow size scale. Like `text-tag`, it ends
+// with a media query, so callers declare their own properties first.
+@mixin text-eyebrow {
+  @include text-body;
+  font-size: $typography-eyebrow-font-size-mobile;
+  letter-spacing: $typography-letter-spacing-wide;
+  text-transform: uppercase;
+
+  @include desktop {
+    font-size: $typography-eyebrow-font-size-desktop;
+  }
 }
 
 // Tags follow the eyebrow size scale. Callers declare their own properties

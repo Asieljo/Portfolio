@@ -1,0 +1,28 @@
+.contact-cta {
+  &__container {
+    @include section-container;
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $spacing-md;
+
+    @include mobile-sm {
+      grid-template-columns: 1fr;
+      gap: $spacing-sm;
+    }
+
+    @include tablet-up {
+      align-self: flex-start;
+    }
+  }
+
+  &__button--solid {
+    @include button-complementary;
+  }
+
+  &__button--outline {
+    @include button-outline;
+  }
+}

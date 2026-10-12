@@ -1,0 +1,31 @@
+.section-header {
+  @include flex-column;
+  gap: $spacing-lg;
+
+  &__title {
+    @include text-display;
+    font-size: $typography-font-size-2xl;
+    color: var(--color-accent);
+
+    @include tablet {
+      font-size: $typography-font-size-3xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-5xl;
+    }
+  }
+
+  &__subtitle {
+    @include text-display;
+    font-size: $typography-font-size-lg;
+
+    @include tablet {
+      font-size: $typography-font-size-xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+}

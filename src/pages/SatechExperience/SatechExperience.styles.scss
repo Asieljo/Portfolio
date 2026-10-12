@@ -1,215 +1,10 @@
-// Desktop layouts sit on the design-system grid (12 columns, desktop gutter),
-// so the copy columns line up without measured widths. Smaller screens stack.
-@mixin desktop-grid {
-  display: grid;
-  grid-template-columns: repeat($grid-columns-desktop, minmax(0, 1fr));
-  column-gap: $grid-gutter-desktop;
-}
-
+// Intro, facts band, section headers and closing call to action come from the
+// shared components; this sheet only covers the reel and the design files.
 .satech-experience {
   background-color: var(--color-surface);
 
   &__container {
-    @include container;
-    @include flex-column;
-    gap: $spacing-lg;
-    padding-block: $spacing-section-sm + $spacing-md;
-
-    @include tablet-up {
-      padding-block: $spacing-section-sm;
-    }
-  }
-
-  &__back {
-    display: inline-flex;
-    align-items: center;
-    gap: $spacing-sm;
-    align-self: flex-start;
-    @include text-display;
-    font-size: $typography-font-size-sm;
-    text-transform: uppercase;
-    color: var(--color-content);
-    transition: color $motion-duration-fast $interaction-transition-hover;
-
-    &:hover {
-      color: var(--color-hover);
-    }
-
-    @include desktop {
-      font-size: $typography-font-size-md;
-    }
-  }
-
-  &__intro-heading {
-    @include flex-column;
-    align-items: flex-start;
-    gap: $spacing-md;
-  }
-
-  // Shared chip: "Work experience" in the intro and "Figma file" on cards,
-  // styled like the project type on the home page.
-  &__type {
-    color: var(--color-inverse);
-    background-color: var(--color-content);
-    text-transform: uppercase;
-    @include text-tag;
-  }
-
-  &__title {
-    @include text-display;
-    font-size: $typography-font-size-3xl;
-    color: var(--color-accent);
-
-    @include tablet {
-      font-size: $typography-font-size-5xl;
-    }
-
-    @include desktop {
-      font-size: $typography-font-size-6xl;
-    }
-  }
-
-  &__intro-grid {
-    @include flex-column;
-    gap: $spacing-lg;
-
-    @include desktop {
-      @include desktop-grid;
-    }
-  }
-
-  &__lead {
-    @include text-display;
-    font-size: $typography-font-size-lg;
-
-    @include tablet {
-      font-size: $typography-font-size-xl;
-    }
-
-    @include desktop {
-      grid-column: 1 / span 6;
-      font-size: $typography-font-size-2xl;
-    }
-  }
-
-  &__intro-text,
-  &__file-text {
-    @include text-body;
-    font-size: $typography-body-font-size-mobile;
-
-    @include tablet-up {
-      font-size: $typography-body-font-size-tablet;
-    }
-  }
-
-  &__intro-text {
-    @include desktop {
-      grid-column: 8 / -1;
-    }
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $spacing-sm;
-  }
-
-  &__tag {
-    color: var(--color-content);
-    @include text-tag;
-  }
-
-  // Inverted band like the home ticker, carrying the role facts.
-  &__strip {
-    background-color: var(--color-strip);
-  }
-
-  &__facts {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: $spacing-md;
-    padding-block: $spacing-md;
-    @include container;
-
-    @include tablet-up {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: $spacing-lg;
-      padding-block: $spacing-lg;
-    }
-  }
-
-  &__fact {
-    @include flex-column;
-    gap: $spacing-xs;
-    padding-inline-start: $spacing-sm;
-    border-inline-start: $border-thin solid var(--color-strip-content);
-  }
-
-  &__fact-label {
-    @include text-body;
-    font-size: $typography-eyebrow-font-size-mobile;
-    letter-spacing: $typography-letter-spacing-wide;
-    text-transform: uppercase;
-    color: var(--color-strip-content);
-
-    @include desktop {
-      font-size: $typography-eyebrow-font-size-desktop;
-    }
-  }
-
-  &__fact-value {
-    @include text-display;
-    font-size: $typography-font-size-md;
-    text-transform: uppercase;
-    color: var(--color-strip-content);
-
-    @include tablet {
-      font-size: $typography-font-size-lg;
-    }
-
-    @include desktop {
-      font-size: $typography-font-size-xl;
-    }
-  }
-
-  &__section-header {
-    @include flex-column;
-    gap: $spacing-lg;
-  }
-
-  // Beside the player on desktop, which keeps the 16:9 reel within one
-  // viewport height even on wide screens.
-  &__section-header--aside {
-    @include desktop {
-      grid-column: 1 / span 4;
-    }
-  }
-
-  &__heading {
-    @include text-display;
-    font-size: $typography-font-size-2xl;
-    color: var(--color-accent);
-
-    @include tablet {
-      font-size: $typography-font-size-3xl;
-    }
-
-    @include desktop {
-      font-size: $typography-font-size-5xl;
-    }
-  }
-
-  &__subtitle {
-    @include text-display;
-    font-size: $typography-font-size-lg;
-
-    @include tablet {
-      font-size: $typography-font-size-xl;
-    }
-
-    @include desktop {
-      font-size: $typography-font-size-2xl;
-    }
+    @include section-container;
   }
 
   &__reel {
@@ -217,7 +12,15 @@
     gap: $spacing-lg;
 
     @include desktop {
-      @include desktop-grid;
+      @include grid-desktop;
+    }
+  }
+
+  // Beside the player on desktop, which keeps the 16:9 reel within one
+  // viewport height even on wide screens.
+  &__reel-header {
+    @include desktop {
+      grid-column: 1 / span 4;
     }
   }
 
@@ -261,6 +64,14 @@
     }
   }
 
+  // Styled like the project type on the home page cards.
+  &__type {
+    color: var(--color-inverse);
+    background-color: var(--color-content);
+    text-transform: uppercase;
+    @include text-tag;
+  }
+
   &__file-title {
     @include text-display;
     font-size: $typography-font-size-lg;
@@ -271,33 +82,30 @@
     }
   }
 
+  &__file-text {
+    @include text-body;
+    font-size: $typography-body-font-size-mobile;
+
+    @include tablet-up {
+      font-size: $typography-body-font-size-tablet;
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__tag {
+    color: var(--color-content);
+    @include text-tag;
+  }
+
   // Pinned to the card bottom so the buttons align across a row.
   &__file-link {
     align-self: stretch;
     margin-top: auto;
     @include button-complementary(sm);
-  }
-
-  &__actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: $spacing-md;
-
-    @include mobile-sm {
-      grid-template-columns: 1fr;
-      gap: $spacing-sm;
-    }
-
-    @include tablet-up {
-      align-self: flex-start;
-    }
-  }
-
-  &__button--solid {
-    @include button-complementary;
-  }
-
-  &__button--outline {
-    @include button-outline;
   }
 }

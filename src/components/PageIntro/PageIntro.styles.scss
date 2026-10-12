@@ -1,0 +1,110 @@
+.page-intro {
+  &__container {
+    @include section-container;
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    align-self: flex-start;
+    @include text-display;
+    font-size: $typography-font-size-sm;
+    text-transform: uppercase;
+    color: var(--color-content);
+    transition: color $motion-duration-fast $interaction-transition-hover;
+
+    &:hover {
+      color: var(--color-hover);
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-md;
+    }
+  }
+
+  &__heading {
+    @include flex-column;
+    align-items: flex-start;
+    gap: $spacing-md;
+  }
+
+  // Styled like the project type on the home page cards.
+  &__label {
+    color: var(--color-inverse);
+    background-color: var(--color-content);
+    text-transform: uppercase;
+    @include text-tag;
+  }
+
+  &__title {
+    @include text-display;
+    font-size: $typography-font-size-3xl;
+    color: var(--color-accent);
+
+    @include tablet {
+      font-size: $typography-font-size-5xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-6xl;
+    }
+  }
+
+  // Stacked on mobile; from tablet up the lead and the summary sit side by
+  // side.
+  &__grid {
+    @include flex-column;
+    gap: $spacing-lg;
+
+    @include tablet {
+      @include grid-tablet;
+    }
+
+    @include desktop {
+      @include grid-desktop;
+    }
+  }
+
+  &__lead {
+    @include text-display;
+    font-size: $typography-font-size-lg;
+
+    @include tablet {
+      grid-column: 1 / span 4;
+      font-size: $typography-font-size-xl;
+    }
+
+    @include desktop {
+      grid-column: 1 / span 6;
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  &__body {
+    @include flex-column;
+    align-items: flex-start;
+    gap: $spacing-lg;
+
+    @include tablet {
+      grid-column: 5 / -1;
+    }
+
+    @include desktop {
+      grid-column: 8 / -1;
+    }
+  }
+
+  &__text {
+    @include text-body;
+    font-size: $typography-body-font-size-mobile;
+
+    @include tablet-up {
+      font-size: $typography-body-font-size-tablet;
+    }
+  }
+
+  &__action {
+    @include button-complementary;
+  }
+}

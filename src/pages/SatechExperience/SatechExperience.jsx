@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ContactModal from '../../components/ContactModal/ContactModal';
+import PageIntro from '../../components/PageIntro/PageIntro';
+import FactsStrip from '../../components/FactsStrip/FactsStrip';
+import SectionHeader from '../../components/SectionHeader/SectionHeader';
+import ContactCta from '../../components/ContactCta/ContactCta';
 import demoReel from '../../assets/videos/Demo Reel.mp4';
 import './SatechExperience.styles.scss';
 
@@ -50,56 +53,24 @@ const SatechExperience = () => {
     <div className="satech-experience">
       <Header onContactClick={openContact} />
       <main>
-        <section className="satech-experience__intro">
-          <div className="satech-experience__container">
-            <Link to="/#projects" className="satech-experience__back">
-              <span aria-hidden="true">←</span> Back to projects
-            </Link>
+        <PageIntro
+          label="Work experience"
+          title="Design & Marketing Intern at SATECH"
+          lead="Designing responsive websites, blogs and HTML email signatures for a satellite tracking company."
+          text="Between March and September 2025 I took the web interfaces of SATECH and NOVA GPS from user research and benchmarking to wireframes, reusable components and responsive high-fidelity prototypes in Figma. I also designed and coded HTML email signatures, tested them across email clients and coordinated every deliverable with the design and marketing teams."
+        />
 
-            <div className="satech-experience__intro-heading">
-              <span className="satech-experience__type">Work experience</span>
-              <h1 className="satech-experience__title">Design &amp; Marketing Intern at SATECH</h1>
-            </div>
+        <FactsStrip facts={facts} />
 
-            <div className="satech-experience__intro-grid">
-              <p className="satech-experience__lead">
-                Designing responsive websites, blogs and HTML email signatures for a satellite
-                tracking company.
-              </p>
-
-              <p className="satech-experience__intro-text">
-                Between March and September 2025 I took the web interfaces of SATECH and NOVA GPS
-                from user research and benchmarking to wireframes, reusable components and
-                responsive high-fidelity prototypes in Figma. I also designed and coded HTML email
-                signatures, tested them across email clients and coordinated every deliverable with
-                the design and marketing teams.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <div className="satech-experience__strip">
-          <dl className="satech-experience__facts">
-            {facts.map((fact) => (
-              <div key={fact.id} className="satech-experience__fact">
-                <dt className="satech-experience__fact-label">{fact.label}</dt>
-                <dd className="satech-experience__fact-value">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <section className="satech-experience__section" aria-labelledby="satech-reel-title">
+        <section aria-labelledby="satech-reel-title">
           <div className="satech-experience__container">
             <div className="satech-experience__reel">
-              <div className="satech-experience__section-header satech-experience__section-header--aside">
-                <h2 id="satech-reel-title" className="satech-experience__heading">
-                  Demo reel
-                </h2>
-                <p className="satech-experience__subtitle">
-                  A look at my design work in motion, in 90 seconds.
-                </p>
-              </div>
+              <SectionHeader
+                id="satech-reel-title"
+                title="Demo reel"
+                subtitle="A look at my design work in 90 seconds."
+                className="satech-experience__reel-header"
+              />
 
               <video
                 className="satech-experience__video"
@@ -115,17 +86,13 @@ const SatechExperience = () => {
           </div>
         </section>
 
-        <section className="satech-experience__section" aria-labelledby="satech-files-title">
+        <section aria-labelledby="satech-files-title">
           <div className="satech-experience__container">
-            <div className="satech-experience__section-header">
-              <h2 id="satech-files-title" className="satech-experience__heading">
-                Design files
-              </h2>
-              <p className="satech-experience__subtitle">
-                The complete work lives in Figma. Open each file to explore the designs, prototypes
-                and components.
-              </p>
-            </div>
+            <SectionHeader
+              id="satech-files-title"
+              title="Design files"
+              subtitle="The complete work lives in Figma. Open each file to explore the designs, prototypes and components."
+            />
 
             <div className="satech-experience__files">
               {designFiles.map((file) => (
@@ -155,34 +122,7 @@ const SatechExperience = () => {
           </div>
         </section>
 
-        <section className="satech-experience__section" aria-labelledby="satech-cta-title">
-          <div className="satech-experience__container">
-            <div className="satech-experience__section-header">
-              <h2 id="satech-cta-title" className="satech-experience__heading">
-                Let&apos;s work together
-              </h2>
-              <p className="satech-experience__subtitle">
-                Have a project in mind or want to know more about my experience? Let&apos;s talk.
-              </p>
-            </div>
-
-            <div className="satech-experience__actions">
-              <button
-                type="button"
-                className="satech-experience__button satech-experience__button--solid"
-                onClick={openContact}
-              >
-                Get in touch
-              </button>
-              <Link
-                to="/#projects"
-                className="satech-experience__button satech-experience__button--outline"
-              >
-                More projects
-              </Link>
-            </div>
-          </div>
-        </section>
+        <ContactCta onContactClick={openContact} />
       </main>
       <Footer />
       <ContactModal isOpen={isContactOpen} onClose={closeContact} />
