@@ -118,7 +118,7 @@ const ContactModal = ({ isOpen, onClose }) => {
           />
           <div id="contact-modal-text" className="contact-modal__bio">
             <p className="contact-modal__text">
-              Deginer by day, frequent guitarist, student of the Bible and professional
+              Designer by day, frequent guitarist, AI user that goes beyond the basics and professional
               curious mind; a fan of technology, digital art and any topic that promises to
               answer the eternal question: “Why?”.
             </p>
