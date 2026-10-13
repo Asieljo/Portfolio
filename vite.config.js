@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 
 // Routes from src/App.jsx (other than "/"); keep both lists in sync.
-const routes = ['case-study', 'prototype', 'work-experience', 'design-system']
+const routes = ['case-study', 'work-experience', 'design-system']
 
 // GitHub Pages has no SPA fallback: a direct visit or refresh on a route like
 // /Portfolio/case-study gets its 404 page. Each known route gets its own copy
