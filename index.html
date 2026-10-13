@@ -17,18 +17,20 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant:wght@500&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant:ital,wght@0,500;1,500&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <title>Asiel Rosiles | Portfolio</title>
 
-    <!-- Applies the saved theme before first paint; ThemeProvider owns it afterwards. -->
+    <!-- Applies the saved theme before first paint; ThemeProvider owns it afterwards.
+         Keep the names in sync with THEMES in src/features/theme/ThemeProvider.jsx. -->
     <script>
       try {
-        if (localStorage.getItem('portfolio-theme') === 'dark') {
-          document.documentElement.dataset.theme = 'dark';
+        var theme = localStorage.getItem('portfolio-theme');
+        if (theme === 'primary' || theme === 'secondary' || theme === 'complementary') {
+          document.documentElement.dataset.theme = theme;
         }
       } catch {
-        // Storage unavailable: keep the default light theme.
+        // Storage unavailable: keep the default primary theme.
       }
     </script>
   </head>

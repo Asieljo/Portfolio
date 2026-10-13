@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import './Projects.styles.scss';
-import SatechImage from '../../assets/images/screenshots/screenshot-satech.jpg';
-import CaseStudyImage from '../../assets/images/screenshots/screenshot-case-study.jpg';
-import PortfolioImage from '../../assets/images/screenshots/screenshot-portfolio.jpg';
-import EcommerceImage from '../../assets/images/screenshots/screenshot-ecommerce.jpg';
+import SatechImage from '../../assets/images/screenshots/screenshot-satech.webp';
+import CaseStudyImage from '../../assets/images/screenshots/screenshot-case-study.webp';
+import PortfolioImage from '../../assets/images/screenshots/screenshot-portfolio.webp';
+import EcommerceImage from '../../assets/images/screenshots/screenshot-ecommerce.webp';
 
 // `variant: 'outline'` renders the secondary action of a card (GitHub).
 // `titlePrefix` is dropped on desktop, where the mockups keep the title on one

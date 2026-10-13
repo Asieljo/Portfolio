@@ -1,10 +1,6 @@
 import { useEffect, useRef } from 'react';
 import './ContactModal.styles.scss';
-import CloseIcon from '../../assets/icons/close.svg?react';
-import DownloadIcon from '../../assets/icons/download.svg?react';
-import GithubIcon from '../../assets/icons/github.svg?react';
-import LinkedinIcon from '../../assets/icons/linkedin.svg?react';
-import MailIcon from '../../assets/icons/mail.svg?react';
+import PortraitPhoto from '../../assets/images/footer.webp';
 import cvUrl from '../../../Asiel_Rosiles_CV.pdf';
 
 const contactLinks = [
@@ -13,14 +9,12 @@ const contactLinks = [
     label: 'Email',
     value: 'rosiles.garcia.asiel@gmail.com',
     href: 'mailto:rosiles.garcia.asiel@gmail.com',
-    Icon: MailIcon,
   },
   {
     id: 'linkedin',
     label: 'LinkedIn',
     value: 'Asiel Rosiles',
     href: 'https://www.linkedin.com/in/asiel-rosiles-7a255a32b/',
-    Icon: LinkedinIcon,
     external: true,
   },
   {
@@ -28,8 +22,15 @@ const contactLinks = [
     label: 'GitHub',
     value: '@Asieljo',
     href: 'https://github.com/Asieljo',
-    Icon: GithubIcon,
     external: true,
+  },
+  {
+    id: 'cv',
+    label: 'CV',
+    value: 'Download CV',
+    href: cvUrl,
+    external: true,
+    download: 'Asiel_Rosiles_CV.pdf',
   },
 ];
 
@@ -105,57 +106,47 @@ const ContactModal = ({ isOpen, onClose }) => {
       ref={modalRef}
     >
       <div className="contact-modal__panel">
-        <div className="contact-modal__header">
-          <div className="contact-modal__heading">
-            <h2 id="contact-modal-title" className="contact-modal__title">
-              Get in touch
-            </h2>
-            <button
-              type="button"
-              className="contact-modal__close"
-              onClick={onClose}
-              aria-label="Close contact dialog"
-            >
-              <CloseIcon className="contact-modal__close-icon" aria-hidden="true" />
-            </button>
+        <h2 id="contact-modal-title" className="contact-modal__title">
+          ¡Contact me for more!
+        </h2>
+
+        <div className="contact-modal__intro">
+          <img
+            className="contact-modal__photo"
+            src={PortraitPhoto}
+            alt="Portrait of Asiel Rosiles"
+          />
+          <div id="contact-modal-text" className="contact-modal__bio">
+            <p className="contact-modal__text">
+              Deginer by day, frequent guitarist, student of the Bible and professional
+              curious mind; a fan of technology, digital art and any topic that promises to
+              answer the eternal question: “Why?”.
+            </p>
+            <p className="contact-modal__text contact-modal__text--strong">
+              Experts recommend keeping him away from Google and any interesting subjects.
+            </p>
           </div>
-          <p id="contact-modal-text" className="contact-modal__text">
-            Let&apos;s connect and discuss opportunities.
-          </p>
         </div>
 
         <ul className="contact-modal__links">
-          {contactLinks.map(({ id, label, value, href, Icon, external }) => (
+          {contactLinks.map(({ id, label, value, href, external, download }) => (
             <li key={id} className="contact-modal__item">
               <a
                 className="contact-modal__link"
                 href={href}
+                download={download}
                 {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
               >
-                <span className="contact-modal__icon-box" aria-hidden="true">
-                  <Icon className="contact-modal__icon" />
-                </span>
-                <span className="contact-modal__link-text">
-                  <span className="contact-modal__label">{label}</span>
-                  <span className="contact-modal__value">{value}</span>
-                </span>
+                <span className="contact-modal__label">{label}</span>
+                <span className="contact-modal__value">{value}</span>
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="contact-modal__footer">
-          <a
-            href={cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            download="Asiel_Rosiles_CV.pdf"
-            className="contact-modal__resume"
-          >
-            <DownloadIcon className="contact-modal__resume-icon" aria-hidden="true" />
-            Download resume
-          </a>
-        </div>
+        <button type="button" className="contact-modal__close" onClick={onClose}>
+          Close
+        </button>
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
-// The dialog takes the theme surface and the 2px rules of the header and the
-// project cards, so it follows the active theme. It never grows wider than the
-// mobile-md breakpoint, which keeps it a single column on every screen. Contact
-// rows run edge to edge and invert on hover like the outline buttons.
+// The dialog reads like a printed contact card on the theme surface: a solid
+// title banner, a portrait beside the bio, contact rows split by the 2px rules
+// of the header and project cards, and a solid close button. It never grows
+// wider than the mobile-md breakpoint, which keeps it a single column on every
+// screen. Contact rows invert on hover like the outline buttons.
 .contact-modal {
   position: fixed;
   inset: 0;
@@ -21,72 +22,77 @@
 
   &__panel {
     @include flex-column;
+    gap: $spacing-lg;
     width: 100%;
     max-width: $breakpoints-mobile-md;
     max-height: 100%;
     overflow-y: auto;
+    padding: $spacing-lg;
     color: var(--color-content);
     background-color: var(--color-surface);
     border: $border-medium solid var(--color-content);
     box-shadow: $shadow-modal;
     animation: contact-modal-rise $interaction-animation-modal $interaction-transition-slide;
-  }
 
-  &__header {
-    @include flex-column;
-    gap: $spacing-md;
-    padding: $spacing-lg $spacing-md;
-    border-bottom: $border-medium solid var(--color-content);
-
-    @include tablet-up {
-      padding: $spacing-xl $spacing-lg;
+    @include mobile-sm {
+      gap: $spacing-md;
+      padding: $spacing-md;
     }
   }
 
-  &__heading {
-    @include flex-between;
-    gap: $spacing-md;
-  }
-
+  // The banner takes the accent, so it turns orange on the complementary theme
+  // like the other display headings.
   &__title {
-    @include text-display;
-    font-size: $typography-font-size-2xl;
-    color: var(--color-accent);
+    padding: $spacing-xs $spacing-sm;
+    font-size: $typography-font-size-4xl;
+    text-align: center;
+    color: var(--color-inverse);
+    background-color: var(--color-accent);
 
-    @include tablet {
-      font-size: $typography-font-size-3xl;
-    }
-
-    @include desktop {
-      font-size: $typography-font-size-5xl;
+    @include mobile-sm {
+      font-size: $typography-font-size-2xl;
     }
   }
 
-  &__close {
-    @include flex-center;
-    flex-shrink: 0;
-    width: $sizing-xl;
-    height: $sizing-xl;
-    color: var(--color-content);
-    transition: color $motion-duration-fast $interaction-transition-hover;
+  // The portrait keeps at least its 3:4 ratio and stretches with the bio when
+  // it runs longer. On mobile-sm the column beside it gets too narrow, so the
+  // bio wraps around a smaller portrait instead, without the justified gaps.
+  &__intro {
+    display: grid;
+    grid-template-columns: $sizing-5xl minmax(0, 1fr);
+    column-gap: $spacing-md;
 
-    &:hover {
-      color: var(--color-hover);
+    @include mobile-sm {
+      display: flow-root;
     }
   }
 
-  &__close-icon {
-    width: $sizing-lg;
-    height: $sizing-lg;
+  &__photo {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: $aspect-ratio-portrait;
+    object-fit: cover;
+
+    @include mobile-sm {
+      float: left;
+      width: $sizing-4xl;
+      height: auto;
+      margin-inline-end: $grid-gutter-mobile;
+    }
   }
 
   &__text {
-    @include text-display;
-    font-size: $typography-font-size-lg;
+    font-size: $typography-body-font-size-mobile;
+    text-align: justify;
+    hyphens: auto;
 
-    @include tablet-up {
-      font-size: $typography-font-size-xl;
+    @include mobile-sm {
+      text-align: start;
     }
+  }
+
+  &__text--strong {
+    font-weight: $typography-font-weight-bold;
   }
 
   &__item {
@@ -96,10 +102,9 @@
   // The focus ring sits inside the row, since the scrolling panel clips
   // anything drawn past its edges.
   &__link {
-    display: flex;
-    align-items: center;
-    gap: $spacing-sm;
-    padding: $spacing-md;
+    @include flex-between;
+    gap: $spacing-md;
+    padding: $spacing-sm + $spacing-xs $spacing-md;
     color: var(--color-content);
     transition:
       background-color $motion-duration-fast $interaction-transition-hover,
@@ -114,80 +119,43 @@
       outline-offset: -$spacing-xs;
     }
 
-    @include tablet-up {
-      gap: $spacing-md;
-      padding-inline: $spacing-lg;
+    @include mobile-sm {
+      gap: $spacing-sm;
+      padding-inline: $spacing-sm;
     }
   }
 
-  &__icon-box {
-    @include flex-center;
-    flex-shrink: 0;
-    width: $sizing-xl;
-    height: $sizing-xl;
-    border: $border-medium solid currentColor;
-
-    @include tablet-up {
-      width: $sizing-2xl;
-      height: $sizing-2xl;
-    }
-  }
-
-  &__icon {
-    width: $sizing-md;
-    height: $sizing-md;
-
-    @include tablet-up {
-      width: $sizing-lg;
-      height: $sizing-lg;
-    }
-  }
-
-  &__link-text {
-    @include flex-column;
-    gap: $spacing-xs;
-    min-width: 0;
-  }
-
+  // Labels take the display face and values the serif italic. Both are smaller
+  // on mobile-sm so the email fits on one line.
   &__label {
-    @include text-eyebrow;
-  }
-
-  // Smaller on mobile-sm, with a tighter row gap, so the email fits on one line.
-  &__value {
     @include text-display;
-    font-size: $typography-font-size-md;
-    overflow-wrap: anywhere;
+    flex-shrink: 0;
+    font-size: $typography-font-size-xl;
 
-    @include mobile-md {
+    @include mobile-sm {
       font-size: $typography-font-size-lg;
     }
+  }
 
-    @include tablet {
-      font-size: $typography-font-size-xl;
-    }
+  &__value {
+    min-width: 0;
+    font-family: $typography-font-family-complementary;
+    font-size: $typography-font-size-2xl;
+    font-style: italic;
+    font-weight: $typography-font-weight-medium;
+    line-height: normal;
+    text-align: right;
+    overflow-wrap: anywhere;
 
-    @include desktop {
-      font-size: $typography-font-size-2xl;
+    @include mobile-sm {
+      font-size: $typography-font-size-md;
     }
   }
 
-  &__footer {
-    display: grid;
-    padding: $spacing-lg $spacing-md;
-
-    @include tablet-up {
-      padding-inline: $spacing-lg;
-    }
-  }
-
-  &__resume {
+  &__close {
     @include button-complementary;
-  }
-
-  &__resume-icon {
-    width: $sizing-md;
-    height: $sizing-md;
+    align-self: center;
+    min-width: $sizing-6xl;
   }
 }
 

@@ -7,6 +7,7 @@ import FactsStrip from '../../components/FactsStrip/FactsStrip';
 import SectionHeader from '../../components/SectionHeader/SectionHeader';
 import ContactCta from '../../components/ContactCta/ContactCta';
 import demoReel from '../../assets/videos/Demo Reel.mp4';
+import demoReelPoster from '../../assets/images/demo-reel-poster.webp';
 import './SatechExperience.styles.scss';
 
 const facts = [
@@ -75,6 +76,7 @@ const SatechExperience = () => {
               <video
                 className="satech-experience__video"
                 src={demoReel}
+                poster={demoReelPoster}
                 controls
                 playsInline
                 preload="metadata"

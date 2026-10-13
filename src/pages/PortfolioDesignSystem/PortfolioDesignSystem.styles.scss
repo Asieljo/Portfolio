@@ -124,7 +124,8 @@
 
   // Phase index: each step links to its phase and inverts on hover like the
   // outline buttons. The final result is the destination, so it stays
-  // inverted (no hover change) and takes a full row wherever the grid wraps.
+  // inverted, only gains a white border on hover like the solid buttons, and
+  // takes a full row wherever the grid wraps.
   &__process {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -149,7 +150,8 @@
     border: $border-medium solid var(--color-content);
     transition:
       background-color $motion-duration-fast $interaction-transition-hover,
-      color $motion-duration-fast $interaction-transition-hover;
+      color $motion-duration-fast $interaction-transition-hover,
+      border-color $motion-duration-fast $interaction-transition-hover;
 
     &:hover {
       background-color: var(--color-content);
@@ -161,6 +163,10 @@
     grid-column: 1 / -1;
     background-color: var(--color-content);
     color: var(--color-inverse);
+
+    &:hover {
+      border-color: $color-border-white;
+    }
 
     @include desktop {
       grid-column: auto;

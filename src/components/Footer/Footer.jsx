@@ -1,4 +1,5 @@
 import Wordmark from '../../assets/images/wordmark.svg?react';
+import FooterImage from '../../assets/images/footer.webp';
 import './Footer.styles.scss';
 
 const contactLinks = [
@@ -26,6 +27,13 @@ const contactLinks = [
 
 const Footer = () => (
   <footer className="footer">
+    <img
+      className="footer__background"
+      src={FooterImage}
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
     <div className="footer__container">
       <h2 className="footer__name">
         {/* svgr's `icon` option forces a 1em square; dropping it keeps the

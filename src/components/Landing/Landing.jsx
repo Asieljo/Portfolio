@@ -1,6 +1,6 @@
-import HeroImageBlue from '../../assets/images/hero-image-blue.png';
-import HeroImageDark from '../../assets/images/hero-image-dark.png';
-import HeroImageOrange from '../../assets/images/hero-image-orange.png';
+import HeroImageBlue from '../../assets/images/hero-image-blue.webp';
+import HeroImageDark from '../../assets/images/hero-image-dark.webp';
+import HeroImageOrange from '../../assets/images/hero-image-orange.webp';
 import { useTheme } from '../../hooks/useTheme';
 import './Landing.styles.scss';
 
@@ -40,7 +40,12 @@ const Landing = ({ onContactClick }) => {
           </p>
 
           <div className="hero__media">
-            <img className="hero__image" src={heroImages[theme]} alt="Build more" />
+            <img
+              className="hero__image"
+              src={heroImages[theme]}
+              alt="Build more"
+              fetchPriority="high"
+            />
           </div>
 
           <div className="hero__actions">

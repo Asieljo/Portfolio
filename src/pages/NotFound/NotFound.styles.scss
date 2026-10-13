@@ -1,0 +1,61 @@
+// The 404 code takes the hero scale in the accent colour, the copy follows the
+// section headers and the actions reuse the hero button pair.
+.not-found {
+  background-color: var(--color-surface);
+
+  &__container {
+    @include section-container;
+    align-items: flex-start;
+    padding-block: $spacing-section-md;
+
+    @include tablet-up {
+      padding-block: $spacing-section-lg;
+    }
+  }
+
+  &__code {
+    @include text-display;
+    font-size: $typography-font-size-8xl;
+    line-height: $typography-line-height-none;
+    color: var(--color-accent);
+
+    @include tablet-up {
+      font-size: $typography-font-size-10xl;
+    }
+  }
+
+  &__title {
+    font-size: $typography-heading-h1-font-size-mobile;
+
+    @include tablet {
+      font-size: $typography-heading-h1-font-size-tablet;
+    }
+
+    @include desktop {
+      font-size: $typography-heading-h1-font-size-desktop;
+    }
+  }
+
+  &__text {
+    font-size: $typography-body-font-size-mobile;
+
+    @include tablet-up {
+      font-size: $typography-body-font-size-tablet;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-top: $spacing-md;
+  }
+
+  &__button--solid {
+    @include button-complementary;
+  }
+
+  &__button--outline {
+    @include button-outline;
+  }
+}

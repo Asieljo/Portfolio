@@ -5,13 +5,22 @@ $wordmark-width: to-rem(257);
 $wordmark-width-tablet: to-rem(342);
 $wordmark-width-desktop: to-rem(514);
 
+// The collage is an <img> rather than a CSS background so it can load lazily:
+// a background downloads with every page, even when the footer is never seen.
 .footer {
+  position: relative;
   background-color: $color-background-brand-complementary;
-  background-image: url('../../assets/images/footer.jpg');
-  background-size: cover;
-  background-position: center;
+
+  &__background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   &__container {
+    position: relative;
     @include container;
     @include flex-column;
     align-items: flex-start;

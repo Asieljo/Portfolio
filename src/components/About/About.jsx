@@ -1,5 +1,5 @@
 import './About.styles.scss';
-import AboutPhoto from '../../assets/images/about-photo.jpg';
+import AboutPhoto from '../../assets/images/about-photo.webp';
 import cvUrl from '../../../Asiel_Rosiles_CV.pdf';
 
 const taglines = ['Builder.', 'Designer.', 'Curious mind.'];
@@ -15,7 +15,7 @@ const certifications = [
   },
   {
     id: 3,
-    title: 'Education in HTML, CSS, JS and React',
+    title: 'Education in HTML, CSS, JS and React.',
   },
 ];
 
