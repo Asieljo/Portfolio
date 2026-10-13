@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio Design System — Token Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --panel:#F3F4F6; --ink:#111111; --muted:#5B6270; --line:#E5E7EB;
+  --brand:#FF6B1A; --cream:#E9DDC7; --dark:#111111;
+  --f-display:'Anton','Impact','Arial Narrow',sans-serif;
+  --f-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-serif:'Cormorant',Georgia,'Times New Roman',serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --pad:clamp(16px,4vw,64px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0D0D0E;--panel:#18181B;--ink:#F3F4F6;--muted:#A3A9B5;--line:#2B2B31}
+}
+:root[data-theme="dark"]{--bg:#0D0D0E;--panel:#18181B;--ink:#F3F4F6;--muted:#A3A9B5;--line:#2B2B31}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+
+/* shell */
+.shell{display:grid;grid-template-columns:252px minmax(0,1fr)}
+.side{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;height:calc(100vh - env(safe-area-inset-top,0px));overflow:auto;background:#111;color:#E9DDC7;padding:28px 18px 32px 22px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:30px}
+.mark{width:34px;height:34px;background:var(--brand);border-radius:50% 0 50% 0;flex:none}
+.brand b{font-family:var(--f-display);font-weight:400;font-size:21px;line-height:1.05;color:#fff;letter-spacing:.01em}
+.gl{font-size:13px;font-weight:600;color:#9a9385;margin:24px 0 8px 10px}
+.side a{display:block;color:#E9DDC7;text-decoration:none;font-size:14px;font-weight:500;padding:7px 10px;border-left:3px solid transparent;border-radius:0 6px 6px 0}
+.side a:hover{background:#1c1c1c}
+.side a.on{border-left-color:var(--brand);background:#1c1c1c;color:#fff}
+.main{min-width:0;padding:0 var(--pad) 120px}
+
+/* hero */
+.hero{margin:0 calc(var(--pad)*-1);background:var(--brand);color:#fff;padding:72px var(--pad) 56px;position:relative;overflow:hidden}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(64px,12.5vw,176px);line-height:.95;letter-spacing:-.01em;margin:0;max-width:11ch}
+.hero .lede{font-family:var(--f-serif);font-style:italic;font-weight:500;font-size:clamp(22px,2.4vw,30px);line-height:1.4;max-width:34ch;margin:28px 0 0;color:#FBEFD8}
+.palette{display:flex;height:14px;margin:44px 0 0;max-width:420px}
+.palette i{flex:1}
+.chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin-top:40px}
+.link{background:#111;color:#fff;padding:14px 18px;min-width:180px;position:relative;margin-right:26px}
+.link:last-child{margin-right:0}
+.link small{display:block;font-size:12px;color:#BDB6A6;font-weight:500;margin-bottom:4px}
+.link b{font-size:14px;font-weight:600;word-break:break-all}
+.link:not(:last-child)::after{content:"";position:absolute;right:-26px;top:50%;width:26px;height:3px;background:#111;transform:translateY(-50%)}
+.link .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:-1px;background:var(--c);box-shadow:0 0 0 2px #fff}
+.count{margin-top:28px;font-size:16px;font-weight:500;color:#fff}
+
+/* group bands */
+.band{margin:96px calc(var(--pad)*-1) 0;padding:56px var(--pad)}
+.band h2{font-family:var(--f-display);font-weight:400;font-size:clamp(48px,7vw,96px);line-height:1;margin:0}
+.band p{font-family:var(--f-serif);font-size:24px;line-height:1.45;max-width:46ch;margin:14px 0 0}
+.band.p{background:var(--cream);color:#111}
+.band.s{background:#111;color:var(--cream)}
+
+/* sections */
+.sec{padding-top:80px;scroll-margin-top:12px}
+.sec>header h2{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1.05;letter-spacing:-.01em;margin:0}
+.sec>header p{font-family:var(--f-serif);font-weight:500;font-size:22px;line-height:1.5;max-width:58ch;margin:10px 0 0;color:var(--muted)}
+.sec h3{font-size:18px;font-weight:700;margin:48px 0 6px}
+.subd{margin:0 0 18px;color:var(--muted);max-width:68ch}
+.sec h3+.grid,.sec h3+.ramp{margin-top:18px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
+.grid.w2{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.grid.w3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.checker{background-image:conic-gradient(#d4d4d8 25%,#fff 0 50%,#d4d4d8 0 75%,#fff 0);background-size:16px 16px}
+.alias{display:inline-block;font-size:12px;font-weight:500;color:var(--muted);background:var(--panel);padding:2px 8px;border-radius:99px;word-break:break-all}
+
+/* swatches */
+.sw{all:unset;box-sizing:border-box;display:block;cursor:pointer;border:1px solid var(--line);background:var(--bg);overflow:hidden;border-radius:10px;text-align:left}
+.sw:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.sw .chip{height:104px;position:relative;box-shadow:inset 0 -1px 0 var(--line)}
+.sw .chip i{position:absolute;inset:0}
+.sw.big .chip{height:200px}
+.sw .badge{position:absolute;left:10px;bottom:8px;font-size:12px;font-weight:600}
+.sw.big .badge{font-size:13px;left:14px;bottom:12px}
+.sw .meta{padding:10px 12px 12px;display:grid;gap:1px}
+.sw .meta b{font-size:15px;font-weight:700}
+.sw .meta span{font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums}
+.sw .meta em{font-style:normal;font-size:12px;color:var(--muted);word-break:break-all}
+.sw.big .meta b{font-family:var(--f-display);font-weight:400;font-size:30px;letter-spacing:.01em}
+.ramp{display:flex;height:72px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.ramp div{flex:1;display:flex;align-items:flex-end;padding:8px;font-size:12px;font-weight:600}
+
+/* type */
+.fam{border:1px solid var(--line);border-radius:10px;padding:22px 22px 20px;background:var(--bg);display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.fam .aa{font-size:132px;line-height:1;margin-bottom:10px}
+.fam b{font-size:18px}
+.fam .role{color:var(--muted);font-size:14px}
+.fam p{margin:10px 0 0;font-size:20px;line-height:1.3}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:6px 0 14px}
+.seg button{all:unset;cursor:pointer;padding:8px 16px;font-size:14px;font-weight:600;background:var(--bg)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible{outline:3px solid var(--brand);outline-offset:-3px}
+.srow{display:grid;grid-template-columns:56px 60px minmax(0,1fr);align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--line)}
+.srow .n{font-weight:700}
+.srow .px{color:var(--muted);font-variant-numeric:tabular-nums;font-size:13px}
+.srow .sample{font-family:var(--spec,var(--f-display));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.1}
+.wcard,.lcard{border:1px solid var(--line);border-radius:10px;padding:18px;background:var(--bg)}
+.wcard .aa{font-size:64px;line-height:1.1;font-family:var(--f-body)}
+.wcard b,.lcard b{display:block;margin-top:6px}
+.wcard span,.lcard span{color:var(--muted);font-size:13px}
+.lcard p{margin:0 0 14px;font-size:14px;background:linear-gradient(var(--panel),var(--panel));padding:6px 8px;border-left:3px solid var(--brand)}
+.lsrow{display:grid;grid-template-columns:90px 1fr 70px;gap:14px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.lsrow .t{font-size:32px;font-weight:700;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lsrow span{font-size:13px;color:var(--muted)}
+
+/* spacing bars */
+.brow{display:grid;grid-template-columns:96px 140px 64px minmax(0,1fr);align-items:center;gap:14px;padding:7px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.brow .bn{font-weight:700}
+.brow .bt{height:18px;background:var(--panel);border-radius:3px;overflow:hidden}
+.brow .bt i{display:block;height:100%;background:var(--brand)}
+.brow .bv{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.boxes{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end}
+.boxes figure{margin:0;display:grid;gap:8px;justify-items:start}
+.boxes figure i{display:block;background:rgba(255,107,26,.14);border:2px solid var(--brand)}
+.boxes figcaption{font-size:13px;line-height:1.3}
+.boxes figcaption b{display:block;font-size:14px}
+.boxes figcaption span{color:var(--muted)}
+
+/* shape / shadow */
+.stage{background:var(--panel);border-radius:12px;padding:36px 28px}
+.shgrid{display:flex;flex-wrap:wrap;gap:36px}
+.shgrid figure{margin:0;display:grid;gap:14px;justify-items:start}
+.shcard{width:150px;height:104px;background:#fff;border-radius:10px}
+.shgrid figcaption{font-size:13px;color:var(--muted)}
+.shgrid figcaption b{color:var(--ink);display:block;font-size:14px}
+.stage.light{background:#F3F4F6;color:#111}
+
+/* z + opacity */
+.zwrap{position:relative;height:360px;margin-top:18px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
+.zc{position:absolute;width:min(260px,62%);height:92px;border-radius:8px;padding:14px 16px;box-shadow:0 8px 16px rgba(0,0,0,.18);display:flex;flex-direction:column;justify-content:space-between;font-weight:700}
+.zc span{font-weight:500;font-size:13px}
+.otile{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg)}
+.otile .chip{height:84px;position:relative}
+.otile .chip i{position:absolute;inset:0;background:var(--brand)}
+.otile div+div{padding:10px 12px}
+.otile b{display:block}
+
+/* motion */
+.play{all:unset;cursor:pointer;background:var(--brand);color:#fff;font-weight:700;padding:11px 22px;border-radius:8px}
+.play:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.mrow{display:grid;grid-template-columns:72px 150px minmax(0,1fr);gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.mrow .nm b{display:block}
+.mrow .nm span{font-size:13px;color:var(--muted)}
+.mrow.dur{grid-template-columns:150px minmax(0,1fr)}
+.track{position:relative;height:28px;background:var(--panel);border-radius:99px;cursor:pointer}
+.ball{position:absolute;left:4px;top:4px;width:20px;height:20px;border-radius:50%;background:var(--brand)}
+.curve{width:64px;height:64px;color:var(--ink)}
+.curve rect{fill:var(--panel)}
+
+/* layout */
+.bp{display:grid;grid-template-columns:110px minmax(0,1fr) 70px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.bp .bar{height:28px;background:var(--panel);border-radius:4px;overflow:hidden}
+.bp .bar i{display:block;height:100%;background:var(--ink);border-radius:0 4px 4px 0}
+.bp span{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.gwrap{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.gframe{display:grid;gap:8px;justify-items:start}
+.gframe .fr{height:150px;background:var(--cream);border:1px solid rgba(0,0,0,.12);display:grid}
+.gframe .fr i{background:rgba(255,107,26,.55)}
+.gframe b{font-size:15px}
+.gframe span{font-size:13px;color:var(--muted)}
+.ratios{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end}
+.ratios figure{margin:0;display:grid;gap:8px;justify-items:start;font-size:13px}
+.ratios figure i{display:block;height:96px;background:var(--ink);border-radius:6px}
+.ratios figure b{display:block}
+.ratios figure span{color:var(--muted)}
+
+/* semantic color */
+.rtile{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);cursor:pointer;text-align:left;display:block;width:100%}
+.rtile .pv{height:96px;position:relative;display:flex;align-items:center;justify-content:center}
+.rtile .pv i{position:absolute;inset:0}
+.rtile .pv .bx{position:relative;width:62%;height:54%;background:transparent;border-radius:6px}
+.rtile .pv .aa{position:relative;font-size:38px;font-weight:700;line-height:1}
+.rtile .mt{padding:10px 12px 12px;display:grid;gap:5px;justify-items:start}
+.rtile .mt b{font-size:14px}
+.rtile:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.pills{display:flex;flex-wrap:wrap;gap:14px}
+.pill{border-radius:99px;padding:14px 26px;display:grid;gap:2px;min-width:180px}
+.pill b{font-size:17px}
+.pill span{font-size:13px;font-weight:500}
+
+/* buttons */
+.vcard{margin-top:22px}
+.vhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 14px;margin-bottom:10px}
+.vhead b{font-size:17px}
+.vhead span{font-size:13px;color:var(--muted)}
+.cells{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.cell{display:grid;grid-template-rows:auto auto;border-right:1px solid var(--line)}
+.cell:last-child{border-right:0}
+.cell .st{display:flex;align-items:center;justify-content:center;padding:34px 12px;min-height:128px}
+.cell .cap{padding:8px 12px;font-size:13px;font-weight:600;border-top:1px solid var(--line);background:var(--bg)}
+.btn{font-family:var(--f-body);font-size:16px;font-weight:700;line-height:1.4;letter-spacing:.04em;background:var(--bg-c);color:var(--tx-c);border:2px solid var(--bd-c);border-radius:8px;height:var(--bh,48px);padding:0 24px;transition:background-color 150ms cubic-bezier(0,0,.58,1),color 150ms cubic-bezier(0,0,.58,1),border-color 150ms cubic-bezier(0,0,.58,1);cursor:pointer;white-space:nowrap}
+.btn:focus-visible{outline:none}
+.btn[disabled]{cursor:not-allowed}
+.sizes{display:flex;flex-wrap:wrap;gap:28px;align-items:center;padding:36px 28px;background:var(--brand);border-radius:10px}
+.sizes figure{margin:0;display:grid;gap:10px;justify-items:start;color:#fff;font-size:13px}
+.sizes figure b{font-size:14px}
+
+/* text styles */
+.tcard{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:18px}
+.tcard .th{padding:16px 20px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;border-bottom:1px solid var(--line)}
+.tcard .th b{font-size:18px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.tcard .tb{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.tcard .tb>div{padding:22px 22px;overflow:hidden;min-width:0}
+.tcard .tb .dk{background:#111}
+.tcard .tb .lt{background:#fff;color:#111}
+.tcard .tb small{display:block;font-size:12px;font-weight:600;opacity:.7;margin-bottom:8px;font-family:var(--f-body);letter-spacing:0;line-height:1.3}
+.smp{margin:0 0 14px;word-break:break-word}
+
+/* elevation */
+.mock{background:#fff;color:#111;border-radius:10px;padding:16px;width:100%;max-width:230px}
+.mock .ln{height:8px;background:#E5E7EB;border-radius:4px;margin-top:8px}
+.mock .ln.s{width:60%}
+.mock .it{padding:8px 10px;font-size:14px;border-radius:6px;font-weight:500}
+.mock .it.h{background:#F3F4F6}
+.egrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.ecell{display:grid;gap:14px;justify-items:start;align-content:start}
+.ecell .meta b{display:block;font-size:15px}
+.mock.modal{max-width:250px;padding:20px}
+.mock.modal .mb{display:flex;gap:8px;margin-top:16px}
+.mini{font-size:12px;font-weight:700;padding:6px 12px;border-radius:6px}
+
+/* interaction */
+.irow{display:grid;grid-template-columns:140px 72px minmax(0,1fr);gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.irow b{font-size:15px}
+.irow .dur{display:flex;align-items:center;gap:12px}
+.irow .dur i{display:block;height:14px;background:var(--brand);border-radius:3px}
+.irow .dur span{font-size:13px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.irow.d{grid-template-columns:140px minmax(0,1fr) auto}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:#111;color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:900;border:2px solid var(--brand)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:980px){
+  .shell{display:block}
+  .side{position:sticky;top:env(safe-area-inset-top,0px);height:auto;z-index:800;padding:10px 12px;display:block;overflow-x:auto;overflow-y:hidden;white-space:nowrap}
+  .brand,.gl{display:none}
+  .side nav{display:flex;gap:4px}
+  .side a{display:inline-block;border-left:0;border-bottom:3px solid transparent;border-radius:6px 6px 0 0;padding:8px 12px;flex:none}
+  .side a.on{border-bottom-color:var(--brand)}
+  .hero{padding-top:48px}
+  .cells{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cell{border-bottom:1px solid var(--line)}
+  .srow{grid-template-columns:44px 52px minmax(0,1fr)}
+  .brow{grid-template-columns:70px 100px 56px minmax(0,1fr)}
+  .mrow{grid-template-columns:64px 1fr}
+  .mrow .track{grid-column:1/-1}
+  .irow,.irow.d{grid-template-columns:110px 1fr}
+  .irow .cv{display:none}
+  .irow.d .dur{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side" aria-label="Library sections">
+    <div class="brand"><div class="mark"></div><b>Portfolio<br>Design System</b></div>
+    <nav id="nav"></nav>
+  </aside>
+  <main class="main" id="main"></main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const PRIM = {
+  "color": {
+    "brand": {
+      "primary": {
+        "$type": "color",
+        "$value": "#FF6B1A"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "#E9DDC7"
+      },
+      "complementary": {
+        "$type": "color",
+        "$value": "#111111"
+      }
+    },
+    "neutral": {
+      "100": {
+        "$type": "color",
+        "$value": "#F3F4F6"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#E5E7EB"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#D1D5DB"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#9CA3AF"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#6B7280"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#4B5563"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#374151"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#1F2937"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#111827"
+      },
+      "white": {
+        "$type": "color",
+        "$value": "#FFFFFF"
+      },
+      "black": {
+        "$type": "color",
+        "$value": "#000000"
+      }
+    },
+    "feedback": {
+      "success": {
+        "$type": "color",
+        "$value": "#2EFF74"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "#FFEC1A"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "#F42F2F"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "#529CFF"
+      }
+    }
+  },
+  "typography": {
+    "font-family": {
+      "primary": {
+        "$type": "fontFamily",
+        "$value": "Anton"
+      },
+      "secondary": {
+        "$type": "fontFamily",
+        "$value": "Inter"
+      },
+      "complementary": {
+        "$type": "fontFamily",
+        "$value": "Cormorant"
+      }
+    },
+    "font-size": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "12px"
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "14px"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "18px"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "20px"
+      },
+      "2xl": {
+        "$type": "dimension",
+        "$value": "24px"
+      },
+      "3xl": {
+        "$type": "dimension",
+        "$value": "32px"
+      },
+      "4xl": {
+        "$type": "dimension",
+        "$value": "40px"
+      },
+      "5xl": {
+        "$type": "dimension",
+        "$value": "48px"
+      },
+      "6xl": {
+        "$type": "dimension",
+        "$value": "64px"
+      },
+      "7xl": {
+        "$type": "dimension",
+        "$value": "72px"
+      },
+      "8xl": {
+        "$type": "dimension",
+        "$value": "80px"
+      },
+      "9xl": {
+        "$type": "dimension",
+        "$value": "96px"
+      },
+      "10xl": {
+        "$type": "dimension",
+        "$value": "128px"
+      }
+    },
+    "font-weight": {
+      "regular": {
+        "$type": "fontWeight",
+        "$value": 400
+      },
+      "medium": {
+        "$type": "fontWeight",
+        "$value": 500
+      },
+      "semi-bold": {
+        "$type": "fontWeight",
+        "$value": 600
+      },
+      "bold": {
+        "$type": "fontWeight",
+        "$value": 700
+      }
+    },
+    "line-height": {
+      "none": {
+        "$type": "number",
+        "$value": 1
+      },
+      "tight": {
+        "$type": "number",
+        "$value": 1.05
+      },
+      "snug": {
+        "$type": "number",
+        "$value": 1.15
+      },
+      "normal": {
+        "$type": "number",
+        "$value": 1.4
+      },
+      "relaxed": {
+        "$type": "number",
+        "$value": 1.6
+      },
+      "loose": {
+        "$type": "number",
+        "$value": 1.8
+      }
+    },
+    "letter-spacing": {
+      "tighter": {
+        "$type": "dimension",
+        "$value": "-0.04em"
+      },
+      "tight": {
+        "$type": "dimension",
+        "$value": "-0.02em"
+      },
+      "normal": {
+        "$type": "dimension",
+        "$value": "0em"
+      },
+      "wide": {
+        "$type": "dimension",
+        "$value": "0.04em"
+      },
+      "wider": {
+        "$type": "dimension",
+        "$value": "0.08em"
+      }
+    }
+  },
+  "spacing": {
+    "none": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "3xl": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "4xl": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "5xl": {
+      "$type": "dimension",
+      "$value": "80px"
+    },
+    "6xl": {
+      "$type": "dimension",
+      "$value": "96px"
+    },
+    "7xl": {
+      "$type": "dimension",
+      "$value": "128px"
+    }
+  },
+  "sizing": {
+    "xs": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "48px"
+    },
+    "3xl": {
+      "$type": "dimension",
+      "$value": "64px"
+    },
+    "4xl": {
+      "$type": "dimension",
+      "$value": "96px"
+    },
+    "5xl": {
+      "$type": "dimension",
+      "$value": "128px"
+    },
+    "6xl": {
+      "$type": "dimension",
+      "$value": "192px"
+    }
+  },
+  "radius": {
+    "none": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "full": {
+      "$type": "dimension",
+      "$value": "9999px"
+    }
+  },
+  "border": {
+    "none": {
+      "$type": "dimension",
+      "$value": "0px"
+    },
+    "thin": {
+      "$type": "dimension",
+      "$value": "1px"
+    },
+    "medium": {
+      "$type": "dimension",
+      "$value": "2px"
+    },
+    "thick": {
+      "$type": "dimension",
+      "$value": "4px"
+    }
+  },
+  "shadow": {
+    "none": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#00000000",
+        "offsetX": "0px",
+        "offsetY": "0px",
+        "blur": "0px",
+        "spread": "0px"
+      }
+    },
+    "sm": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#0000000D",
+        "offsetX": "0px",
+        "offsetY": "1px",
+        "blur": "2px",
+        "spread": "0px"
+      }
+    },
+    "md": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#0000001A",
+        "offsetX": "0px",
+        "offsetY": "4px",
+        "blur": "6px",
+        "spread": "0px"
+      }
+    },
+    "lg": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#0000001A",
+        "offsetX": "0px",
+        "offsetY": "8px",
+        "blur": "16px",
+        "spread": "0px"
+      }
+    },
+    "xl": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#0000001A",
+        "offsetX": "0px",
+        "offsetY": "20px",
+        "blur": "25px",
+        "spread": "0px"
+      }
+    }
+  },
+  "z-index": {
+    "base": {
+      "$type": "number",
+      "$value": 0
+    },
+    "dropdown": {
+      "$type": "number",
+      "$value": 100
+    },
+    "sticky": {
+      "$type": "number",
+      "$value": 200
+    },
+    "overlay": {
+      "$type": "number",
+      "$value": 300
+    },
+    "modal": {
+      "$type": "number",
+      "$value": 400
+    },
+    "toast": {
+      "$type": "number",
+      "$value": 500
+    },
+    "tooltip": {
+      "$type": "number",
+      "$value": 600
+    }
+  },
+  "opacity": {
+    "100": {
+      "$type": "number",
+      "$value": 1
+    },
+    "90": {
+      "$type": "number",
+      "$value": 0.9
+    },
+    "80": {
+      "$type": "number",
+      "$value": 0.8
+    },
+    "70": {
+      "$type": "number",
+      "$value": 0.7
+    },
+    "50": {
+      "$type": "number",
+      "$value": 0.5
+    },
+    "40": {
+      "$type": "number",
+      "$value": 0.4
+    }
+  },
+  "motion": {
+    "duration": {
+      "instant": {
+        "$type": "duration",
+        "$value": "0ms"
+      },
+      "fast": {
+        "$type": "duration",
+        "$value": "150ms"
+      },
+      "normal": {
+        "$type": "duration",
+        "$value": "300ms"
+      },
+      "slow": {
+        "$type": "duration",
+        "$value": "500ms"
+      }
+    },
+    "easing": {
+      "linear": {
+        "$type": "cubicBezier",
+        "$value": [
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      "ease": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.25,
+          0.1,
+          0.25,
+          1
+        ]
+      },
+      "ease-in": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.42,
+          0,
+          1,
+          1
+        ]
+      },
+      "ease-out": {
+        "$type": "cubicBezier",
+        "$value": [
+          0,
+          0,
+          0.58,
+          1
+        ]
+      },
+      "ease-in-out": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.42,
+          0,
+          0.58,
+          1
+        ]
+      }
+    }
+  },
+  "breakpoints": {
+    "mobile-sm": {
+      "$type": "dimension",
+      "$value": "320px"
+    },
+    "mobile-md": {
+      "$type": "dimension",
+      "$value": "480px"
+    },
+    "tablet": {
+      "$type": "dimension",
+      "$value": "768px"
+    },
+    "desktop": {
+      "$type": "dimension",
+      "$value": "1280px"
+    },
+    "wide": {
+      "$type": "dimension",
+      "$value": "1920px"
+    }
+  },
+  "grid": {
+    "columns": {
+      "mobile": {
+        "$type": "number",
+        "$value": 4
+      },
+      "tablet": {
+        "$type": "number",
+        "$value": 8
+      },
+      "desktop": {
+        "$type": "number",
+        "$value": 12
+      }
+    },
+    "gutter": {
+      "mobile": {
+        "$type": "dimension",
+        "$value": "12px"
+      },
+      "tablet": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "desktop": {
+        "$type": "dimension",
+        "$value": "24px"
+      }
+    },
+    "padding": {
+      "mobile": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "tablet": {
+        "$type": "dimension",
+        "$value": "32px"
+      },
+      "desktop": {
+        "$type": "dimension",
+        "$value": "64px"
+      }
+    }
+  },
+  "aspect-ratio": {
+    "square": {
+      "$type": "ratio",
+      "$value": "1 / 1"
+    },
+    "standard": {
+      "$type": "ratio",
+      "$value": "4 / 3"
+    },
+    "photo": {
+      "$type": "ratio",
+      "$value": "3 / 2"
+    },
+    "video": {
+      "$type": "ratio",
+      "$value": "16 / 9"
+    },
+    "wide": {
+      "$type": "ratio",
+      "$value": "21 / 9"
+    },
+    "portrait": {
+      "$type": "ratio",
+      "$value": "3 / 4"
+    },
+    "story": {
+      "$type": "ratio",
+      "$value": "9 / 16"
+    }
+  }
+};
+const SEM  = {
+  "color": {
+    "background": {
+      "transparent": {
+        "$type": "color",
+        "$value": "#00000000"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.white}"
+      },
+      "subtle": {
+        "$type": "color",
+        "$value": "{color.neutral.100}"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.neutral.900}"
+      },
+      "brand-primary": {
+        "$type": "color",
+        "$value": "{color.brand.primary}"
+      },
+      "brand-secondary": {
+        "$type": "color",
+        "$value": "{color.brand.secondary}"
+      },
+      "brand-complementary": {
+        "$type": "color",
+        "$value": "{color.brand.complementary}"
+      }
+    },
+    "surface": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.white}"
+      },
+      "raised": {
+        "$type": "color",
+        "$value": "{color.neutral.white}"
+      },
+      "overlay": {
+        "$type": "color",
+        "$value": "#000000B3"
+      },
+      "brand-primary": {
+        "$type": "color",
+        "$value": "{color.brand.primary}"
+      },
+      "brand-secondary": {
+        "$type": "color",
+        "$value": "{color.brand.secondary}"
+      },
+      "brand-complementary": {
+        "$type": "color",
+        "$value": "{color.brand.complementary}"
+      }
+    },
+    "border": {
+      "white": {
+        "$type": "color",
+        "$value": "{color.neutral.white}"
+      },
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.300}"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": "{color.neutral.500}"
+      },
+      "focus": {
+        "$type": "color",
+        "$value": "{color.brand.primary}"
+      },
+      "brand-primary": {
+        "$type": "color",
+        "$value": "{color.brand.primary}"
+      },
+      "brand-secondary": {
+        "$type": "color",
+        "$value": "{color.brand.secondary}"
+      },
+      "brand-complementary": {
+        "$type": "color",
+        "$value": "{color.brand.complementary}"
+      }
+    },
+    "text": {
+      "default": {
+        "$type": "color",
+        "$value": "{color.neutral.900}"
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{color.neutral.600}"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": "{color.neutral.400}"
+      },
+      "brand-primary": {
+        "$type": "color",
+        "$value": "{color.brand.primary}"
+      },
+      "brand-secondary": {
+        "$type": "color",
+        "$value": "{color.brand.secondary}"
+      },
+      "brand-complementary": {
+        "$type": "color",
+        "$value": "{color.brand.complementary}"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": "{color.neutral.white}"
+      }
+    },
+    "button": {
+      "primary-main": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.default}"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.brand-primary}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.background.transparent}"
+        }
+      },
+      "primary-alt": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.brand-primary}"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.inverse}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.white}"
+        }
+      },
+      "secondary-main": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.brand-complementary}"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.brand-secondary}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.background.transparent}"
+        }
+      },
+      "secondary-alt": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.brand-secondary}"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.brand-complementary}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.brand-complementary}"
+        }
+      },
+      "complementary": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.brand-complementary}"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.inverse}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.background.transparent}"
+        }
+      },
+      "white": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.default}"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.brand-complementary}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.background.transparent}"
+        }
+      },
+      "no-background": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.background.transparent}"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.text.inverse}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.border.white}"
+        }
+      }
+    },
+    "state": {
+      "default": {
+        "primary-main": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.primary-main.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.primary-main.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.primary-main.border}"
+          }
+        },
+        "primary-alt": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.primary-alt.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.primary-alt.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.primary-alt.border}"
+          }
+        },
+        "secondary-main": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.secondary-main.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.secondary-main.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.secondary-main.border}"
+          }
+        },
+        "secondary-alt": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.secondary-alt.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.secondary-alt.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.secondary-alt.border}"
+          }
+        },
+        "complementary": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.complementary.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.complementary.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.complementary.border}"
+          }
+        },
+        "white": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.white.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.white.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.white.border}"
+          }
+        },
+        "no-background": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.no-background.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.no-background.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.no-background.border}"
+          }
+        }
+      },
+      "hover": {
+        "primary-main": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.primary-alt.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.primary-alt.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.primary-alt.border}"
+          }
+        },
+        "primary-alt": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.primary-main.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.primary-main.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.primary-main.border}"
+          }
+        },
+        "secondary-main": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.secondary-alt.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.secondary-alt.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.secondary-alt.border}"
+          }
+        },
+        "secondary-alt": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.secondary-main.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.secondary-main.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.secondary-main.border}"
+          }
+        },
+        "complementary": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.no-background.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.no-background.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.no-background.border}"
+          }
+        },
+        "white": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.no-background.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.no-background.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.no-background.border}"
+          }
+        },
+        "no-background": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.white.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.white.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.white.border}"
+          }
+        }
+      },
+      "active": {
+        "primary-main": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.primary-alt.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.primary-alt.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.primary-alt.border}"
+          }
+        },
+        "primary-alt": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.primary-main.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.primary-main.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.primary-main.border}"
+          }
+        },
+        "secondary-main": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.secondary-alt.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.secondary-alt.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.secondary-alt.border}"
+          }
+        },
+        "secondary-alt": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.secondary-main.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.secondary-main.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.secondary-main.border}"
+          }
+        },
+        "complementary": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.no-background.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.no-background.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.no-background.border}"
+          }
+        },
+        "white": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.no-background.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.no-background.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.no-background.border}"
+          }
+        },
+        "no-background": {
+          "bg": {
+            "$type": "color",
+            "$value": "{color.button.white.bg}"
+          },
+          "text": {
+            "$type": "color",
+            "$value": "{color.button.white.text}"
+          },
+          "border": {
+            "$type": "color",
+            "$value": "{color.button.white.border}"
+          }
+        }
+      },
+      "focus": {
+        "ring": {
+          "$type": "color",
+          "$value": "{color.border.focus}"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "$type": "color",
+          "$value": "{color.neutral.100}"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{color.neutral.500}"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{color.neutral.300}"
+        }
+      }
+    },
+    "status": {
+      "success": {
+        "$type": "color",
+        "$value": "{color.feedback.success}"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": "{color.feedback.warning}"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{color.feedback.error}"
+      },
+      "info": {
+        "$type": "color",
+        "$value": "{color.feedback.info}"
+      }
+    }
+  },
+  "typography": {
+    "base": {
+      "font-size": {
+        "$type": "dimension",
+        "$value": "{typography.font-size.md}"
+      },
+      "font-weight": {
+        "$type": "fontWeight",
+        "$value": "{typography.font-weight.regular}"
+      },
+      "line-height": {
+        "$type": "number",
+        "$value": "{typography.line-height.normal}"
+      },
+      "letter-spacing": {
+        "$type": "dimension",
+        "$value": "{typography.letter-spacing.normal}"
+      }
+    },
+    "heading": {
+      "base": {
+        "font-family": {
+          "$type": "fontFamily",
+          "$value": "{typography.font-family.primary}"
+        },
+        "font-weight": {
+          "$type": "fontWeight",
+          "$value": "{typography.font-weight.bold}"
+        },
+        "line-height": {
+          "$type": "number",
+          "$value": "{typography.line-height.tight}"
+        },
+        "letter-spacing": {
+          "$type": "dimension",
+          "$value": "{typography.letter-spacing.tight}"
+        }
+      },
+      "h1": {
+        "color": {
+          "inverse": {
+            "$type": "color",
+            "$value": "{color.text.inverse}"
+          },
+          "brand-complementary": {
+            "$type": "color",
+            "$value": "{color.text.brand-complementary}"
+          }
+        },
+        "font-size": {
+          "mobile": {
+            "$type": "dimension",
+            "$value": "{typography.font-size.2xl}"
+          },
+          "tablet": {
+            "$type": "dimension",
+            "$value": "{typography.font-size.3xl}"
+          },
+          "desktop": {
+            "$type": "dimension",
+            "$value": "{typography.font-size.5xl}"
+          }
+        }
+      },
+      "h2": {
+        "color": {
+          "inverse": {
+            "$type": "color",
+            "$value": "{color.text.inverse}"
+          },
+          "brand-complementary": {
+            "$type": "color",
+            "$value": "{color.text.brand-complementary}"
+          }
+        },
+        "font-size": {
+          "mobile": {
+            "$type": "dimension",
+            "$value": "{typography.font-size.xl}"
+          },
+          "tablet": {
+            "$type": "dimension",
+            "$value": "{typography.font-size.2xl}"
+          },
+          "desktop": {
+            "$type": "dimension",
+            "$value": "{typography.font-size.3xl}"
+          }
+        }
+      },
+      "h3": {
+        "color": {
+          "inverse": {
+            "$type": "color",
+            "$value": "{color.text.inverse}"
+          },
+          "brand-complementary": {
+            "$type": "color",
+            "$value": "{color.text.brand-complementary}"
+          }
+        },
+        "font-size": {
+          "mobile": {
+            "$type": "dimension",
+            "$value": "{typography.font-size.lg}"
+          },
+          "tablet": {
+            "$type": "dimension",
+            "$value": "{typography.font-size.xl}"
+          },
+          "desktop": {
+            "$type": "dimension",
+            "$value": "{typography.font-size.2xl}"
+          }
+        }
+      }
+    },
+    "body": {
+      "base": {
+        "font-family": {
+          "$type": "fontFamily",
+          "$value": "{typography.font-family.secondary}"
+        },
+        "font-weight": {
+          "$type": "fontWeight",
+          "$value": "{typography.font-weight.medium}"
+        },
+        "line-height": {
+          "$type": "number",
+          "$value": "{typography.line-height.normal}"
+        },
+        "letter-spacing": {
+          "$type": "dimension",
+          "$value": "{typography.letter-spacing.normal}"
+        }
+      },
+      "font-size": {
+        "mobile": {
+          "$type": "dimension",
+          "$value": "{typography.font-size.sm}"
+        },
+        "tablet": {
+          "$type": "dimension",
+          "$value": "{typography.font-size.md}"
+        },
+        "desktop": {
+          "$type": "dimension",
+          "$value": "{typography.font-size.md}"
+        }
+      },
+      "color": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.default}"
+        },
+        "muted": {
+          "$type": "color",
+          "$value": "{color.text.muted}"
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "{color.text.inverse}"
+        }
+      }
+    },
+    "eyebrow": {
+      "base": {
+        "font-family": {
+          "$type": "fontFamily",
+          "$value": "{typography.font-family.secondary}"
+        },
+        "font-weight": {
+          "$type": "fontWeight",
+          "$value": "{typography.font-weight.bold}"
+        },
+        "line-height": {
+          "$type": "number",
+          "$value": "{typography.line-height.normal}"
+        },
+        "letter-spacing": {
+          "$type": "dimension",
+          "$value": "{typography.letter-spacing.wide}"
+        }
+      },
+      "font-size": {
+        "mobile": {
+          "$type": "dimension",
+          "$value": "{typography.font-size.xs}"
+        },
+        "tablet": {
+          "$type": "dimension",
+          "$value": "{typography.font-size.xs}"
+        },
+        "desktop": {
+          "$type": "dimension",
+          "$value": "{typography.font-size.sm}"
+        }
+      },
+      "color": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.default}"
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "{color.text.inverse}"
+        },
+        "brand-primary": {
+          "$type": "color",
+          "$value": "{color.text.brand-primary}"
+        }
+      }
+    },
+    "button": {
+      "base": {
+        "font-family": {
+          "$type": "fontFamily",
+          "$value": "{typography.font-family.secondary}"
+        },
+        "font-size": {
+          "$type": "dimension",
+          "$value": "{typography.font-size.md}"
+        },
+        "font-weight": {
+          "$type": "fontWeight",
+          "$value": "{typography.font-weight.bold}"
+        },
+        "line-height": {
+          "$type": "number",
+          "$value": "{typography.line-height.normal}"
+        },
+        "letter-spacing": {
+          "$type": "dimension",
+          "$value": "{typography.letter-spacing.wide}"
+        }
+      },
+      "color": {
+        "default": {
+          "$type": "color",
+          "$value": "{color.text.default}"
+        },
+        "inverse": {
+          "$type": "color",
+          "$value": "{color.text.inverse}"
+        }
+      }
+    }
+  },
+  "spacing": {
+    "container": {
+      "mobile": {
+        "$type": "dimension",
+        "$value": "{grid.padding.mobile}"
+      },
+      "tablet": {
+        "$type": "dimension",
+        "$value": "{grid.padding.tablet}"
+      },
+      "desktop": {
+        "$type": "dimension",
+        "$value": "{grid.padding.desktop}"
+      }
+    },
+    "gap-grid-flex": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "{spacing.xs}"
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "{spacing.sm}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{spacing.md}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{spacing.lg}"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{spacing.xl}"
+      }
+    },
+    "section": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{spacing.2xl}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{spacing.4xl}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{spacing.6xl}"
+      }
+    },
+    "article": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{spacing.lg}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{spacing.xl}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{spacing.3xl}"
+      }
+    },
+    "component": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{spacing.sm}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{spacing.md}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{spacing.lg}"
+      }
+    }
+  },
+  "sizing": {
+    "input": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{sizing.2xl}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{sizing.3xl}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{sizing.4xl}"
+      }
+    },
+    "button": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "{sizing.2xl}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{sizing.3xl}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{sizing.4xl}"
+      }
+    },
+    "asset": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "{sizing.md}"
+      },
+      "sm": {
+        "$type": "dimension",
+        "$value": "{sizing.xl}"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "{sizing.2xl}"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "{sizing.3xl}"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{sizing.4xl}"
+      },
+      "2xl": {
+        "$type": "dimension",
+        "$value": "{sizing.5xl}"
+      },
+      "3xl": {
+        "$type": "dimension",
+        "$value": "{sizing.6xl}"
+      }
+    }
+  },
+  "shadow": {
+    "card": {
+      "$type": "shadow",
+      "$value": "{shadow.sm}"
+    },
+    "dropdown": {
+      "$type": "shadow",
+      "$value": "{shadow.md}"
+    },
+    "popover": {
+      "$type": "shadow",
+      "$value": "{shadow.lg}"
+    },
+    "modal": {
+      "$type": "shadow",
+      "$value": "{shadow.xl}"
+    }
+  },
+  "interaction": {
+    "transition": {
+      "hover": {
+        "$type": "cubicBezier",
+        "$value": "{motion.easing.ease-out}"
+      },
+      "focus": {
+        "$type": "cubicBezier",
+        "$value": "{motion.easing.ease-out}"
+      },
+      "active": {
+        "$type": "cubicBezier",
+        "$value": "{motion.easing.ease-out}"
+      },
+      "fade": {
+        "$type": "cubicBezier",
+        "$value": "{motion.easing.ease}"
+      },
+      "slide": {
+        "$type": "cubicBezier",
+        "$value": "{motion.easing.ease-out}"
+      },
+      "scale": {
+        "$type": "cubicBezier",
+        "$value": "{motion.easing.ease-out}"
+      }
+    },
+    "animation": {
+      "tooltip": {
+        "$type": "duration",
+        "$value": "{motion.duration.fast}"
+      },
+      "modal": {
+        "$type": "duration",
+        "$value": "{motion.duration.normal}"
+      },
+      "drawer": {
+        "$type": "duration",
+        "$value": "{motion.duration.normal}"
+      },
+      "fade": {
+        "$type": "duration",
+        "$value": "{motion.duration.normal}"
+      },
+      "slide": {
+        "$type": "duration",
+        "$value": "{motion.duration.normal}"
+      },
+      "scale": {
+        "$type": "duration",
+        "$value": "{motion.duration.normal}"
+      }
+    }
+  }
+};
+
+/* ---------- data helpers ---------- */
+const isObj=o=>o&&typeof o==='object';
+const hasVal=o=>isObj(o)&&('$value' in o);
+function merge(a,b){const r={...a};for(const k in b){r[k]=(isObj(r[k])&&!hasVal(r[k])&&isObj(b[k])&&!hasVal(b[k]))?merge(r[k],b[k]):b[k]}return r}
+const ALL=merge(PRIM,SEM);
+const get=p=>p.split('.').reduce((o,k)=>o&&o[k],ALL);
+function leaves(o,pre=[]){let out=[];for(const k in o){const v=o[k];if(hasVal(v))out.push([...pre,k].join('.'));else if(isObj(v))out=out.concat(leaves(v,[...pre,k]))}return out}
+function resolve(path){const chain=[path];let n=get(path);let v=n.$value;while(typeof v==='string'&&/^\{.*\}$/.test(v)){const p=v.slice(1,-1);chain.push(p);n=get(p);v=n.$value}return{value:v,chain,type:n.$type}}
+const val=p=>resolve(p).value;
+const last=p=>p.split('.').pop();
+const px=v=>parseFloat(v);
+
+/* ---------- color helpers ---------- */
+function parseHex(h){h=h.replace('#','');return{r:parseInt(h.slice(0,2),16),g:parseInt(h.slice(2,4),16),b:parseInt(h.slice(4,6),16),a:h.length===8?parseInt(h.slice(6,8),16)/255:1}}
+function lum({r,g,b}){const f=c=>{c/=255;return c<=.03928?c/12.92:Math.pow((c+.055)/1.055,2.4)};return .2126*f(r)+.7152*f(g)+.0722*f(b)}
+function flat(h){const c=parseHex(h);return{r:c.r*c.a+255*(1-c.a),g:c.g*c.a+255*(1-c.a),b:c.b*c.a+255*(1-c.a)}}
+function best(h){const L=lum(flat(h));const cw=1.05/(L+.05);const cb=(L+.05)/(lum({r:17,g:17,b:17})+.05);return cw>=cb?{t:'#FFFFFF',r:cw,n:'White text'}:{t:'#111111',r:cb,n:'Black text'}}
+function contrastWhite(h){return 1.05/(lum(flat(h))+.05)}
+const opaque=h=>parseHex(h).a===1;
+
+/* ---------- ui helpers ---------- */
+const STACK={Anton:"'Anton','Impact','Arial Narrow',sans-serif",Inter:"'Inter',system-ui,sans-serif",Cormorant:"'Cormorant',Georgia,serif"};
+const stack=n=>STACK[n]||n;
+const sec=(id,title,desc,body)=>`<section class="sec" id="${id}"><header><h2>${title}</h2><p>${desc}</p></header>${body}</section>`;
+const sub=(t,d)=>`<h3>${t}</h3>${d?`<p class="subd">${d}</p>`:''}`;
+const alias=t=>`<span class="alias">→ ${t}</span>`;
+
+function swatch(path,big){
+  const r=resolve(path),hex=r.value,b=best(hex);
+  return `<button class="sw ${big?'big':''}" data-copy="${path}" aria-label="${path} ${hex}">
+    <div class="chip checker"><i style="background:${hex}"></i>${opaque(hex)?`<span class="badge" style="color:${b.t}">${b.n} · ${b.r.toFixed(1)}:1</span>`:''}</div>
+    <div class="meta"><b>${last(path)}</b><span>${hex.toUpperCase()}</span><em>${path}</em></div></button>`;
+}
+
+/* ---------- PRIMITIVES ---------- */
+function pColor(){
+  const brand=['primary','secondary','complementary'].map(k=>swatch('color.brand.'+k,true)).join('');
+  const nKeys=Object.keys(PRIM.color.neutral);
+  const ramp=nKeys.map(k=>{const h=val('color.neutral.'+k);return `<div style="background:${h};color:${best(h).t}">${k}</div>`}).join('');
+  const neutral=nKeys.map(k=>swatch('color.neutral.'+k)).join('');
+  const fb=Object.keys(PRIM.color.feedback).map(k=>swatch('color.feedback.'+k)).join('');
+  return sec('p-color','Color','Brand colors define identity, neutrals carry structure, and feedback colors signal state. Click any swatch to copy its token path.',
+    sub('Brand','Three colors that carry the identity.')+`<div class="grid w3">${brand}</div>`+
+    sub('Neutral','A cool grey ramp from 100 to 900, plus pure white and black.')+`<div class="ramp">${ramp}</div><div class="grid" style="margin-top:16px">${neutral}</div>`+
+    sub('Feedback','Reserved for success, warning, error and info messages.')+`<div class="grid">${fb}</div>`);
+}
+
+function pType(){
+  const fam=PRIM.typography['font-family'];
+  const roles={primary:'Display and headings',secondary:'Body, buttons and labels',complementary:'Editorial accents'};
+  const samples={primary:'Bold ideas, set in tall letters.',secondary:'Clear text for interfaces and long reading.',complementary:'A graceful voice for quotes and captions.'};
+  const fcards=Object.keys(fam).map(k=>{const f=fam[k].$value;return `<div class="fam" data-copy="typography.font-family.${k}" style="cursor:pointer"><div class="aa" style="font-family:${stack(f)}">Aa</div><b>${f}</b><span class="role">${k} · ${roles[k]}</span><p style="font-family:${stack(f)}">${samples[k]}</p></div>`}).join('');
+  const sizes=Object.keys(PRIM.typography['font-size']).map(k=>{const v=val('typography.font-size.'+k);const big=px(v)>=64;return `<div class="srow"><span class="n">${k}</span><span class="px">${v}</span><div class="sample" style="font-size:${v}">${big?'Design':'Design systems keep teams aligned'}</div></div>`}).join('');
+  const weights=Object.keys(PRIM.typography['font-weight']).map(k=>{const v=val('typography.font-weight.'+k);return `<div class="wcard"><div class="aa" style="font-weight:${v}">Aa</div><b>${k}</b><span>${v}</span></div>`}).join('');
+  const lhs=Object.keys(PRIM.typography['line-height']).map(k=>{const v=val('typography.line-height.'+k);return `<div class="lcard"><p style="line-height:${v}">Tokens turn design decisions into a shared language for everyone.</p><b>${k}</b><span>${v}</span></div>`}).join('');
+  const lss=Object.keys(PRIM.typography['letter-spacing']).map(k=>{const v=val('typography.letter-spacing.'+k);return `<div class="lsrow"><b>${k}</b><div class="t" style="letter-spacing:${v}">Portfolio Design</div><span>${v}</span></div>`}).join('');
+  return sec('p-type','Typography','Three typefaces, a fourteen-step size scale, four weights, six line heights and five letter-spacing values.',
+    sub('Font families')+`<div class="grid w3">${fcards}</div>`+
+    sub('Font size','Preview the scale in any of the three families.')+
+    `<div class="seg" role="group" aria-label="Preview typeface"><button aria-pressed="true" data-spec="Anton">Anton</button><button aria-pressed="false" data-spec="Inter">Inter</button><button aria-pressed="false" data-spec="Cormorant">Cormorant</button></div><div id="scale" style="--spec:${stack('Anton')}">${sizes}</div>`+
+    sub('Font weight')+`<div class="grid">${weights}</div>`+
+    sub('Line height','Same sentence, six line heights.')+`<div class="grid">${lhs}</div>`+
+    sub('Letter spacing')+`<div>${lss}</div>`);
+}
+
+function barRows(paths,aliasFirst){
+  return paths.map(p=>{const r=resolve(p);const w=px(r.value);const al=aliasFirst&&r.chain.length>1?alias(r.chain[1]):'';return `<div class="brow" data-copy="${p}"><span class="bn">${last(p)}</span><div class="bt"><i style="width:${Math.min(w,140)}px"></i></div><span class="bv">${r.value}</span>${al}</div>`}).join('');
+}
+function boxRows(paths,aliasFirst,wide){
+  return `<div class="boxes">`+paths.map(p=>{const r=resolve(p);const w=px(r.value);return `<figure data-copy="${p}" style="cursor:pointer"><i style="width:${wide?wide:w}px;height:${w}px"></i><figcaption><b>${last(p)}</b><span>${r.value}</span>${aliasFirst&&r.chain.length>1?`<br>${alias(r.chain[1])}`:''}</figcaption></figure>`}).join('')+`</div>`;
+}
+
+function pSpace(){
+  return sec('p-space','Spacing','The base rhythm for gaps, padding and margins, shown at true size.',
+    `<div style="margin-top:28px">${barRows(Object.keys(PRIM.spacing).map(k=>'spacing.'+k))}</div>`);
+}
+function pSize(){
+  return sec('p-size','Sizing','Fixed dimensions for controls and assets, drawn at actual pixel size.',
+    `<div style="margin-top:28px">${boxRows(Object.keys(PRIM.sizing).map(k=>'sizing.'+k))}</div>`);
+}
+function pShape(){
+  const rad=Object.keys(PRIM.radius).map(k=>{const v=val('radius.'+k);return `<figure data-copy="radius.${k}" style="cursor:pointer"><i style="width:96px;height:96px;border-radius:${v};background:var(--brand)"></i><figcaption><b>${k}</b><span>${v==='9999px'?'9999px':v}</span></figcaption></figure>`}).join('');
+  const bor=Object.keys(PRIM.border).map(k=>{const v=val('border.'+k);return `<figure data-copy="border.${k}" style="cursor:pointer"><i style="width:150px;height:76px;border:${v} solid var(--ink);background:var(--bg);border-radius:6px"></i><figcaption><b>${k}</b><span>${v}</span></figcaption></figure>`}).join('');
+  return sec('p-shape','Radius and border','Corner radii and stroke widths.',
+    sub('Radius')+`<div class="boxes">${rad}</div>`+sub('Border width')+`<div class="boxes">${bor}</div>`);
+}
+const shCss=v=>`${v.offsetX} ${v.offsetY} ${v.blur} ${v.spread} ${v.color}`;
+function pShadow(){
+  const items=Object.keys(PRIM.shadow).map(k=>{const v=val('shadow.'+k);return `<figure data-copy="shadow.${k}" style="cursor:pointer"><div class="shcard" style="box-shadow:${shCss(v)}"></div><figcaption><b>${k}</b>y ${v.offsetY} · blur ${v.blur}</figcaption></figure>`}).join('');
+  return sec('p-shadow','Shadow','Five levels of elevation, from flat to floating.',`<div class="stage light" style="margin-top:28px"><div class="shgrid">${items}</div></div>`);
+}
+function pLayers(){
+  const keys=Object.keys(PRIM['z-index']);
+  const cols=['#E5E7EB','#D1D5DB','#9CA3AF','#6B7280','#374151','#1F2937','#FF6B1A'];
+  const cards=keys.map((k,i)=>{const v=val('z-index.'+k);const c=cols[i];return `<div class="zc" data-copy="z-index.${k}" style="left:${18+i*9.5}%;top:${14+i*40}px;z-index:${v};background:${c};color:${best(c).t};cursor:pointer;max-width:260px"><b>${k}</b><span>z-index ${v}</span></div>`}).join('');
+  const ops=Object.keys(PRIM.opacity).map(k=>{const v=val('opacity.'+k);return `<div class="otile" data-copy="opacity.${k}" style="cursor:pointer"><div class="chip checker"><i style="opacity:${v}"></i></div><div><b>${k}</b><span style="color:var(--muted);font-size:13px">${v}</span></div></div>`}).join('');
+  return sec('p-layers','Layers and opacity','Stacking order for interface layers, and the opacity steps for fades and overlays.',
+    sub('Z-index','Each layer sits above the one before it.')+`<div class="zwrap">${cards}</div>`+
+    sub('Opacity','Brand orange at each level, over a checkerboard.')+`<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))">${ops}</div>`);
+}
+function curve(b){const m=10,s=64,w=s-2*m;const X=v=>m+v*w,Y=v=>s-m-v*w;const [x1,y1,x2,y2]=b;
+  return `<svg class="curve" viewBox="0 0 ${s} ${s}" aria-hidden="true"><rect x="0" y="0" width="${s}" height="${s}" rx="6"/><line x1="${X(0)}" y1="${Y(0)}" x2="${X(1)}" y2="${Y(1)}" stroke="currentColor" stroke-opacity=".18" stroke-dasharray="3 3"/><path d="M${X(0)} ${Y(0)} C${X(x1)} ${Y(y1)}, ${X(x2)} ${Y(y2)}, ${X(1)} ${Y(1)}" fill="none" stroke="#FF6B1A" stroke-width="3" stroke-linecap="round"/></svg>`}
+const bez=b=>`cubic-bezier(${b.join(',')})`;
+function pMotion(){
+  const dur=Object.keys(PRIM.motion.duration).map(k=>{const v=val('motion.duration.'+k);return `<div class="mrow dur" data-copy="motion.duration.${k}"><div class="nm"><b>${k}</b><span>${v}</span></div><div class="track" data-track data-ms="${px(v)}" data-ease="${bez(val('motion.easing.ease-out'))}"><div class="ball"></div></div></div>`}).join('');
+  const eas=Object.keys(PRIM.motion.easing).map(k=>{const b=val('motion.easing.'+k);return `<div class="mrow" data-copy="motion.easing.${k}"><div>${curve(b)}</div><div class="nm"><b>${k}</b><span>${b.join(', ')}</span></div><div class="track" data-track data-ms="500" data-ease="${bez(b)}"><div class="ball"></div></div></div>`}).join('');
+  return sec('p-motion','Motion','Durations set how long a change takes; easing curves set how it feels. Press play to compare them side by side.',
+    `<div style="margin-top:26px"><button class="play" id="playAll">Play all</button></div>`+sub('Duration','Each ball travels with the ease-out curve.')+dur+sub('Easing','All curves run at the slow duration (500ms) so the difference is visible.')+eas);
+}
+function pLayout(){
+  const bps=Object.keys(PRIM.breakpoints).map(k=>{const v=val('breakpoints.'+k);return `<div class="bp" data-copy="breakpoints.${k}" style="cursor:pointer"><b>${k}</b><div class="bar"><i style="width:${px(v)/1920*100}%"></i></div><span>${v}</span></div>`}).join('');
+  const k=.5;
+  const grids=['mobile','tablet','desktop'].map(d=>{const c=val('grid.columns.'+d),g=val('grid.gutter.'+d),p=val('grid.padding.'+d);
+    const w={mobile:375,tablet:768,desktop:1280}[d];
+    return `<div class="gframe"><div class="fr" style="width:${w*k}px;grid-template-columns:repeat(${c},1fr);gap:${px(g)*k}px;padding:0 ${px(p)*k}px">${'<i></i>'.repeat(c)}</div><b>${d}</b><span>${c} columns, ${g} gutter, ${p} side margin</span></div>`}).join('');
+  const ars=Object.keys(PRIM['aspect-ratio']).map(k=>{const v=val('aspect-ratio.'+k);const [a,b]=v.split('/').map(Number);return `<figure data-copy="aspect-ratio.${k}" style="cursor:pointer"><i style="width:${96*a/b}px"></i><div><b>${k}</b><span>${v}</span></div></figure>`}).join('');
+  return sec('p-layout','Layout','Breakpoints, the column grid and aspect ratios for media.',
+    sub('Breakpoints','Bar length is proportional to the width, out of 1920px.')+`<div>${bps}</div>`+
+    sub('Grid','Drawn at half scale. Columns in red, side margins in cream.')+`<div class="gwrap">${grids}</div>`+
+    sub('Aspect ratios')+`<div class="ratios">${ars}</div>`);
+}
+
+/* ---------- SEMANTIC ---------- */
+function stageFor(hex){return contrastWhite(hex)<3?'#111111':'#FFFFFF'}
+function rtile(path,kind){
+  const r=resolve(path),hex=r.value;const name=last(path);
+  let pv='';
+  if(kind==='fill'){pv=`<div class="pv checker"><i style="background:${hex}"></i></div>`}
+  if(kind==='border'){const st=stageFor(hex);pv=`<div class="pv" style="background:${st}"><div class="bx" style="border:3px solid ${hex}"></div></div>`}
+  if(kind==='text'){const st=stageFor(hex);pv=`<div class="pv" style="background:${st}"><span class="aa" style="color:${hex}">Aa</span></div>`}
+  const prim=r.chain[r.chain.length-1];
+  return `<button class="rtile" data-copy="${path}" aria-label="${path}">${pv}<div class="mt"><b>${name}</b>${r.chain.length>1?alias(prim):`<span class="alias">${hex.toUpperCase()}</span>`}</div></button>`;
+}
+function sColor(){
+  const grp=(g,kind)=>`<div class="grid">${Object.keys(SEM.color[g]).map(k=>rtile(`color.${g}.${k}`,kind)).join('')}</div>`;
+  const st=Object.keys(SEM.color.status).map(k=>{const h=val('color.status.'+k);const b=best(h);return `<div class="pill" data-copy="color.status.${k}" style="background:${h};color:${b.t};cursor:pointer"><b>${k}</b><span>${h.toUpperCase()}</span></div>`}).join('');
+  return sec('s-color','Color roles','Semantic colors say what a color is for, not what it looks like. Every tile points back to the primitive it uses.',
+    sub('Background','Page-level fills.')+grp('background','fill')+
+    sub('Surface','Cards, panels and overlays.')+grp('surface','fill')+
+    sub('Border','Strokes for containers, inputs and focus.')+grp('border','border')+
+    sub('Text','Text colors are previewed on a surface where they can be read.')+grp('text','text')+
+    sub('Status')+`<div class="pills">${st}</div>`);
+}
+
+const VARIANTS=[
+  ['primary-main','Primary main','brand orange','color.background.brand-primary','Hover and press swap to primary alt.'],
+  ['primary-alt','Primary alt','brand orange','color.background.brand-primary','Hover and press swap to primary main.'],
+  ['secondary-main','Secondary main','brand cream','color.background.brand-secondary','Hover and press swap to secondary alt.'],
+  ['secondary-alt','Secondary alt','brand cream','color.background.brand-secondary','Hover and press swap to secondary main.'],
+  ['complementary','Complementary','brand orange','color.background.brand-primary','Hover and press become the no-background style.'],
+  ['white','White','dark','color.background.inverse','Hover and press become the no-background style.'],
+  ['no-background','No background','dark','color.background.inverse','Hover and press become the white style.']
+];
+function btnC(v,state){
+  if(state==='disabled')return{bg:val('color.state.disabled.bg'),tx:val('color.state.disabled.text'),bd:val('color.state.disabled.border')};
+  const s=state==='focus'?'default':state;
+  return{bg:val(`color.state.${s}.${v}.bg`),tx:val(`color.state.${s}.${v}.text`),bd:val(`color.state.${s}.${v}.border`)};
+}
+const btnVars=c=>`--bg-c:${c.bg};--tx-c:${c.tx};--bd-c:${c.bd}`;
+function sButtons(){
+  const ring=val('color.state.focus.ring');
+  const states=[['default','Default'],['hover','Hover'],['active','Active'],['focus','Focus'],['disabled','Disabled']];
+  const cards=VARIANTS.map(([v,label,stageName,stagePath,note])=>{
+    const stage=val(stagePath);
+    const cells=states.map(([s,sl],i)=>{
+      const c=btnC(v,s);
+      const extra=s==='focus'?`box-shadow:0 0 0 3px #fff,0 0 0 6px ${ring};`:'';
+      const live=s==='default'?` data-live data-d="${btnVars(btnC(v,'default'))}" data-h="${btnVars(btnC(v,'hover'))}" data-a="${btnVars(btnC(v,'active'))}" data-ring="${ring}"`:'';
+      return `<div class="cell"><div class="st" style="background:${stage}"><button class="btn" style="${btnVars(c)};${extra}"${s==='disabled'?' disabled':''}${live}>Button</button></div><div class="cap">${sl}</div></div>`}).join('');
+    return `<div class="vcard"><div class="vhead"><b>${label}</b><span>Shown on ${stageName}. ${note}</span></div><div class="cells">${cells}</div></div>`}).join('');
+  const sizes=['sm','md','lg'].map(s=>{const h=val('sizing.button.'+s);return `<figure><button class="btn" style="${btnVars(btnC('primary-main','default'))};--bh:${h}">Button</button><span><b>${s}</b> ${h} tall</span></figure>`}).join('');
+  return sec('s-buttons','Buttons','Seven button styles across five states. The first button in each row is live: hover it, press it, or tab to it.',
+    cards+sub('Sizes','Height comes from the button sizing tokens. Shown with primary main.')+`<div class="sizes">${sizes}</div>`);
+}
+
+function specChips(items){return `<div class="chips">${items.map(i=>`<span class="alias">${i}</span>`).join('')}</div>`}
+function props(base){const p=['font-family','font-weight','line-height','letter-spacing','font-size'].filter(k=>get(base+'.'+k)).map(k=>{const r=resolve(base+'.'+k);return `${k.replace('font-','').replace('-',' ')} ${r.value}`});return p}
+function sType(){
+  const hs=['h1','h2','h3'].map(h=>{
+    const fam=val('typography.heading.base.font-family'),w=val('typography.heading.base.font-weight'),lh=val('typography.heading.base.line-height'),ls=val('typography.heading.base.letter-spacing');
+    const sz=['mobile','tablet','desktop'].map(d=>val(`typography.heading.${h}.font-size.${d}`));
+    const cc=val(`typography.heading.${h}.color.brand-complementary`),ci=val(`typography.heading.${h}.color.inverse`);
+    const css=`font-family:${stack(fam)};font-weight:${w};line-height:${lh};letter-spacing:${ls}`;
+    const lines=['mobile','tablet','desktop'].map((d,i)=>`<small>${d} · ${sz[i]}</small><p class="smp" style="${css};font-size:${sz[i]};color:${cc}">Design with intent</p>`).join('');
+    return `<div class="tcard"><div class="th"><b>${h.toUpperCase()}</b>${specChips([fam,'weight '+w,'line height '+lh,'spacing '+ls,sz.join(' / ')])}</div><div class="tb"><div class="lt">${lines}</div><div class="dk"><small style="color:#fff">inverse · ${sz[2]}</small><p class="smp" style="${css};font-size:${sz[2]};color:${ci}">Design with intent</p></div></div></div>`}).join('');
+  const bfam=val('typography.body.base.font-family'),bw=val('typography.body.base.font-weight'),blh=val('typography.body.base.line-height'),bls=val('typography.body.base.letter-spacing');
+  const bs=['mobile','tablet','desktop'].map(d=>val('typography.body.font-size.'+d));
+  const bcss=`font-family:${stack(bfam)};font-weight:${bw};line-height:${blh};letter-spacing:${bls}`;
+  const para='Tokens turn design decisions into a shared language, so designers and developers build the same thing.';
+  const body=`<div class="tcard"><div class="th"><b>Body</b>${specChips([bfam,'weight '+bw,'line height '+blh,'spacing '+bls,bs.join(' / ')])}</div><div class="tb"><div class="lt"><small>default · ${bs[0]} mobile</small><p class="smp" style="${bcss};font-size:${bs[0]};color:${val('typography.body.color.default')}">${para}</p><small>muted · ${bs[2]} desktop</small><p class="smp" style="${bcss};font-size:${bs[2]};color:${val('typography.body.color.muted')}">${para}</p></div><div class="dk"><small style="color:#fff">inverse · ${bs[2]} desktop</small><p class="smp" style="${bcss};font-size:${bs[2]};color:${val('typography.body.color.inverse')}">${para}</p></div></div></div>`;
+  const efam=val('typography.eyebrow.base.font-family'),ew=val('typography.eyebrow.base.font-weight'),elh=val('typography.eyebrow.base.line-height'),els=val('typography.eyebrow.base.letter-spacing');
+  const es=['mobile','tablet','desktop'].map(d=>val('typography.eyebrow.font-size.'+d));
+  const ecss=`font-family:${stack(efam)};font-weight:${ew};line-height:${elh};letter-spacing:${els};font-size:${es[2]}`;
+  const eyebrow=`<div class="tcard"><div class="th"><b>Eyebrow</b>${specChips([efam,'weight '+ew,'line height '+elh,'spacing '+els,es.join(' / ')])}</div><div class="tb"><div class="lt"><small>default</small><p class="smp" style="${ecss};color:${val('typography.eyebrow.color.default')}">New collection</p><small>brand primary</small><p class="smp" style="${ecss};color:${val('typography.eyebrow.color.brand-primary')}">New collection</p></div><div class="dk"><small style="color:#fff">inverse</small><p class="smp" style="${ecss};color:${val('typography.eyebrow.color.inverse')}">New collection</p></div></div></div>`;
+  const bt=props('typography.button.base');
+  const bc=`font-family:${stack(val('typography.button.base.font-family'))};font-size:${val('typography.button.base.font-size')};font-weight:${val('typography.button.base.font-weight')};line-height:${val('typography.button.base.line-height')};letter-spacing:${val('typography.button.base.letter-spacing')}`;
+  const button=`<div class="tcard"><div class="th"><b>Button label</b>${specChips(bt)}</div><div class="tb"><div class="lt"><small>default</small><p class="smp" style="${bc};color:${val('typography.button.color.default')}">Get started</p></div><div class="dk"><small style="color:#fff">inverse</small><p class="smp" style="${bc};color:${val('typography.button.color.inverse')}">Get started</p></div></div></div>`;
+  const baseP=['font-size','font-weight','line-height','letter-spacing'].map(k=>`${k.replace('font-','').replace('-',' ')} ${val('typography.base.'+k)}`);
+  return sec('s-type','Text styles','Ready-to-use styles built from the type primitives, with responsive sizes for mobile, tablet and desktop.',
+    sub('Base','The default for any text that has no style of its own.')+specChips(baseP)+
+    sub('Headings','Light surface on the left, dark surface on the right.')+hs+
+    sub('Body')+body+sub('Eyebrow')+eyebrow+sub('Button label')+button);
+}
+
+function sSpace(){
+  const g=(grp,title,desc)=>sub(title,desc)+`<div>${barRows(Object.keys(SEM.spacing[grp]).map(k=>`spacing.${grp}.${k}`),true)}</div>`;
+  const inputs=boxRows(Object.keys(SEM.sizing.input).map(k=>`sizing.input.${k}`),true,150);
+  const btns=boxRows(Object.keys(SEM.sizing.button).map(k=>`sizing.button.${k}`),true,150);
+  const assets=boxRows(Object.keys(SEM.sizing.asset).map(k=>`sizing.asset.${k}`),true);
+  return sec('s-space','Spacing and sizing','Spacing and sizing named by where they are used.',
+    g('container','Container','Side padding of the page, per breakpoint.')+
+    g('gap-grid-flex','Gap','Space between items in grid and flex layouts.')+
+    g('section','Section','Vertical space between page sections.')+
+    g('article','Article','Space inside long-form content.')+
+    g('component','Component','Inner padding of components.')+
+    sub('Input height')+inputs+sub('Button height')+btns+sub('Asset size','Icons, avatars and images.')+assets);
+}
+
+function sElev(){
+  const sh=k=>shCss(val('shadow.'+k));
+  const cell=(k,mock,use)=>{const r=resolve('shadow.'+k);return `<div class="ecell" data-copy="shadow.${k}" style="cursor:pointer">${mock}<div class="meta"><b>${k}</b>${alias(r.chain[1])} <span style="font-size:13px;color:var(--muted)">${use}</span></div></div>`};
+  const card=`<div class="mock" style="box-shadow:${sh('card')}"><b>Card</b><div class="ln"></div><div class="ln s"></div></div>`;
+  const dd=`<div class="mock" style="padding:6px;box-shadow:${sh('dropdown')}"><div class="it h">Profile</div><div class="it">Settings</div><div class="it">Sign out</div></div>`;
+  const pop=`<div class="mock" style="box-shadow:${sh('popover')}"><b>Popover</b><div class="ln"></div><div class="ln s"></div></div>`;
+  const mdl=`<div class="mock modal" style="box-shadow:${sh('modal')}"><b>Confirm</b><div class="ln"></div><div class="ln s"></div><div class="mb"><span class="mini" style="background:#FF6B1A;color:#fff">Save</span><span class="mini" style="background:#F3F4F6">Cancel</span></div></div>`;
+  return sec('s-elev','Elevation','Four shadow roles, each mapped to one primitive. The deeper the shadow, the higher the layer.',
+    `<div class="stage light" style="margin-top:28px"><div class="egrid">${cell('card',card,'Resting content')}${cell('dropdown',dd,'Menus and selects')}${cell('popover',pop,'Floating panels')}${cell('modal',mdl,'Dialogs')}</div></div>`);
+}
+
+function sMotion(){
+  const tr=Object.keys(SEM.interaction.transition).map(k=>{const p=`interaction.transition.${k}`;const r=resolve(p);const b=r.value;return `<div class="irow" data-copy="${p}" style="cursor:pointer"><b>${k}</b><div class="cv">${curve(b)}</div><div>${alias(r.chain[1])} <span style="font-size:13px;color:var(--muted)">${bez(b)}</span></div></div>`}).join('');
+  const an=Object.keys(SEM.interaction.animation).map(k=>{const p=`interaction.animation.${k}`;const r=resolve(p);const ms=px(r.value);return `<div class="irow d" data-copy="${p}" style="cursor:pointer"><b>${k}</b><div class="dur"><i style="width:${ms/500*100}%;max-width:100%"></i><span>${r.value}</span></div>${alias(r.chain[1])}</div>`}).join('');
+  return sec('s-motion','Interaction','How each kind of interface change moves. Curves show the easing; bars show duration against the slow 500ms primitive.',
+    sub('Transitions')+tr+sub('Animations')+an);
+}
+
+/* ---------- assemble ---------- */
+const nPrim=leaves(PRIM).length,nSem=leaves(SEM).length;
+const chainP=resolve('color.button.primary-alt.bg').chain;
+const chainHtml=chainP.map((p,i)=>{const lab=i===0?'Button token':(i===chainP.length-1?'Primitive':'Role token');const hex=i===chainP.length-1?val(p):null;return `<div class="link"><small>${lab}</small><b>${hex?`<span class="dot" style="--c:${hex}"></span>`:''}${p}</b></div>`}).join('');
+
+const hero=`<section class="hero"><h1>Portfolio Design System</h1><p class="lede">Every primitive and semantic token, laid out to browse, compare and copy.</p>
+<div class="palette" aria-hidden="true"><i style="background:#111"></i><i style="background:#E9DDC7"></i><i style="background:#fff"></i></div>
+<div class="chain" aria-label="Example token chain">${chainHtml}</div>
+<p class="count">${nPrim} primitive tokens feed ${nSem} semantic tokens. Click anything to copy its token path.</p></section>`;
+
+const main=hero+
+ `<div class="band p"><h2>Primitives</h2><p>The raw values. Nothing here knows where it will be used.</p></div>`+
+ pColor()+pType()+pSpace()+pSize()+pShape()+pShadow()+pLayers()+pMotion()+pLayout()+
+ `<div class="band s"><h2>Semantic</h2><p>Roles that give each primitive a job, so components never reach for raw values.</p></div>`+
+ sColor()+sButtons()+sType()+sSpace()+sElev()+sMotion();
+document.getElementById('main').innerHTML=main;
+
+const NAV=[['Primitives',[['p-color','Color'],['p-type','Typography'],['p-space','Spacing'],['p-size','Sizing'],['p-shape','Radius and border'],['p-shadow','Shadow'],['p-layers','Layers and opacity'],['p-motion','Motion'],['p-layout','Layout']]],
+ ['Semantic',[['s-color','Color roles'],['s-buttons','Buttons'],['s-type','Text styles'],['s-space','Spacing and sizing'],['s-elev','Elevation'],['s-motion','Interaction']]]];
+document.getElementById('nav').innerHTML=NAV.map(([g,l])=>`<div class="gl">${g}</div>`+l.map(([id,t])=>`<a href="#${id}" data-id="${id}">${t}</a>`).join('')).join('');
+
+/* ---------- behavior ---------- */
+const toast=document.getElementById('toast');let tt;
+function say(t){toast.textContent=t;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1500)}
+async function copy(t){try{await navigator.clipboard.writeText(t)}catch(e){try{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}catch(_){}}say('Copied '+t)}
+document.addEventListener('click',e=>{
+  const sp=e.target.closest('[data-spec]');
+  if(sp){document.querySelectorAll('[data-spec]').forEach(b=>b.setAttribute('aria-pressed',b===sp));document.getElementById('scale').style.setProperty('--spec',stack(sp.dataset.spec));return}
+  if(e.target.closest('.track')||e.target.closest('#playAll')||e.target.closest('.btn'))return;
+  const c=e.target.closest('[data-copy]');if(c)copy('{'+c.dataset.copy+'}');
+});
+/* motion demo */
+function run(tr){const ball=tr.querySelector('.ball');const dist=tr.clientWidth-ball.offsetWidth-8;
+  ball.style.transition='none';ball.style.transform='translateX(0)';void ball.offsetWidth;
+  ball.style.transition=`transform ${tr.dataset.ms}ms ${tr.dataset.ease}`;ball.style.transform=`translateX(${dist}px)`}
+document.addEventListener('click',e=>{const t=e.target.closest('.track');if(t){run(t);return}if(e.target.closest('#playAll'))document.querySelectorAll('.track').forEach(run)});
+/* live buttons */
+function applyVars(b,s){s.split(';').forEach(p=>{const i=p.indexOf(':');if(i>0)b.style.setProperty(p.slice(0,i).trim(),p.slice(i+1).trim())})}
+document.querySelectorAll('[data-live]').forEach(b=>{
+  const d=b.dataset.d,h=b.dataset.h,a=b.dataset.a,ring=b.dataset.ring;
+  const set=s=>applyVars(b,s);
+  b.addEventListener('pointerenter',()=>set(h));b.addEventListener('pointerleave',()=>{set(d)});
+  b.addEventListener('pointerdown',()=>set(a));b.addEventListener('pointerup',()=>set(h));
+  b.addEventListener('focus',()=>{if(b.matches(':focus-visible'))b.style.boxShadow=`0 0 0 3px #fff,0 0 0 6px ${ring}`});
+  b.addEventListener('blur',()=>{b.style.boxShadow='none'});
+});
+/* scrollspy */
+const links=[...document.querySelectorAll('#nav a')];
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.dataset.id===en.target.id));const on=links.find(l=>l.classList.contains('on'));if(on&&window.innerWidth<=980)on.scrollIntoView({inline:'center',block:'nearest'})}})},{rootMargin:'-20% 0px -70% 0px'});
+document.querySelectorAll('.sec').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>

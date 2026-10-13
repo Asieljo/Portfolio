@@ -10,9 +10,9 @@ import cvUrl from '../../../Asiel_Rosiles_CV.pdf';
 import './Header.styles.scss';
 
 const navLinks = [
-  { id: 'home', label: 'Home', to: '/' },
-  { id: 'about', label: 'About', to: '/#about' },
-  { id: 'projects', label: 'Projects', to: '/#projects' },
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About', section: 'about' },
+  { id: 'projects', label: 'Projects', section: 'projects' },
 ];
 
 const Header = ({ onContactClick }) => {
@@ -23,18 +23,18 @@ const Header = ({ onContactClick }) => {
   const toggleMenu = () => setIsMenuOpen((open) => !open);
   const closeMenu = () => setIsMenuOpen(false);
 
-  // Off the home page the links navigate back to it; the hash effect below
-  // then scrolls to the section once Home has rendered.
-  const handleNavClick = (event, to) => {
+  // Off the home page the links navigate back to it, passing the section in
+  // the router state instead of a hash so the URL stays clean; the effect
+  // below then scrolls to it once Home has rendered.
+  const handleNavClick = (event, section) => {
     closeMenu();
     if (location.pathname !== '/') return;
-    if (to === '/') {
-      event.preventDefault();
-      scrollToTop();
-      return;
-    }
     event.preventDefault();
-    scrollToSection(to.replace('/#', ''));
+    if (section) {
+      scrollToSection(section);
+    } else {
+      scrollToTop();
+    }
   };
 
   const handleContactClick = () => {
@@ -42,19 +42,18 @@ const Header = ({ onContactClick }) => {
     onContactClick();
   };
 
+  // Hashes are still handled for in-page anchors (e.g. the case study phases).
   useEffect(() => {
-    if (location.hash) {
-      const element = document.getElementById(location.hash.slice(1));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+    const section = location.state?.section ?? location.hash.slice(1);
+    if (section) {
+      scrollToSection(section);
     }
   }, [location]);
 
   return (
     <header className="header">
       <div className="header__container">
-        <Link to="/" className="header__brand" onClick={(event) => handleNavClick(event, '/')}>
+        <Link to="/" className="header__brand" onClick={handleNavClick}>
           Asiel Rosiles
         </Link>
 
@@ -66,9 +65,10 @@ const Header = ({ onContactClick }) => {
             {navLinks.map((link) => (
               <Link
                 key={link.id}
-                to={link.to}
+                to="/"
+                state={link.section && { section: link.section }}
                 className="header__link"
-                onClick={(event) => handleNavClick(event, link.to)}
+                onClick={(event) => handleNavClick(event, link.section)}
               >
                 {link.label}
               </Link>

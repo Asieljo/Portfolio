@@ -20,7 +20,11 @@ const ContactCta = ({ onContactClick }) => (
         >
           Get in touch
         </button>
-        <Link to="/#projects" className="contact-cta__button contact-cta__button--outline">
+        <Link
+          to="/"
+          state={{ section: 'projects' }}
+          className="contact-cta__button contact-cta__button--outline"
+        >
           More projects
         </Link>
       </div>

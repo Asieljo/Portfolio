@@ -1,0 +1,775 @@
+// Intro, facts band, section headers and closing call to action come from the
+// shared components; this sheet covers the project's own storytelling blocks.
+// Phases, cards and the phase index follow the case study so both process
+// pages read alike. Cards set `color` once and their text inherits it.
+.portfolio-ds {
+  background-color: var(--color-surface);
+
+  &__container {
+    @include section-container;
+  }
+
+  // Phases need more air between their blocks than a regular section.
+  &__container--phase {
+    gap: $spacing-article-md;
+
+    @include desktop {
+      gap: $spacing-article-lg;
+    }
+  }
+
+  &__text {
+    @include text-body;
+    font-size: $typography-body-font-size-mobile;
+    color: inherit;
+
+    @include tablet-up {
+      font-size: $typography-body-font-size-tablet;
+    }
+  }
+
+  &__label {
+    color: inherit;
+    @include text-eyebrow;
+  }
+
+  // Styled like the project type on the home page cards.
+  &__badge {
+    align-self: flex-start;
+    color: var(--color-inverse);
+    background-color: var(--color-content);
+    text-transform: uppercase;
+    @include text-tag;
+  }
+
+  // Captions under images are centered.
+  &__caption {
+    @include flex-column;
+    align-items: center;
+    gap: $spacing-xs;
+    text-align: center;
+    @include text-body;
+    font-size: $typography-font-size-sm;
+
+    @include desktop {
+      font-size: $typography-font-size-md;
+    }
+  }
+
+  // Landing screenshots. The border keeps the orange shot visible on the
+  // orange theme.
+  &__shot {
+    width: 100%;
+    height: auto;
+    border: $border-medium solid var(--color-content);
+  }
+
+  // Hero: the landing on its three themes. On mobile the first theme takes the
+  // full row and the other two share the next one.
+  &__hero {
+    @include flex-column;
+    gap: $spacing-md;
+  }
+
+  &__themes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $grid-gutter-mobile;
+
+    @include tablet-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: $grid-gutter-desktop;
+    }
+  }
+
+  &__theme {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    &:first-child {
+      grid-column: 1 / -1;
+
+      @include tablet-up {
+        grid-column: auto;
+      }
+    }
+  }
+
+  &__overview {
+    display: grid;
+    gap: $spacing-lg;
+
+    @include tablet-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: $grid-gutter-desktop;
+    }
+  }
+
+  &__overview-item {
+    @include flex-column;
+    gap: $spacing-sm;
+    padding-top: $spacing-md;
+    border-top: $border-medium solid var(--color-content);
+  }
+
+  &__overview-title {
+    @include text-display;
+    font-size: $typography-font-size-xl;
+    color: var(--color-accent);
+
+    @include tablet-up {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  // Phase index: each step links to its phase and inverts on hover like the
+  // outline buttons. The final result is the destination, so it starts
+  // inverted and takes a full row wherever the grid wraps.
+  &__process {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $grid-gutter-desktop;
+
+    @include tablet {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @include desktop {
+      grid-template-columns: none;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+    }
+  }
+
+  &__step {
+    @include flex-column;
+    gap: $spacing-xs;
+    padding: $spacing-md;
+    color: var(--color-content);
+    border: $border-medium solid var(--color-content);
+    transition:
+      background-color $motion-duration-fast $interaction-transition-hover,
+      color $motion-duration-fast $interaction-transition-hover;
+
+    &:hover {
+      background-color: var(--color-content);
+      color: var(--color-inverse);
+    }
+  }
+
+  &__step--result {
+    grid-column: 1 / -1;
+    background-color: var(--color-content);
+    color: var(--color-inverse);
+
+    &:hover {
+      background-color: $color-background-transparent;
+      color: var(--color-content);
+    }
+
+    @include desktop {
+      grid-column: auto;
+    }
+  }
+
+  &__step-number {
+    @include text-display;
+    font-size: $typography-font-size-2xl;
+    line-height: $typography-line-height-none;
+
+    @include desktop {
+      font-size: $typography-font-size-3xl;
+    }
+  }
+
+  &__step-name {
+    @include text-display;
+    font-size: $typography-font-size-lg;
+    text-transform: uppercase;
+
+    @include desktop {
+      font-size: $typography-font-size-xl;
+    }
+  }
+
+  &__step-topic {
+    @include text-body;
+    font-size: $typography-font-size-xs;
+
+    @include desktop {
+      font-size: $typography-font-size-sm;
+    }
+  }
+
+  // Each phase opens with a full-width rule, like the header border.
+  &__phase {
+    border-top: $border-medium solid var(--color-content);
+  }
+
+  // Stacked on mobile; from tablet up the heading and the intro sit side by
+  // side, aligned on their last line.
+  &__phase-header {
+    @include flex-column;
+    gap: $spacing-lg;
+
+    @include tablet {
+      @include grid-tablet;
+    }
+
+    @include desktop {
+      @include grid-desktop;
+    }
+
+    @include tablet-up {
+      align-items: end;
+    }
+  }
+
+  &__phase-heading {
+    @include flex-column;
+    gap: $spacing-xs;
+
+    @include tablet {
+      grid-column: 1 / span 3;
+    }
+
+    @include desktop {
+      grid-column: 1 / span 5;
+    }
+  }
+
+  &__phase-number {
+    @include text-display;
+    font-size: $typography-font-size-5xl;
+    line-height: $typography-line-height-none;
+    color: var(--color-accent);
+
+    @include tablet {
+      font-size: $typography-font-size-6xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-7xl;
+    }
+  }
+
+  &__phase-title {
+    @include text-display;
+    font-size: $typography-font-size-2xl;
+    color: var(--color-accent);
+
+    @include tablet {
+      font-size: $typography-font-size-3xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-5xl;
+    }
+  }
+
+  &__phase-topic {
+    margin-bottom: $spacing-sm;
+    @include text-display;
+    font-size: $typography-font-size-lg;
+
+    @include tablet {
+      font-size: $typography-font-size-xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  &__phase-intro {
+    @include tablet {
+      grid-column: 4 / -1;
+    }
+
+    @include desktop {
+      grid-column: 7 / -1;
+    }
+  }
+
+  &__block {
+    @include flex-column;
+    gap: $spacing-md;
+  }
+
+  &__block-title {
+    @include text-display;
+    font-size: $typography-font-size-xl;
+
+    @include tablet-up {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  // Two columns by default; `--3` widens the grid where the content column
+  // has room.
+  &__cards {
+    display: grid;
+    gap: $grid-gutter-desktop;
+
+    @include tablet-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__cards--3 {
+    @include tablet-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__card {
+    @include flex-column;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    color: var(--color-content);
+    border: $border-medium solid var(--color-content);
+
+    @include desktop {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__card--inverse {
+    color: var(--color-inverse);
+    background-color: var(--color-content);
+  }
+
+  &__card-title {
+    @include text-display;
+    font-size: $typography-font-size-lg;
+    color: inherit;
+
+    @include tablet {
+      font-size: $typography-font-size-xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+
+  &__tag {
+    color: var(--color-content);
+    @include text-tag;
+  }
+
+  &__arrow {
+    @include text-display;
+    font-size: $typography-font-size-2xl;
+    line-height: $typography-line-height-none;
+    color: var(--color-accent);
+  }
+
+  // Primitive and semantic layers joined by an arrow: side by side from
+  // tablet up, stacked on mobile with the arrow pointing down.
+  &__layers {
+    display: grid;
+    gap: $spacing-md;
+
+    @include tablet-up {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: $spacing-lg;
+    }
+  }
+
+  &__arrow--layers {
+    justify-self: center;
+    align-self: center;
+    font-size: $typography-font-size-4xl;
+    transform: rotate(90deg);
+
+    @include tablet-up {
+      transform: none;
+    }
+  }
+
+  // A token name and its value, set in the code panel colors.
+  &__token {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: $spacing-sm;
+    margin-top: auto;
+    padding: $spacing-sm $spacing-md;
+    @include text-body;
+    font-size: $typography-font-size-sm;
+    color: $color-text-inverse;
+    background-color: $color-background-brand-complementary;
+  }
+
+  &__token-value {
+    color: $color-text-brand-primary;
+  }
+
+  // Code beside its explanation on desktop.
+  &__split {
+    @include flex-column;
+    gap: $spacing-lg;
+
+    @include desktop {
+      @include grid-desktop;
+      align-items: center;
+    }
+
+    > :first-child {
+      @include desktop {
+        grid-column: 1 / span 7;
+      }
+    }
+
+    > :last-child {
+      @include desktop {
+        grid-column: 9 / -1;
+      }
+    }
+  }
+
+  // Always dark, like a code editor, so the token names keep the brand orange
+  // on every theme; the border separates it from the black theme. There is no
+  // code font token, so `<code>` keeps the browser's monospace face.
+  &__code {
+    @include flex-column;
+    min-width: 0;
+    color: $color-text-inverse;
+    background-color: $color-background-brand-complementary;
+    border: $border-medium solid var(--color-content);
+  }
+
+  &__code-file {
+    padding: $spacing-sm $spacing-md;
+    border-bottom: $border-thin solid $color-border-strong;
+    @include text-eyebrow;
+  }
+
+  &__code-body {
+    padding: $spacing-md;
+    overflow-x: auto;
+    font-size: $typography-font-size-xs;
+    line-height: $typography-line-height-relaxed;
+
+    @include tablet-up {
+      font-size: $typography-font-size-sm;
+    }
+
+    @include desktop {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__code-name {
+    color: $color-text-brand-primary;
+  }
+
+  &__code-comment {
+    opacity: $opacity-70;
+  }
+
+  // External material of a phase: text beside its button from tablet up.
+  &__resource {
+    @include flex-column;
+    align-items: flex-start;
+    gap: $spacing-lg;
+    padding: $spacing-md;
+    border: $border-medium solid var(--color-content);
+    border-inline-start: $border-thick solid var(--color-accent);
+
+    @include tablet-up {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @include desktop {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__resource-body {
+    @include flex-column;
+    gap: $spacing-sm;
+  }
+
+  &__resource-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__resource-title {
+    @include text-display;
+    font-size: $typography-font-size-xl;
+    color: var(--color-accent);
+
+    @include desktop {
+      font-size: $typography-font-size-3xl;
+    }
+  }
+
+  &__resource-link {
+    flex-shrink: 0;
+    @include button-complementary;
+  }
+
+  &__pipeline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__pipeline-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__pipeline-step {
+    padding: $spacing-sm $spacing-md;
+    @include text-display;
+    font-size: $typography-font-size-md;
+    text-transform: uppercase;
+    border: $border-medium solid var(--color-content);
+
+    @include desktop {
+      font-size: $typography-font-size-xl;
+    }
+  }
+
+  &__pipeline-step--current {
+    color: var(--color-inverse);
+    background-color: var(--color-content);
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $grid-gutter-mobile;
+
+    @include tablet-up {
+      gap: $grid-gutter-desktop;
+    }
+  }
+
+  &__stat {
+    @include flex-column;
+    gap: $spacing-sm;
+    padding-top: $spacing-md;
+    border-top: $border-medium solid var(--color-content);
+  }
+
+  &__stat-value {
+    @include text-display;
+    font-size: $typography-font-size-5xl;
+    line-height: $typography-line-height-none;
+    color: var(--color-accent);
+
+    @include tablet {
+      font-size: $typography-font-size-7xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-9xl;
+    }
+  }
+
+  // Small to large on one row of the 12-column grid from tablet up; on mobile
+  // the desktop shot takes the first row of the 4-column grid.
+  &__devices {
+    display: grid;
+    grid-template-columns: repeat($grid-columns-mobile, minmax(0, 1fr));
+    gap: $grid-gutter-mobile;
+    align-items: end;
+
+    @include tablet-up {
+      @include grid-desktop;
+    }
+  }
+
+  &__device {
+    @include flex-column;
+    gap: $spacing-sm;
+  }
+
+  &__device--mobile {
+    grid-column: span 1;
+
+    @include tablet-up {
+      grid-column: span 2;
+    }
+  }
+
+  &__device--tablet {
+    grid-column: span 3;
+
+    @include tablet-up {
+      grid-column: span 4;
+    }
+  }
+
+  &__device--desktop {
+    grid-row: 1;
+    grid-column: 1 / -1;
+
+    @include tablet-up {
+      grid-row: auto;
+      grid-column: span 6;
+    }
+  }
+
+  // Five ranges, laid out like the facts band: two per row on mobile, a
+  // single row from tablet up.
+  &__breakpoints {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $spacing-md;
+    margin-top: $spacing-sm;
+
+    @include tablet-up {
+      grid-template-columns: none;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__breakpoint {
+    @include flex-column;
+    gap: $spacing-xs;
+    padding-inline-start: $spacing-sm;
+    border-inline-start: $border-thin solid var(--color-content);
+  }
+
+  &__breakpoint-range {
+    @include text-display;
+    font-size: $typography-font-size-md;
+
+    @include tablet {
+      font-size: $typography-font-size-lg;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-xl;
+    }
+  }
+
+  // Each swatch is painted with its theme's tokens, whatever the active theme.
+  &__swatches {
+    display: grid;
+    gap: $grid-gutter-desktop;
+
+    @include tablet-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__swatch {
+    @include flex-column;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    border: $border-medium solid var(--color-content);
+
+    @include desktop {
+      padding: $spacing-lg;
+    }
+  }
+
+  &__swatch--primary {
+    color: $color-text-brand-complementary;
+    background-color: $color-background-brand-primary;
+  }
+
+  &__swatch--secondary {
+    color: $color-text-brand-complementary;
+    background-color: $color-background-brand-secondary;
+  }
+
+  &__swatch--complementary {
+    color: $color-text-inverse;
+    background-color: $color-background-brand-complementary;
+
+    .portfolio-ds__swatch-name {
+      color: $color-text-brand-primary;
+    }
+  }
+
+  &__swatch-name {
+    margin-bottom: $spacing-sm;
+    @include text-display;
+    font-size: $typography-font-size-4xl;
+    line-height: $typography-line-height-none;
+    color: inherit;
+
+    @include desktop {
+      font-size: $typography-font-size-6xl;
+    }
+  }
+
+  &__swatch-tokens {
+    @include flex-column;
+    gap: $spacing-sm;
+  }
+
+  &__swatch-token {
+    @include flex-column;
+    gap: $spacing-xs;
+    padding-top: $spacing-sm;
+    border-top: $border-thin solid currentColor;
+  }
+
+  &__swatch-value {
+    @include text-body;
+    font-size: $typography-font-size-sm;
+
+    @include desktop {
+      font-size: $typography-font-size-md;
+    }
+  }
+
+  // The golden rule, set apart with a thick accent rule.
+  &__quote {
+    @include flex-column;
+    gap: $spacing-sm;
+    padding-inline-start: $spacing-lg;
+    border-inline-start: $border-thick solid var(--color-accent);
+  }
+
+  &__quote-text {
+    @include text-display;
+    font-size: $typography-font-size-2xl;
+    color: var(--color-accent);
+
+    @include tablet {
+      font-size: $typography-font-size-3xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-4xl;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+  }
+
+  &__button--solid {
+    @include button-complementary;
+  }
+
+  &__button--outline {
+    @include button-outline;
+  }
+}

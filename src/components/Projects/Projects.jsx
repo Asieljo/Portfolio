@@ -40,7 +40,7 @@ const projects = [
     image: PortfolioImage,
     actions: [
       { label: 'GitHub', href: 'https://github.com/Asieljo/Portfolio', variant: 'outline' },
-      { label: 'View project', href: 'https://asieljo.github.io/Portfolio/' },
+      { label: 'View project', to: '/design-system' },
     ],
   },
   {
