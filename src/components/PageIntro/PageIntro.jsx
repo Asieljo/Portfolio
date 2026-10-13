@@ -8,7 +8,7 @@ const PageIntro = ({ label, title, lead, text, action, media }) => (
   <section className="page-intro">
     <div className="page-intro__container">
       <Link to="/" state={{ section: 'projects' }} className="page-intro__back">
-        <span aria-hidden="true">←</span> Back to projects
+        Back to projects
       </Link>
 
       <div className="page-intro__heading">

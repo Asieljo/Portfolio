@@ -5,7 +5,8 @@
 // Theme palette. `primary` is the orange theme in design/ and the default;
 // `secondary` (beige) and `complementary` (black) live in design/themes/.
 // Solid buttons follow each theme's state tokens: the complementary family on
-// primary, secondary-main (which hovers into secondary-alt) on secondary and
+// primary (which keeps its colors on hover and only gains the white border),
+// secondary-main (which hovers into secondary-alt) on secondary and
 // white (which hovers into no-background) on complementary. `--color-hover` is
 // the hover accent for text links and icon buttons; `--color-accent` colours
 // the display headings that turn orange on complementary.
@@ -15,8 +16,8 @@
   --color-accent: #{$color-text-brand-complementary};
   --color-inverse: #{$color-button-complementary-text};
   --color-hover: #{$color-state-hover-complementary-text};
-  --color-button-hover-bg: #{$color-state-hover-complementary-bg};
-  --color-button-hover-text: #{$color-state-hover-complementary-text};
+  --color-button-hover-bg: #{$color-state-default-complementary-bg};
+  --color-button-hover-text: #{$color-state-default-complementary-text};
   --color-button-hover-border: #{$color-state-hover-complementary-border};
   --color-strip: #{$color-background-brand-complementary};
   --color-strip-content: #{$color-text-inverse};

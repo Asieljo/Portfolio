@@ -130,7 +130,6 @@ const themes = [
     tokens: [
       { role: 'Surface', name: 'background-brand-complementary' },
       { role: 'Content', name: 'text-inverse' },
-      { role: 'Accent', name: 'text-brand-primary' },
     ],
   },
 ];
@@ -469,17 +468,6 @@ const PortfolioDesignSystem = () => {
             </div>
           </div>
 
-          <div className="portfolio-ds__block">
-            <h3 className="portfolio-ds__block-title">Thirteen primitive categories</h3>
-            <ul className="portfolio-ds__tags">
-              {categories.map((category) => (
-                <li key={category} className="portfolio-ds__tag">
-                  {category}
-                </li>
-              ))}
-            </ul>
-          </div>
-
           <Resource
             type="FigJam board"
             title="Design system mindmap"
@@ -664,19 +652,7 @@ const PortfolioDesignSystem = () => {
               ))}
             </ul>
           </div>
-
-          <div className="portfolio-ds__block">
-            <h3 className="portfolio-ds__block-title">What I refined</h3>
-            <ul className="portfolio-ds__tags">
-              {refinements.map((refinement) => (
-                <li key={refinement} className="portfolio-ds__tag">
-                  {refinement}
-                </li>
-              ))}
-            </ul>
-          </div>
         </Phase>
-
         <Phase
           index={6}
           intro="The result is the site you are browsing right now: a React application with three themes and five responsive layouts, where every color, size and space comes from the design system. Switch the theme from the header to see the tokens at work."

@@ -1,99 +1,211 @@
+// The dialog takes the theme surface and the 2px rules of the header and the
+// project cards, so it follows the active theme. It never grows wider than the
+// mobile-md breakpoint, which keeps it a single column on every screen. Contact
+// rows run edge to edge and invert on hover like the outline buttons.
 .contact-modal {
   position: fixed;
   inset: 0;
   z-index: $z-index-modal;
   @include flex-center;
-  padding: $spacing-md;
+  padding: $spacing-md $spacing-container-mobile;
   background-color: $color-surface-overlay;
+  animation: contact-modal-fade $interaction-animation-fade $interaction-transition-fade;
 
-  &__content {
-    position: relative;
+  @include tablet {
+    padding-inline: $spacing-container-tablet;
+  }
+
+  @include desktop {
+    padding-inline: $spacing-container-desktop;
+  }
+
+  &__panel {
+    @include flex-column;
     width: 100%;
-    max-width: to-rem(512);
-    max-height: 90vh;
+    max-width: $breakpoints-mobile-md;
+    max-height: 100%;
     overflow-y: auto;
-    padding: $spacing-xl;
-    background-color: $color-surface-raised;
-    border: $border-medium solid $color-brand-complementary;
+    color: var(--color-content);
+    background-color: var(--color-surface);
+    border: $border-medium solid var(--color-content);
     box-shadow: $shadow-modal;
+    animation: contact-modal-rise $interaction-animation-modal $interaction-transition-slide;
+  }
+
+  &__header {
+    @include flex-column;
+    gap: $spacing-md;
+    padding: $spacing-lg $spacing-md;
+    border-bottom: $border-medium solid var(--color-content);
+
+    @include tablet-up {
+      padding: $spacing-xl $spacing-lg;
+    }
+  }
+
+  &__heading {
+    @include flex-between;
+    gap: $spacing-md;
+  }
+
+  &__title {
+    @include text-display;
+    font-size: $typography-font-size-2xl;
+    color: var(--color-accent);
 
     @include tablet {
-      padding: $spacing-2xl;
+      font-size: $typography-font-size-3xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-5xl;
     }
   }
 
   &__close {
-    position: absolute;
-    inset-block-start: $spacing-md;
-    inset-inline-end: $spacing-md;
     @include flex-center;
-    width: $sizing-lg;
-    height: $sizing-lg;
-    color: $color-text-brand-complementary;
+    flex-shrink: 0;
+    width: $sizing-xl;
+    height: $sizing-xl;
+    color: var(--color-content);
     transition: color $motion-duration-fast $interaction-transition-hover;
 
     &:hover {
-      color: $color-text-brand-primary;
+      color: var(--color-hover);
     }
   }
 
-  &__title {
-    font-family: $typography-heading-base-font-family;
-    font-weight: $typography-font-weight-regular;
-    line-height: $typography-line-height-normal;
-    letter-spacing: $typography-letter-spacing-normal;
-    text-transform: uppercase;
-    font-size: $typography-font-size-2xl;
-    color: $color-text-brand-complementary;
-    padding-inline-end: $spacing-2xl;
+  &__close-icon {
+    width: $sizing-lg;
+    height: $sizing-lg;
+  }
 
-    @include desktop {
-      font-size: $typography-font-size-3xl;
+  &__text {
+    @include text-display;
+    font-size: $typography-font-size-lg;
+
+    @include tablet-up {
+      font-size: $typography-font-size-xl;
     }
   }
 
-  &__subtitle {
-    margin-top: $spacing-sm;
-    font-family: $typography-body-base-font-family;
-    font-size: $typography-body-font-size-mobile;
-    font-weight: $typography-body-base-font-weight;
-    line-height: $typography-body-base-line-height;
-    color: $color-text-brand-complementary;
-    opacity: $opacity-80;
-
-    @include desktop {
-      font-size: $typography-body-font-size-desktop;
-    }
+  &__item {
+    border-bottom: $border-medium solid var(--color-content);
   }
 
-  &__links {
-    @include flex-column;
-    margin-top: $spacing-xl;
-  }
-
+  // The focus ring sits inside the row, since the scrolling panel clips
+  // anything drawn past its edges.
   &__link {
     display: flex;
     align-items: center;
-    gap: $spacing-md;
-    padding-block: $spacing-md;
-    border-bottom: $border-thin solid $color-brand-complementary;
-    color: $color-text-brand-complementary;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    color: var(--color-content);
     transition:
       background-color $motion-duration-fast $interaction-transition-hover,
       color $motion-duration-fast $interaction-transition-hover;
 
     &:hover {
-      background-color: $color-button-complementary-bg;
-      color: $color-button-complementary-text;
+      background-color: var(--color-content);
+      color: var(--color-inverse);
     }
 
-    svg {
-      flex-shrink: 0;
+    &:focus-visible {
+      outline-offset: -$spacing-xs;
+    }
+
+    @include tablet-up {
+      gap: $spacing-md;
+      padding-inline: $spacing-lg;
     }
   }
 
-  &__download-icon {
+  &__icon-box {
+    @include flex-center;
+    flex-shrink: 0;
+    width: $sizing-xl;
+    height: $sizing-xl;
+    border: $border-medium solid currentColor;
+
+    @include tablet-up {
+      width: $sizing-2xl;
+      height: $sizing-2xl;
+    }
+  }
+
+  &__icon {
     width: $sizing-md;
     height: $sizing-md;
+
+    @include tablet-up {
+      width: $sizing-lg;
+      height: $sizing-lg;
+    }
+  }
+
+  &__link-text {
+    @include flex-column;
+    gap: $spacing-xs;
+    min-width: 0;
+  }
+
+  &__label {
+    @include text-eyebrow;
+  }
+
+  // Smaller on mobile-sm, with a tighter row gap, so the email fits on one line.
+  &__value {
+    @include text-display;
+    font-size: $typography-font-size-md;
+    overflow-wrap: anywhere;
+
+    @include mobile-md {
+      font-size: $typography-font-size-lg;
+    }
+
+    @include tablet {
+      font-size: $typography-font-size-xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  &__footer {
+    display: grid;
+    padding: $spacing-lg $spacing-md;
+
+    @include tablet-up {
+      padding-inline: $spacing-lg;
+    }
+  }
+
+  &__resume {
+    @include button-complementary;
+  }
+
+  &__resume-icon {
+    width: $sizing-md;
+    height: $sizing-md;
+  }
+}
+
+@keyframes contact-modal-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes contact-modal-rise {
+  from {
+    transform: translateY($spacing-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-modal,
+  .contact-modal__panel {
+    animation: none;
   }
 }

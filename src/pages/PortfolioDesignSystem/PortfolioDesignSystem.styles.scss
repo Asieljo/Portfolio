@@ -108,12 +108,12 @@
   &__overview-item {
     @include flex-column;
     gap: $spacing-sm;
-    padding-top: $spacing-md;
-    border-top: $border-medium solid var(--color-content);
   }
 
   &__overview-title {
     @include text-display;
+    padding-bottom: $spacing-md;
+    border-bottom: $border-medium solid var(--color-content);
     font-size: $typography-font-size-xl;
     color: var(--color-accent);
 
@@ -123,8 +123,8 @@
   }
 
   // Phase index: each step links to its phase and inverts on hover like the
-  // outline buttons. The final result is the destination, so it starts
-  // inverted and takes a full row wherever the grid wraps.
+  // outline buttons. The final result is the destination, so it stays
+  // inverted (no hover change) and takes a full row wherever the grid wraps.
   &__process {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -161,11 +161,6 @@
     grid-column: 1 / -1;
     background-color: var(--color-content);
     color: var(--color-inverse);
-
-    &:hover {
-      background-color: $color-background-transparent;
-      color: var(--color-content);
-    }
 
     @include desktop {
       grid-column: auto;
@@ -565,8 +560,6 @@
   &__stat {
     @include flex-column;
     gap: $spacing-sm;
-    padding-top: $spacing-md;
-    border-top: $border-medium solid var(--color-content);
   }
 
   &__stat-value {
