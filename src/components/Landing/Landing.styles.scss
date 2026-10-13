@@ -6,9 +6,9 @@ $hero-media-width: to-rem(618);
 $hero-media-width-lg: to-rem(692);
 $hero-title-width-tablet: to-rem(544);
 $hero-actions-width-lg: to-rem(604);
-// Intrinsic ratio of the hero artwork (722 x 420, shared by every theme
+// Intrinsic ratio of the hero artwork (1444 x 840, shared by every theme
 // variant), used to size it rotated.
-$hero-image-ratio: calc(722 / 420);
+$hero-image-ratio: calc(1444 / 840);
 
 .hero {
   // Capped at half the viewport so narrow tablets keep room for the copy.
