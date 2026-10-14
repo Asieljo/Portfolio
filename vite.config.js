@@ -3,7 +3,9 @@ import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
-  base: "/Portfolio/",
+  // GitHub Pages serves the site under /Portfolio/; Vercel (which sets VERCEL=1
+  // during its builds) serves it from the domain root.
+  base: process.env.VERCEL ? '/' : '/Portfolio/',
   // `vite-react-ssg build` prerenders each route in src/routes.jsx to its own
   // HTML, so crawlers and link previews get the content without running JS.
   // GitHub Pages has no SPA fallback: flat files (/case-study -> case-study.html)
