@@ -1,16 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
-import ThemeProvider from './features/theme/ThemeProvider';
+import { ViteReactSSG } from 'vite-react-ssg';
+import { routes } from './routes';
 import './styles/index.styles.scss';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <BrowserRouter basename='/Portfolio'>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
-  </React.StrictMode>
-);
+// Prerendered at build time by `vite-react-ssg build`, hydrated in the browser.
+export const createRoot = ViteReactSSG({
+  routes,
+  basename: import.meta.env.BASE_URL,
+});
