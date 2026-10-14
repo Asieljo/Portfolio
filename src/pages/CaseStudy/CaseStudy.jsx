@@ -200,10 +200,12 @@ const Phase = ({ index, intro, children }) => {
             <span className="case-study__phase-number" aria-hidden="true">
               {formatIndex(index)}
             </span>
-            <h2 id={`${phase.id}-title`} className="case-study__phase-title">
-              {phase.name}
-            </h2>
-            <p className="case-study__phase-topic">{phase.topic}</p>
+            <div className="case-study__phase-titles">
+              <h2 id={`${phase.id}-title`} className="case-study__phase-title">
+                {phase.name}
+              </h2>
+              <p className="case-study__phase-topic">{phase.topic}</p>
+            </div>
           </div>
           <p className="case-study__text case-study__phase-intro">{intro}</p>
         </div>
@@ -233,7 +235,6 @@ const CaseStudy = () => {
       <Header onContactClick={openContact} />
       <main>
         <PageIntro
-          label="UX case study"
           title="Digital catalog for a small Mexican business"
           lead="Turning a slow, in-person quoting process into a self-service catalog where clients configure a product and get an instant quote."
           text="A real client, the owner of a small business that makes and installs gates, windows and ironwork, asked me for a quote app. By digging into how his quotes actually worked, I found the real bottleneck: home visits. I designed a digital catalog instead and took it from the first interview to user segmentation, information architecture, wireframes and high-fidelity interactive prototypes in Figma."
@@ -288,8 +289,10 @@ const CaseStudy = () => {
               {phases.map((phase, index) => (
                 <Link key={phase.id} to={`#${phase.id}`} className="case-study__step">
                   <span className="case-study__step-number">{formatIndex(index)}</span>
-                  <span className="case-study__step-name">{phase.name}</span>
-                  <span className="case-study__step-topic">{phase.topic}</span>
+                  <span className="case-study__step-text">
+                    <span className="case-study__step-name">{phase.name}</span>
+                    <span className="case-study__step-topic">{phase.topic}</span>
+                  </span>
                 </Link>
               ))}
             </nav>

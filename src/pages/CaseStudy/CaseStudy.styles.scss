@@ -113,10 +113,18 @@
     }
   }
 
+  // The number sits beside the name and topic, on the baseline of the name.
   &__step {
-    @include flex-column;
-    gap: $spacing-xs;
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-sm;
     padding: $spacing-md;
+
+    // Two per row on small phones: tighter padding keeps the longest names
+    // beside the number.
+    @include mobile-sm {
+      padding: $spacing-sm;
+    }
     color: var(--color-content);
     border: $border-medium solid var(--color-content);
     transition:
@@ -137,6 +145,12 @@
     @include desktop {
       font-size: $typography-font-size-3xl;
     }
+  }
+
+  &__step-text {
+    @include flex-column;
+    gap: $spacing-xs;
+    min-width: 0;
   }
 
   &__step-name {
@@ -164,7 +178,7 @@
   }
 
   // Stacked on mobile; from tablet up the heading and the intro sit side by
-  // side, aligned on their last line.
+  // side, centered on each other.
   &__phase-header {
     @include flex-column;
     gap: $spacing-lg;
@@ -178,21 +192,31 @@
     }
 
     @include tablet-up {
-      align-items: end;
+      align-items: center;
     }
   }
 
+  // The number sits beside the title and topic, centered on them. On tablet the heading takes half the grid so the names keep one
+  // line beside the number.
   &__phase-heading {
-    @include flex-column;
-    gap: $spacing-xs;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
 
     @include tablet {
-      grid-column: 1 / span 3;
+      grid-column: 1 / span 4;
     }
 
     @include desktop {
       grid-column: 1 / span 5;
+      gap: $spacing-lg;
     }
+  }
+
+  &__phase-titles {
+    @include flex-column;
+    gap: $spacing-xs;
+    min-width: 0;
   }
 
   &__phase-number {
@@ -239,7 +263,7 @@
 
   &__phase-intro {
     @include tablet {
-      grid-column: 4 / -1;
+      grid-column: 5 / -1;
     }
 
     @include desktop {
@@ -418,16 +442,5 @@
   &__button {
     align-self: flex-start;
     @include button-complementary;
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $spacing-sm;
-  }
-
-  &__tag {
-    color: var(--color-content);
-    @include text-tag;
   }
 }

@@ -64,14 +64,6 @@
     }
   }
 
-  // Styled like the project type on the home page cards.
-  &__type {
-    color: var(--color-inverse);
-    background-color: var(--color-content);
-    text-transform: uppercase;
-    @include text-tag;
-  }
-
   &__file-title {
     @include text-display;
     font-size: $typography-font-size-lg;
@@ -89,17 +81,6 @@
     @include tablet-up {
       font-size: $typography-body-font-size-tablet;
     }
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $spacing-sm;
-  }
-
-  &__tag {
-    color: var(--color-content);
-    @include text-tag;
   }
 
   // Pinned to the card bottom so the buttons align across a row.

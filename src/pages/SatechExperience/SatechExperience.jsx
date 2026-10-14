@@ -23,7 +23,6 @@ const designFiles = [
     title: 'Landing Page Redesign',
     description:
       'Redesign of a corporate landing page: style guide with typography, color palette and logos, reusable components and high-fidelity designs with prototypes for desktop, tablet and mobile.',
-    tags: ['Landing Page', 'Components', 'Prototyping'],
     href: 'https://www.figma.com/design/heGIniVHjxOldwxdVNGZBF/SATECH-Design?node-id=229-1746&t=Fn4bdpNlB9GIjlHy-1',
   },
   {
@@ -31,7 +30,6 @@ const designFiles = [
     title: 'GPS Tracking Website',
     description:
       'Website design for a GPS tracking brand: visual research, style guide, components such as navigation, menus and FAQs, and responsive designs with prototypes for desktop, tablet and mobile.',
-    tags: ['Web Design', 'Style Guide', 'Prototyping'],
     href: 'https://www.figma.com/design/h0MkjUS4UhlbKAO77n5jgC/NOVA-GPS-design?node-id=0-1&t=2Ert70UIhDUZ9N1u-1',
   },
   {
@@ -39,7 +37,6 @@ const designFiles = [
     title: 'Corporate Blogs',
     description:
       'Blog experience for both websites: a blog home with category navigation and an individual post layout with reactions, designed and prototyped for desktop, tablet and mobile.',
-    tags: ['Blog Design', 'UI Components', 'Prototyping'],
     href: 'https://www.figma.com/design/VIGladFp4KBllHB2FpdoKq/Blogs-NOVA-y-SATECH?node-id=0-1&t=KC4pJm8H7hHOMlfr-1',
   },
 ];
@@ -55,10 +52,9 @@ const SatechExperience = () => {
       <Header onContactClick={openContact} />
       <main>
         <PageIntro
-          label="Work experience"
           title="Design & Marketing Intern"
           lead="Designing responsive websites, blogs and HTML email signatures for a satellite tracking company."
-          text="Between March and September 2025 I took corporate websites and blogs from user research and benchmarking to wireframes, reusable components and responsive high-fidelity prototypes in Figma. I also designed and coded HTML email signatures, tested them across email clients and coordinated every deliverable with the design and marketing teams."
+          text="I took corporate websites and blogs from benchmarking to wireframes, reusable components and responsive high-fidelity prototypes in Figma. I also designed and coded HTML email signatures, tested them across email clients and coordinated every deliverable with the design and marketing teams."
         />
 
         <FactsStrip facts={facts} />
@@ -99,16 +95,8 @@ const SatechExperience = () => {
             <div className="satech-experience__files">
               {designFiles.map((file) => (
                 <article key={file.id} className="satech-experience__file">
-                  <span className="satech-experience__type">Figma file</span>
                   <h3 className="satech-experience__file-title">{file.title}</h3>
                   <p className="satech-experience__file-text">{file.description}</p>
-                  <ul className="satech-experience__tags">
-                    {file.tags.map((tag) => (
-                      <li key={tag} className="satech-experience__tag">
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
                   <a
                     href={file.href}
                     target="_blank"

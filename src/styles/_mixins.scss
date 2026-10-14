@@ -156,7 +156,7 @@ $breakpoint-desktop-lg: 1420px;
   justify-content: center;
   gap: $spacing-sm;
   min-height: if($size == sm, $sizing-xl, $sizing-button-sm);
-  padding-inline: if($size == sm, $spacing-sm, $spacing-md);
+  padding: $spacing-sm;
   @include text-display;
   font-size: $typography-button-base-font-size;
   letter-spacing: $typography-button-base-letter-spacing;

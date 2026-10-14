@@ -51,13 +51,13 @@ const overview = [
 ];
 
 const phases = [
-  { id: 'mindmap', name: 'Mindmap', tool: 'FigJam', topic: 'Structuring the system' },
-  { id: 'json', name: 'JSON', tool: 'DTCG format', topic: 'From map to data' },
-  { id: 'tokens-studio', name: 'Tokens Studio', tool: 'Figma plugin', topic: 'Tokens into Figma' },
-  { id: 'figma', name: 'Figma', tool: 'Figma', topic: 'Designing on tokens' },
-  { id: 'claude-code', name: 'Claude Code', tool: 'React + Vite', topic: 'From design to code' },
-  { id: 'iterations', name: 'Iterations', tool: 'Review loop', topic: 'Refining every detail' },
-  { id: 'result', name: 'Final result', tool: 'Live site', topic: 'A system you can browse' },
+  { id: 'mindmap', name: 'Mindmap', topic: 'Structuring the system' },
+  { id: 'json', name: 'JSON', topic: 'From map to data' },
+  { id: 'tokens-studio', name: 'Tokens Studio', topic: 'Tokens into Figma' },
+  { id: 'figma', name: 'Figma', topic: 'Designing on tokens' },
+  { id: 'claude-code', name: 'Claude Code', topic: 'From design to code' },
+  { id: 'iterations', name: 'Iterations', topic: 'Refining every detail' },
+  { id: 'result', name: 'Final result', topic: 'A system you can browse' },
 ];
 
 const layers = [
@@ -298,11 +298,12 @@ const Phase = ({ index, intro, children }) => {
             <span className="portfolio-ds__phase-number" aria-hidden="true">
               {formatIndex(index)}
             </span>
-            <h2 id={`${phase.id}-title`} className="portfolio-ds__phase-title">
-              {phase.name}
-            </h2>
-            <p className="portfolio-ds__phase-topic">{phase.topic}</p>
-            <span className="portfolio-ds__badge">{phase.tool}</span>
+            <div className="portfolio-ds__phase-titles">
+              <h2 id={`${phase.id}-title`} className="portfolio-ds__phase-title">
+                {phase.name}
+              </h2>
+              <p className="portfolio-ds__phase-topic">{phase.topic}</p>
+            </div>
           </div>
           <p className="portfolio-ds__text portfolio-ds__phase-intro">{intro}</p>
         </div>
@@ -331,13 +332,10 @@ const CodeBlock = ({ file, code }) => (
 );
 
 // External material of a phase: text beside its button from tablet up.
-const Resource = ({ type, title, text, href, action, badge }) => (
+const Resource = ({ type, title, text, href, action }) => (
   <div className="portfolio-ds__resource">
     <div className="portfolio-ds__resource-body">
-      <div className="portfolio-ds__resource-meta">
-        <span className="portfolio-ds__label">{type}</span>
-        {badge && <span className="portfolio-ds__badge">{badge}</span>}
-      </div>
+      <span className="portfolio-ds__label">{type}</span>
       <h3 className="portfolio-ds__resource-title">{title}</h3>
       <p className="portfolio-ds__text">{text}</p>
     </div>
@@ -364,7 +362,6 @@ const PortfolioDesignSystem = () => {
       <Header onContactClick={openContact} />
       <main>
         <PageIntro
-          label="Design system"
           title="Portfolio with design system"
           lead="Designing and building my own portfolio like a product: one design system, from the first token to the last component."
           text="For the redesign of my portfolio I started from the foundations. I structured a design system in FigJam, turned it into primitive and semantic tokens, designed every breakpoint and theme in Figma and implemented it in React with Claude Code, guiding the AI with precise specifications until the code matched the design."
@@ -432,8 +429,10 @@ const PortfolioDesignSystem = () => {
                   onClick={(event) => handleStepClick(event, phase.id)}
                 >
                   <span className="portfolio-ds__step-number">{formatIndex(index)}</span>
-                  <span className="portfolio-ds__step-name">{phase.name}</span>
-                  <span className="portfolio-ds__step-topic">{phase.topic}</span>
+                  <span className="portfolio-ds__step-text">
+                    <span className="portfolio-ds__step-name">{phase.name}</span>
+                    <span className="portfolio-ds__step-topic">{phase.topic}</span>
+                  </span>
                 </a>
               ))}
             </nav>
@@ -496,7 +495,6 @@ const PortfolioDesignSystem = () => {
 
           <Resource
             type="HTML token library"
-            badge="Visual reference only"
             title="The system at a glance"
             text="Before taking the tokens to Figma, I reviewed them in an HTML token library to check every color, scale and value visually. It was only a viewer for the design system, not part of the final product."
             href={links.library}

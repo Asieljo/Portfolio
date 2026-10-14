@@ -23,20 +23,6 @@
     }
   }
 
-  &__heading {
-    @include flex-column;
-    align-items: flex-start;
-    gap: $spacing-md;
-  }
-
-  // Styled like the project type on the home page cards.
-  &__label {
-    color: var(--color-inverse);
-    background-color: var(--color-content);
-    text-transform: uppercase;
-    @include text-tag;
-  }
-
   &__title {
     @include text-display;
     font-size: $typography-font-size-3xl;

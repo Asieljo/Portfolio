@@ -15,7 +15,6 @@ const projects = [
     description:
       'All my UX/UI work from my internship, including landing pages, multiple interfaces and electronic firms.',
     tags: ['UX/UI', 'Figma', 'Variety of Projects'],
-    type: 'Live',
     image: SatechImage,
     actions: [{ label: 'View projects', to: '/work-experience' }],
   },
@@ -26,7 +25,6 @@ const projects = [
     description:
       'End-to-end UX process: from research to working prototypes for a product digital catalog.',
     tags: ['Real client', 'Wireframing', 'Prototyping'],
-    type: 'Live',
     image: CaseStudyImage,
     actions: [{ label: 'View project', to: '/case-study' }],
   },
@@ -36,7 +34,6 @@ const projects = [
     description:
       'Redesign of personal portfolio, enhancing visual design and distribution of elements.',
     tags: ['Design System', 'Responsive Design', 'Development'],
-    type: 'Live',
     image: PortfolioImage,
     actions: [
       { label: 'GitHub', href: 'https://github.com/Asieljo/Portfolio', variant: 'outline' },
@@ -49,7 +46,6 @@ const projects = [
     description:
       'A minimalist and simple e-commerce with multiple Google Services, Redux and more.',
     tags: ['Firestore', 'Authentication', 'React & Redux'],
-    type: 'Live',
     image: EcommerceImage,
     imagePosition: 'top-left',
     actions: [
@@ -89,7 +85,6 @@ const Projects = () => (
         {projects.map((project) => (
           <article key={project.id} className="projects__card">
             <div className="projects__body">
-              <span className="projects__type">{project.type}</span>
               <h3 className="projects__title">
                 {project.titlePrefix && (
                   <span className="projects__title-prefix">{project.titlePrefix} </span>
