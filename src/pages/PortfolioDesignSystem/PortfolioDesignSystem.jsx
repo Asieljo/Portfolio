@@ -20,6 +20,7 @@ const links = {
   figma:
     'https://www.figma.com/design/fsQ6j0z0YWdlgu4XQ7L5Id/Portfolio?node-id=107-254&t=J7e8VJ7LVB76JPXN-1',
   github: 'https://github.com/Asieljo/Portfolio',
+  storybook: 'https://90a223eec2f120ee3be58580b846b564.share.chromatic.com',
   // Static file in public/, served outside the React app.
   library: `${import.meta.env.BASE_URL}design-system-library.html`,
 };
@@ -46,7 +47,7 @@ const overview = [
   {
     id: 'role',
     title: 'My role',
-    text: 'End to end: design system architecture, primitive and semantic tokens, high-fidelity design with components, breakpoints and themes, and the React implementation guided through Claude Code.',
+    text: 'End to end: design system architecture, primitive and semantic tokens, high-fidelity design with components, breakpoints and themes, and the React implementation guided through Claude Code, documented and tested in Storybook.',
   },
 ];
 
@@ -57,6 +58,7 @@ const phases = [
   { id: 'figma', name: 'Figma', topic: 'Designing on tokens' },
   { id: 'claude-code', name: 'Claude Code', topic: 'From design to code' },
   { id: 'iterations', name: 'Iterations', topic: 'Refining every detail' },
+  { id: 'storybook', name: 'Storybook', topic: 'Documenting and testing' },
   { id: 'result', name: 'Final result', topic: 'A system you can browse' },
 ];
 
@@ -197,6 +199,30 @@ const reviewLoop = [
   },
 ];
 
+const storybookGains = [
+  {
+    id: 'document',
+    title: 'Document',
+    text: 'Every component and page has its own Docs page, generated from its JSDoc comments and props, so the documentation lives next to the code and never falls behind.',
+  },
+  {
+    id: 'test',
+    title: 'Test',
+    text: 'Interaction tests do what a visitor does: they trap the focus in the contact modal, switch between the three themes, open the mobile menu and scroll to each section.',
+  },
+  {
+    id: 'protect',
+    title: 'Protect',
+    text: 'GitHub Actions runs every test before each deploy. If one fails, the site is not published and the last working version stays online.',
+  },
+];
+
+const storybookStats = [
+  { id: 'docs', value: '16', label: 'Documented components & pages' },
+  { id: 'tests', value: '33', label: 'Interaction tests' },
+  { id: 'coverage', value: '95%', label: 'Code coverage' },
+];
+
 const learnings = [
   {
     id: 'structure',
@@ -236,6 +262,16 @@ $spacing-lg: 24px;
 // _semantic.scss
 $color-text-brand-primary: p.$color-brand-primary;
 $spacing-component-lg: p.$spacing-lg;`;
+
+const storyCode = `// ContactModal.stories.jsx
+// Shift+Tab on the first link must jump to "Close".
+export const FocusTrap = {
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.tab({ shift: true });
+    const close = canvas.getByText('Close');
+    await expect(close).toHaveFocus();
+  },
+};`;
 
 // Token names (JSON keys and Sass declarations) take the accent color and
 // comments are dimmed: a light syntax highlight without a library. `split`
@@ -330,8 +366,8 @@ const Resource = ({ type, title, text, href, action }) => (
  * built on its own token-based design system.
  *
  * Opens with `PageIntro` and `FactsStrip`, then an overview and a phase
- * navigation that scrolls to each of the seven steps: Mindmap, JSON, Tokens
- * Studio, Figma, Claude Code, Iterations and Final result.
+ * navigation that scrolls to each of the eight steps: Mindmap, JSON, Tokens
+ * Studio, Figma, Claude Code, Iterations, Storybook and Final result.
  * Ends with links to GitHub and Figma, `ContactCta`, the `Footer` and the
  * `ContactModal`.
  */
@@ -401,7 +437,7 @@ const PortfolioDesignSystem = () => {
             <SectionHeader
               id="portfolio-ds-process-title"
               title="The process"
-              subtitle="Seven steps, from a mindmap of the system to the site you are browsing. Jump to any of them."
+              subtitle="Eight steps, from a mindmap of the system to the site you are browsing. Jump to any of them."
             />
 
             <nav className="portfolio-ds__process" aria-label="Project phases">
@@ -635,8 +671,64 @@ const PortfolioDesignSystem = () => {
             </ul>
           </div>
         </Phase>
+
         <Phase
           index={6}
+          intro="The site finally matched the design, but looking right is not the same as staying right. Any new change could quietly break the contact modal, the theme toggle or the mobile menu, and the only way to notice was clicking through every page by hand. So I gave the portfolio what every product needs to grow: with Claude Code I set up Storybook, documented each component and page, and turned their behavior into automated tests."
+        >
+          <div className="portfolio-ds__split">
+            <CodeBlock file="ContactModal.stories.jsx · interaction test, simplified" code={storyCode} />
+
+            <div className="portfolio-ds__block">
+              <h3 className="portfolio-ds__block-title">A robot that clicks for me</h3>
+              <p className="portfolio-ds__text">
+                Each story renders a component on its own, and its play function acts like a
+                visitor: it presses Tab inside the modal, opens the menu or switches the theme, then
+                checks that the right thing happened. If a future change breaks that behavior, the
+                test fails before anyone sees it. Storybook is published on its own, apart from this
+                site, so none of it is downloaded by visitors.
+              </p>
+            </div>
+          </div>
+
+          <div className="portfolio-ds__block">
+            <h3 className="portfolio-ds__block-title">What Storybook added</h3>
+            <ul className="portfolio-ds__cards portfolio-ds__cards--3">
+              {storybookGains.map((item, index) => (
+                <Card
+                  key={item.id}
+                  label={formatIndex(index)}
+                  title={item.title}
+                  text={item.text}
+                  inverse={index === storybookGains.length - 1}
+                />
+              ))}
+            </ul>
+          </div>
+
+          <div className="portfolio-ds__block">
+            <h3 className="portfolio-ds__block-title">Quality in numbers</h3>
+            <ul className="portfolio-ds__stats">
+              {storybookStats.map((stat) => (
+                <li key={stat.id} className="portfolio-ds__stat">
+                  <span className="portfolio-ds__stat-value">{stat.value}</span>
+                  <span className="portfolio-ds__label">{stat.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <Resource
+            type="Storybook"
+            title="Component library"
+            text="Every component and page of the portfolio with its Docs page, its stories and the interaction tests, published with Chromatic."
+            href={links.storybook}
+            action="Open Storybook"
+          />
+        </Phase>
+
+        <Phase
+          index={7}
           intro="The result is the site you are browsing right now: a React application with three themes and five responsive layouts, where every color, size and space comes from the design system. Switch the theme from the header to see the tokens at work."
         >
           <div className="portfolio-ds__block">
