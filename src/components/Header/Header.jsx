@@ -15,6 +15,18 @@ const navLinks = [
   { id: 'projects', label: 'Projects', section: 'projects' },
 ];
 
+/**
+ * Sticky top bar shared by every page: brand link, main navigation (Home,
+ * About, Projects), a "Contact me" button, a resume download and the theme
+ * toggle.
+ *
+ * - On the home page the links scroll to their section; on other pages they
+ *   navigate back home and pass the section in the router state.
+ * - The theme button cycles through the primary, secondary and complementary
+ *   themes (see `ThemeProvider`).
+ * - Below the tablet breakpoint the navigation collapses into a burger menu
+ *   that exposes its state through `aria-expanded`.
+ */
 const Header = ({ onContactClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();

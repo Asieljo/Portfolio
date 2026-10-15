@@ -5,8 +5,12 @@ import Footer from '../../components/Footer/Footer';
 import ContactModal from '../../components/ContactModal/ContactModal';
 import './NotFound.styles.scss';
 
-// Catch-all route. GitHub Pages serves 404.html (a copy of index.html) for
-// unknown paths, so mistyped links also land here instead of a blank page.
+/**
+ * Not found page: the catch-all route (`*`), also prerendered as `404.html`.
+ *
+ * GitHub Pages serves 404.html for unknown paths, so mistyped links land here
+ * instead of a blank page. It offers links back home and to the projects.
+ */
 const NotFound = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
 

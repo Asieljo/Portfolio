@@ -17,6 +17,13 @@ const tickerItems = [
   'Git',
 ];
 
+/**
+ * Inverted band that scrolls the skills list horizontally on a loop, between
+ * the hero and the about section of the home page.
+ *
+ * The list renders twice so the animation loops without a gap. The band is
+ * decorative, so it is hidden from screen readers with `aria-hidden`.
+ */
 const Ticker = () => (
   <div className="ticker" aria-hidden="true">
     <div className="ticker__track">

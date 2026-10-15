@@ -17,6 +17,14 @@ const heroStats = [
   { id: 'focus', value: 'UX/UI', label: 'Current Focus' },
 ];
 
+/**
+ * Hero section of the home page: the main heading, a short lead, the hero
+ * image (tinted to match the active theme) and two calls to action.
+ *
+ * "View projects" scrolls to the projects section and "Get in touch" calls
+ * `onContactClick`, which opens the contact modal. A row of stats closes the
+ * section.
+ */
 const Landing = ({ onContactClick }) => {
   const { theme } = useTheme();
 

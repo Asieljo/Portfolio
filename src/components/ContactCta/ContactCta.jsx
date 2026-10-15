@@ -2,7 +2,12 @@ import { Link } from 'react-router-dom';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import './ContactCta.styles.scss';
 
-// Closing call to action of the project pages, before the footer.
+/**
+ * Closing call to action of the project pages, before the footer.
+ *
+ * "Get in touch" calls `onContactClick` to open the contact modal, and "More
+ * projects" navigates back to the projects section of the home page.
+ */
 const ContactCta = ({ onContactClick }) => (
   <section className="contact-cta" aria-labelledby="contact-cta-title">
     <div className="contact-cta__container">

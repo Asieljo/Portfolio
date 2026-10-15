@@ -77,22 +77,6 @@ const layers = [
   },
 ];
 
-const categories = [
-  'Color',
-  'Typography',
-  'Spacing',
-  'Sizing',
-  'Radius',
-  'Border',
-  'Shadow',
-  'Z-index',
-  'Opacity',
-  'Motion',
-  'Breakpoints',
-  'Grid',
-  'Aspect ratio',
-];
-
 const pipeline = ['FigJam mindmap', 'DTCG JSON', 'Tokens Studio', 'Figma variables'];
 
 const stats = [
@@ -211,16 +195,6 @@ const reviewLoop = [
     title: 'Verify',
     text: 'Review the change, check the build and the linter, and move on to the next detail.',
   },
-];
-
-const refinements = [
-  'Spacing',
-  'Typography',
-  'Alignment',
-  'Hover states',
-  'Themes',
-  'Responsiveness',
-  'Accessibility',
 ];
 
 const learnings = [
@@ -351,6 +325,16 @@ const Resource = ({ type, title, text, href, action }) => (
   </div>
 );
 
+/**
+ * Design system page (`/design-system`): how this portfolio was designed and
+ * built on its own token-based design system.
+ *
+ * Opens with `PageIntro` and `FactsStrip`, then an overview and a phase
+ * navigation that scrolls to each of the seven steps: Mindmap, JSON, Tokens
+ * Studio, Figma, Claude Code, Iterations and Final result.
+ * Ends with links to GitHub and Figma, `ContactCta`, the `Footer` and the
+ * `ContactModal`.
+ */
 const PortfolioDesignSystem = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
 

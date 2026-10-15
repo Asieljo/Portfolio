@@ -19,6 +19,12 @@ const certifications = [
   },
 ];
 
+/**
+ * "About me" section of the home page (`#about`): taglines, a short bio, the
+ * list of certifications and courses, a resume download and a portrait.
+ *
+ * The header navigation scrolls to this section through its `about` id.
+ */
 const About = () => {
   return (
     <section className="about" id="about">

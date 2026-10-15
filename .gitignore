@@ -6,3 +6,7 @@ dist/
 .DS_Store
 .vscode/
 .idea/
+*storybook.log
+storybook-static
+
+coverage

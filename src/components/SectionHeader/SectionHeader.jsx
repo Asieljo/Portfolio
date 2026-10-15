@@ -1,7 +1,12 @@
 import './SectionHeader.styles.scss';
 
-// Section title and optional subtitle, sized like the home "Selected projects"
-// heading. `className` lets a page position the header in its own layout.
+/**
+ * Section title (`h2`) with an optional subtitle, sized like the home
+ * "Selected projects" heading. Used across the project pages.
+ *
+ * Pass `id` so the section can point `aria-labelledby` at the title, and
+ * `className` to position the header in the page's own layout.
+ */
 const SectionHeader = ({ id, title, subtitle, className }) => (
   <div className={`section-header${className ? ` ${className}` : ''}`}>
     <h2 id={id} className="section-header__title">

@@ -224,6 +224,15 @@ const Card = ({ label, title, text, inverse }) => (
   </li>
 );
 
+/**
+ * Case study page (`/case-study`): the UX process behind a digital catalog for
+ * a small gates and ironwork business.
+ *
+ * Opens with `PageIntro` and `FactsStrip`, then an overview and a phase
+ * navigation that jumps to each of the six phases (Discover, Define, Ideate,
+ * Structure, Design and Outcome) through in-page anchors. Ends with
+ * `ContactCta`, the `Footer` and the `ContactModal`.
+ */
 const CaseStudy = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
 

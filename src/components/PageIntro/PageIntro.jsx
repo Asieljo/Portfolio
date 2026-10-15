@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import './PageIntro.styles.scss';
 
-// Opening of the project pages: back link, title, then the lead beside a short
-// summary on desktop. `action` adds an external button under the
-// summary; `media` renders below everything (e.g. a hero image).
+/**
+ * Opening of the project pages: a "Back to projects" link, the page title
+ * (`h1`), then the lead beside a short summary on desktop.
+ *
+ * `action` adds an external button under the summary that opens in a new tab;
+ * `media` renders below everything (e.g. a hero image).
+ */
 const PageIntro = ({ title, lead, text, action, media }) => (
   <section className="page-intro">
     <div className="page-intro__container">

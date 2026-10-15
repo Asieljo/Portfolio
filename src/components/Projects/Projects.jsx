@@ -73,6 +73,14 @@ const ProjectAction = ({ action }) => {
   );
 };
 
+/**
+ * "Selected projects" section of the home page (`#projects`): one card per
+ * project with its image, description and actions.
+ *
+ * Actions with a `to` render a router `Link` to the project page; actions with
+ * an `href` render an external link that opens in a new tab. The `outline`
+ * variant marks secondary actions such as GitHub.
+ */
 const Projects = () => (
   <section className="projects" id="projects">
     <div className="projects__container">

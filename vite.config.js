@@ -1,7 +1,14 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import svgr from 'vite-plugin-svgr'
+/// <reference types="vitest/config" />
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import { playwright } from '@vitest/browser-playwright';
+const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
+// More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   // GitHub Pages serves the site under /Portfolio/; Vercel (which sets VERCEL=1
   // during its builds) serves it from the domain root.
@@ -15,24 +22,18 @@ export default defineConfig({
   ssgOptions: {
     entry: 'src/main.jsx',
     dirStyle: 'flat',
-    includedRoutes: (paths) => [
-      ...paths.filter((path) => !path.includes('*') && !path.includes(':')),
-      '/404',
-    ],
+    includedRoutes: paths => [...paths.filter(path => !path.includes('*') && !path.includes(':')), '/404'],
     // vite-react-ssg preloads every image the route's chunks import (all three
     // hero tints included) with a crossorigin mode the <img> tags don't use,
     // so each would download twice. The prerendered <img> tags are already
     // discoverable without them.
-    onPageRendered: (route, html) => html.replace(/<link\b[^>]*\bas="image"[^>]*>/g, ''),
+    onPageRendered: (route, html) => html.replace(/<link\b[^>]*\bas="image"[^>]*>/g, '')
   },
-  plugins: [
-    react(),
-    svgr({
-      svgrOptions: {
-        icon: true,
-      },
-    }),
-  ],
+  plugins: [react(), svgr({
+    svgrOptions: {
+      icon: true
+    }
+  })],
   css: {
     preprocessorOptions: {
       scss: {
@@ -45,5 +46,27 @@ export default defineConfig({
         loadPaths: ['.']
       }
     }
+  },
+  test: {
+    projects: [{
+      extends: true,
+      plugins: [
+      // The plugin will run tests for the stories defined in your Storybook config
+      // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
+      storybookTest({
+        configDir: path.join(dirname, '.storybook')
+      })],
+      test: {
+        name: 'storybook',
+        browser: {
+          enabled: true,
+          headless: true,
+          provider: playwright({}),
+          instances: [{
+            browser: 'chromium'
+          }]
+        }
+      }
+    }]
   }
-})
+});

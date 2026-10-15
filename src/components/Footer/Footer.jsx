@@ -25,6 +25,13 @@ const contactLinks = [
   },
 ];
 
+/**
+ * Footer shared by every page: the name as a large SVG wordmark over a
+ * background photo, followed by the contact links.
+ *
+ * External links (LinkedIn, GitHub) open in a new tab; the email link uses
+ * `mailto:`.
+ */
 const Footer = () => (
   <footer className="footer">
     <img

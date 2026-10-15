@@ -8,6 +8,13 @@ import Footer from '../../components/Footer/Footer';
 import ContactModal from '../../components/ContactModal/ContactModal';
 import './Home.styles.scss';
 
+/**
+ * Home page (`/`): `Header`, then the `Landing` hero, `Ticker`, `About` and
+ * `Projects` sections, followed by the `Footer`.
+ *
+ * Owns the open state of the `ContactModal`, which the header and the hero
+ * open through `onContactClick`.
+ */
 const Home = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
 

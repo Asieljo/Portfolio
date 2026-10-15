@@ -34,6 +34,18 @@ const contactLinks = [
   },
 ];
 
+/**
+ * Accessible dialog with a short bio and the contact links (email, LinkedIn,
+ * GitHub and the CV download). Every page renders it and opens it from the
+ * header or a call to action.
+ *
+ * While open it:
+ * - moves focus to the first link and traps Tab / Shift+Tab inside the dialog;
+ * - closes on Escape, on the "Close" button or on a click on the backdrop;
+ * - locks the page scroll and restores focus to the trigger when it closes.
+ *
+ * Renders nothing while `isOpen` is `false`.
+ */
 const ContactModal = ({ isOpen, onClose }) => {
   const modalRef = useRef(null);
 

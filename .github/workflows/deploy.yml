@@ -28,6 +28,14 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      # The Storybook tests run in a headless Chromium. If any of them fails,
+      # the job stops here and the site is not deployed.
+      - name: Install Playwright browser
+        run: yarn playwright install --with-deps chromium
+
+      - name: Run Storybook tests
+        run: yarn test
+
       - name: Build
         run: yarn build
 

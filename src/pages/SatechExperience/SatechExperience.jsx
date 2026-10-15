@@ -41,6 +41,14 @@ const designFiles = [
   },
 ];
 
+/**
+ * Work experience page (`/work-experience`): the Design & Marketing internship
+ * at a satellite tracking company.
+ *
+ * Opens with `PageIntro` and `FactsStrip`, then a demo reel video and cards
+ * that link to each Figma design file (opening in a new tab). Ends with
+ * `ContactCta`, the `Footer` and the `ContactModal`.
+ */
 const SatechExperience = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
 

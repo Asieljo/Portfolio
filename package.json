@@ -17,12 +17,31 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",
     "vite": "^8.2.1",
-    "vite-react-ssg": "0.9.2"
+    "vite-react-ssg": "0.9.2",
+    "storybook": "^10.6.2",
+    "@storybook/react-vite": "^10.6.2",
+    "@chromatic-com/storybook": "latest",
+    "@storybook/addon-vitest": "^10.6.2",
+    "@storybook/addon-a11y": "^10.6.2",
+    "@storybook/addon-docs": "^10.6.2",
+    "@storybook/addon-mcp": "^10.6.2",
+    "prop-types": "latest",
+    "eslint-plugin-storybook": "^10.6.2",
+    "vitest": "^4.1.12",
+    "@vitest/browser-playwright": "^4.1.12",
+    "@vitest/coverage-v8": "^4.1.12",
+    "playwright": "^1.64.1"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite-react-ssg build",
     "preview": "vite preview",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "test": "vitest --project storybook run",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "resolutions": {
+    "vite": "^8.2.1"
   }
 }
