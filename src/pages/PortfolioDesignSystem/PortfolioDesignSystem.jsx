@@ -674,7 +674,7 @@ const PortfolioDesignSystem = () => {
 
         <Phase
           index={6}
-          intro="The site finally matched the design, but looking right is not the same as staying right. Any new change could quietly break the contact modal, the theme toggle or the mobile menu, and the only way to notice was clicking through every page by hand. So I gave the portfolio what every product needs to grow: with Claude Code I set up Storybook, documented each component and page, and turned their behavior into automated tests."
+          intro="The site finally matched the design, but looking right is not the same as staying right. So I gave the portfolio what every product needs to grow: with Claude Code I set up Storybook, documented each component and page, and turned their behavior into automated tests."
         >
           <div className="portfolio-ds__split">
             <CodeBlock file="ContactModal.stories.jsx · interaction test, simplified" code={storyCode} />

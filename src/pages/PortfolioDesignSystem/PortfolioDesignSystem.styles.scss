@@ -132,8 +132,12 @@
   }
 
   // The number sits beside the name and topic, on the baseline of the name.
+  // Steps in a row share the tallest one's height, so the content is centered
+  // vertically in each.
   &__step {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-content: center;
     align-items: baseline;
     gap: $spacing-sm;
     padding: $spacing-md;
