@@ -96,14 +96,17 @@
     }
   }
 
+  // Anton's metrics leave more room under the heading than Inter leaves above
+  // the paragraph, so the padding is smaller than the gap to keep the rule
+  // visually centered between them.
   &__overview-item {
     @include flex-column;
-    gap: $spacing-sm;
+    gap: $spacing-sm + $spacing-xs;
   }
 
   &__overview-title {
     @include text-display;
-    padding-bottom: $spacing-md;
+    padding-bottom: $spacing-sm;
     border-bottom: $border-medium solid var(--color-content);
     font-size: $typography-font-size-xl;
     color: var(--color-accent);
