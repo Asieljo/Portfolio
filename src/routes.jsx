@@ -20,6 +20,10 @@ export const routes = [
         lazy: async () => ({ Component: (await import('./pages/CaseStudy/CaseStudy')).default }),
       },
       {
+        path: 'church-redesign',
+        lazy: async () => ({ Component: (await import('./pages/ChurchRedesign/ChurchRedesign')).default }),
+      },
+      {
         path: 'work-experience',
         lazy: async () => ({ Component: (await import('./pages/SatechExperience/SatechExperience')).default }),
       },

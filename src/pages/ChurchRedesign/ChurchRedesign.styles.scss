@@ -1,0 +1,340 @@
+// Phases, cards, figures and the phase navigation come from the catalog case
+// study (CaseStudy.styles.scss, imported by the page). This sheet covers the
+// blocks only this story needs: phone screenshots, before/after pairs, the
+// score table, stats, bars and ranked lists.
+.church-redesign {
+  // Five phases fit one row on desktop. Nested under the block so it beats the
+  // six-column grid of the shared sheet whatever order the two sheets load in.
+  & &__process {
+    @include desktop {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+  }
+
+  // Diagrams stack: the landscape user flows sit centered on ten desktop
+  // columns and the tall sitemap on six.
+  &__figures {
+    display: grid;
+    gap: $spacing-article-md;
+
+    @include desktop {
+      @include grid-desktop;
+      row-gap: $spacing-article-lg;
+    }
+  }
+
+  &__diagram {
+    @include desktop {
+      grid-column: 2 / span 10;
+    }
+  }
+
+  &__diagram--narrow {
+    @include desktop {
+      grid-column: 4 / span 6;
+    }
+  }
+
+  // Intro media: the before/after home screens, centered on six tablet
+  // columns and four desktop columns.
+  &__hero {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    @include tablet {
+      @include grid-tablet;
+      row-gap: $spacing-sm;
+    }
+
+    @include desktop {
+      @include grid-desktop;
+      row-gap: $spacing-sm;
+    }
+
+    > * {
+      @include tablet {
+        grid-column: 2 / span 6;
+      }
+
+      @include desktop {
+        grid-column: 5 / span 4;
+      }
+    }
+  }
+
+  &__pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $grid-gutter-mobile;
+
+    @include tablet {
+      gap: $grid-gutter-tablet;
+    }
+
+    @include desktop {
+      gap: $grid-gutter-desktop;
+    }
+  }
+
+  &__phone {
+    @include flex-column;
+    gap: $spacing-sm;
+    min-width: 0;
+  }
+
+  // The label above each phone screenshot is centered over the image.
+  &__phone-label {
+    text-align: center;
+  }
+
+  &__phone-image {
+    width: 100%;
+    height: auto;
+    border: $border-medium solid var(--color-content);
+  }
+
+  // The three screens of the old site, side by side at every width. On
+  // desktop they share the six center columns, two each.
+  &__phones {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $grid-gutter-mobile;
+
+    @include tablet {
+      gap: $grid-gutter-tablet;
+    }
+
+    @include desktop {
+      @include grid-desktop;
+
+      > * {
+        grid-column: span 2;
+      }
+
+      > :first-child {
+        grid-column: 4 / span 2;
+      }
+    }
+  }
+
+  // Two comparisons per row; on desktop each takes four columns, centered,
+  // with inner padding that widens the gap between the pair.
+  &__comparisons {
+    display: grid;
+    gap: $spacing-article-md;
+
+    @include tablet {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: $spacing-article-lg;
+      row-gap: $spacing-article-lg;
+    }
+
+    @include desktop {
+      @include grid-desktop;
+      row-gap: $spacing-article-lg;
+
+      > :nth-child(odd) {
+        grid-column: 3 / span 4;
+        padding-inline-end: $spacing-article-sm;
+      }
+
+      > :nth-child(even) {
+        grid-column: 7 / span 4;
+        padding-inline-start: $spacing-article-sm;
+      }
+    }
+  }
+
+  // The title above each before/after pair and the description below it are
+  // centered.
+  &__comparison {
+    @include flex-column;
+    gap: $spacing-sm;
+    text-align: center;
+  }
+
+  &__stat-value {
+    @include text-display;
+    font-size: $typography-font-size-4xl;
+    line-height: $typography-line-height-none;
+    color: var(--color-accent);
+
+    @include tablet {
+      font-size: $typography-font-size-5xl;
+    }
+
+    @include desktop {
+      font-size: $typography-font-size-6xl;
+    }
+  }
+
+  // Wide tables scroll inside their own box instead of the page.
+  &__table-wrap {
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  &__table-note {
+    @include text-body;
+    font-size: $typography-font-size-xs;
+
+    @include desktop {
+      font-size: $typography-font-size-sm;
+    }
+  }
+
+  &__th {
+    padding: $spacing-sm;
+    text-align: start;
+    border-bottom: $border-medium solid var(--color-content);
+    @include text-eyebrow;
+  }
+
+  &__td {
+    padding: $spacing-sm;
+    text-align: start;
+    border-bottom: $border-thin solid var(--color-content);
+    @include text-body;
+    font-size: $typography-body-font-size-mobile;
+
+    @include tablet-up {
+      font-size: $typography-body-font-size-tablet;
+    }
+
+    @include desktop {
+      padding: $spacing-md $spacing-sm;
+    }
+  }
+
+  &__th--number,
+  &__td--number {
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__td--total {
+    border-bottom: $border-none;
+    @include text-display;
+    font-size: $typography-font-size-lg;
+    color: var(--color-accent);
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  // Horizontal bar chart: label and value on one line, the bar below.
+  &__bars {
+    @include flex-column;
+    gap: $spacing-md;
+  }
+
+  &__bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: $spacing-xs $spacing-sm;
+  }
+
+  &__bar-label {
+    @include text-body;
+    font-size: $typography-body-font-size-mobile;
+
+    @include tablet-up {
+      font-size: $typography-body-font-size-tablet;
+    }
+  }
+
+  &__bar-value {
+    @include text-display;
+    font-size: $typography-font-size-xl;
+    color: var(--color-accent);
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  &__bar-track {
+    display: block;
+    grid-column: 1 / -1;
+    height: $sizing-sm;
+    border: $border-thin solid var(--color-content);
+  }
+
+  // The width comes from the data, set inline by the page.
+  &__bar-fill {
+    display: block;
+    height: 100%;
+    background-color: var(--color-accent);
+  }
+
+  &__quote {
+    @include text-display;
+    font-size: $typography-font-size-lg;
+    color: var(--color-accent);
+
+    @include desktop {
+      font-size: $typography-font-size-xl;
+    }
+  }
+
+  // Ranked lists (design key points, user flows): two columns on desktop,
+  // filled top to bottom. The row count comes from the page as --points-rows.
+  &__points {
+    display: grid;
+    column-gap: $grid-gutter-desktop;
+
+    @include desktop {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(var(--points-rows), auto);
+      grid-auto-flow: column;
+    }
+  }
+
+  &__point {
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-md;
+    padding-block: $spacing-sm;
+    border-bottom: $border-thin solid var(--color-content);
+
+    // No divider under the last item, nor, on desktop, under the item that
+    // ends the first column.
+    &:last-child {
+      border-bottom: $border-none;
+    }
+  }
+
+  &__point--column-end {
+    @include desktop {
+      border-bottom: $border-none;
+    }
+  }
+
+  &__point-number {
+    @include text-display;
+    font-size: $typography-font-size-xl;
+    color: var(--color-accent);
+
+    @include desktop {
+      font-size: $typography-font-size-2xl;
+    }
+  }
+
+  &__priority {
+    margin-inline-start: auto;
+    white-space: nowrap;
+  }
+
+  &__list {
+    @include flex-column;
+    gap: $spacing-sm;
+    padding-inline-start: $spacing-lg;
+    list-style: disc;
+  }
+}

@@ -10,3 +10,6 @@ dist/
 storybook-static
 
 coverage
+
+# Raw source files for the church case study (optimized copies live in src/assets)
+church-resources/

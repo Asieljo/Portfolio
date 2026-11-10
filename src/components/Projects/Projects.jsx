@@ -4,11 +4,24 @@ import SatechImage from '../../assets/images/screenshots/screenshot-satech.webp'
 import CaseStudyImage from '../../assets/images/screenshots/screenshot-case-study.webp';
 import PortfolioImage from '../../assets/images/screenshots/screenshot-portfolio.webp';
 import EcommerceImage from '../../assets/images/screenshots/screenshot-ecommerce.webp';
+import ChurchImage from '../../assets/images/screenshots/screenshot-church.webp';
 
 // `variant: 'outline'` renders the secondary action of a card (GitHub).
 // `titlePrefix` is dropped on desktop, where the mockups keep the title on one
 // line; `imagePosition` anchors screenshots whose subject is not centered.
 const projects = [
+  {
+    id: 5,
+    title: 'Church landing page redesign',
+    description:
+      'Research-driven redesign of a local church’s website: survey of 46 attendees, competitor analysis, architecture and a live build.',
+    tags: ['UX Research', 'Information Architecture', 'Live site'],
+    image: ChurchImage,
+    actions: [
+      { label: 'Live site', href: 'https://vidalta.org', variant: 'outline' },
+      { label: 'View project', to: '/church-redesign' },
+    ],
+  },
   {
     id: 1,
     title: 'Design & Marketing Internship',
