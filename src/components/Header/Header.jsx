@@ -55,17 +55,19 @@ const Header = ({ onContactClick }) => {
   };
 
   // Hashes are still handled for in-page anchors (e.g. the case study phases).
+  // A section passed in the router state comes from another page, so it jumps
+  // there instantly: the page transition already animates the arrival.
   useEffect(() => {
     const section = location.state?.section ?? location.hash.slice(1);
     if (section) {
-      scrollToSection(section);
+      scrollToSection(section, location.state?.section ? 'instant' : 'smooth');
     }
   }, [location]);
 
   return (
     <header className="header">
       <div className="header__container">
-        <Link to="/" className="header__brand" onClick={handleNavClick}>
+        <Link to="/" className="header__brand" onClick={handleNavClick} viewTransition>
           Asiel Rosiles
         </Link>
 
@@ -81,6 +83,7 @@ const Header = ({ onContactClick }) => {
                 state={link.section && { section: link.section }}
                 className="header__link"
                 onClick={(event) => handleNavClick(event, link.section)}
+                viewTransition
               >
                 {link.label}
               </Link>

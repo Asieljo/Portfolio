@@ -141,8 +141,53 @@ a:focus-visible,
   background: var(--color-content);
 }
 
+// Page transitions, played by the router's `viewTransition` links. The page
+// being left fades out with a slight lift while the new one fades in, rising
+// gently into place. Browsers without View Transitions just swap the page.
+@keyframes page-leave {
+  to {
+    opacity: 0;
+    transform: translateY(-$spacing-sm);
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY($spacing-md);
+  }
+}
+
+::view-transition-old(root) {
+  animation: page-leave $motion-duration-fast $motion-easing-ease-in both;
+}
+
+::view-transition-new(root) {
+  animation: page-enter $motion-duration-normal $motion-easing-ease-out both;
+}
+
+// The sticky header looks the same on every page, so it skips the animation:
+// only the new snapshot is shown, and it doesn't move.
+::view-transition-group(site-header) {
+  animation: none;
+}
+
+::view-transition-old(site-header) {
+  display: none;
+}
+
+::view-transition-new(site-header) {
+  animation: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none;
   }
 }

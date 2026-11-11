@@ -5,6 +5,9 @@
   background-color: var(--color-surface);
   border-bottom: $border-medium solid var(--color-content);
   transition: background-color $motion-duration-normal $interaction-transition-fade;
+  // Its own layer in page transitions, so it stays put while the page changes
+  // (see index.styles.scss).
+  view-transition-name: site-header;
 
   &__container {
     @include container;

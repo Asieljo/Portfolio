@@ -11,7 +11,7 @@ import './PageIntro.styles.scss';
 const PageIntro = ({ title, lead, text, action, media }) => (
   <section className="page-intro">
     <div className="page-intro__container">
-      <Link to="/" state={{ section: 'projects' }} className="page-intro__back">
+      <Link to="/" state={{ section: 'projects' }} className="page-intro__back" viewTransition>
         Back to projects
       </Link>
 

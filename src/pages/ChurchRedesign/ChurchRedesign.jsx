@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import ContactModal from '../../components/ContactModal/ContactModal';
@@ -7,6 +6,7 @@ import PageIntro from '../../components/PageIntro/PageIntro';
 import FactsStrip from '../../components/FactsStrip/FactsStrip';
 import SectionHeader from '../../components/SectionHeader/SectionHeader';
 import ContactCta from '../../components/ContactCta/ContactCta';
+import { scrollToSection } from '../../utils/scrollToSection';
 import oldHero from '../../assets/images/church/old-hero.webp';
 import oldLive from '../../assets/images/church/old-live.webp';
 import oldCommunity from '../../assets/images/church/old-community.webp';
@@ -260,6 +260,12 @@ const phoneSize = { width: 360, height: 800 };
 
 const formatIndex = (index) => String(index + 1).padStart(2, '0');
 
+// The phase index scrolls to each phase without adding a hash to the URL.
+const handleStepClick = (event, id) => {
+  event.preventDefault();
+  scrollToSection(id);
+};
+
 // Ranked lists fill two columns top to bottom on desktop, the first column
 // taking the larger half. The item that ends the first column is flagged so it
 // can drop its divider there.
@@ -404,13 +410,18 @@ const ChurchRedesign = () => {
 
             <nav className="case-study__process church-redesign__process" aria-label="Case study phases">
               {phases.map((phase, index) => (
-                <Link key={phase.id} to={`#${phase.id}`} className="case-study__step">
+                <a
+                  key={phase.id}
+                  href={`#${phase.id}`}
+                  className="case-study__step"
+                  onClick={(event) => handleStepClick(event, phase.id)}
+                >
                   <span className="case-study__step-number">{formatIndex(index)}</span>
                   <span className="case-study__step-text">
                     <span className="case-study__step-name">{phase.name}</span>
                     <span className="case-study__step-topic">{phase.topic}</span>
                   </span>
-                </Link>
+                </a>
               ))}
             </nav>
           </div>

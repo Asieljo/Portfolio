@@ -29,6 +29,7 @@ const ContactCta = ({ onContactClick }) => (
           to="/"
           state={{ section: 'projects' }}
           className="contact-cta__button contact-cta__button--outline"
+          viewTransition
         >
           More projects
         </Link>

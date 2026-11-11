@@ -32,13 +32,14 @@ const NotFound = () => {
           </p>
 
           <div className="not-found__actions">
-            <Link to="/" className="not-found__button not-found__button--solid">
+            <Link to="/" className="not-found__button not-found__button--solid" viewTransition>
               Back home
             </Link>
             <Link
               to="/"
               state={{ section: 'projects' }}
               className="not-found__button not-found__button--outline"
+              viewTransition
             >
               See projects
             </Link>

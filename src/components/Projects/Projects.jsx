@@ -73,7 +73,7 @@ const ProjectAction = ({ action }) => {
 
   if (action.to) {
     return (
-      <Link to={action.to} className={className}>
+      <Link to={action.to} className={className} viewTransition>
         {action.label}
       </Link>
     );
